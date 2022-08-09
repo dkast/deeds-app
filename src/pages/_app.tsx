@@ -1,22 +1,40 @@
 // src/pages/_app.tsx
 import React from "react"
 import superjson from "superjson"
+import { AppProps } from "next/app"
 import { withTRPC } from "@trpc/next"
-import type { AppType } from "next/dist/shared/lib/utils"
+import Head from "next/head"
+// import type { AppType } from "next/dist/shared/lib/utils"
 import { SessionProvider, signIn, useSession } from "next-auth/react"
 
-import type { AppRouter } from "../server/router"
-import "../styles/globals.css"
+import type { AppRouter } from "@/src/server/router"
+import "@/src/styles/globals.css"
 
-const MyApp: AppType = ({
+import type { NextPageWithAuthAndLayout } from "@/src/types/types"
+
+type AppPropsWithAuthAndLayout = AppProps & {
+  Component: NextPageWithAuthAndLayout
+}
+
+const MyApp = ({
   Component,
   pageProps: { session, ...pageProps }
-}) => {
+}: AppPropsWithAuthAndLayout) => {
+  const getLayout = Component.getLayout ?? (page => page)
+
   return (
     <SessionProvider session={session}>
-      <Auth>
-        <Component {...pageProps} />
-      </Auth>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
+      </Head>
+      {Component.auth ? (
+        <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
+      ) : (
+        getLayout(<Component {...pageProps} />)
+      )}
     </SessionProvider>
   )
 }
