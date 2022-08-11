@@ -5,17 +5,17 @@ import NavBar from "@/src/components/NavBar"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
 
-const Home: NextPageWithAuthAndLayout = () => {
+const Profile: NextPageWithAuthAndLayout = () => {
   return (
     <>
-      <NavBar title="Inicio"></NavBar>
+      <NavBar title="Mi Perfil"></NavBar>
     </>
   )
 }
 
-Home.auth = true
-Home.getLayout = function getLayout(page: React.ReactElement) {
+Profile.auth = true
+Profile.getLayout = function getLayout(page: React.ReactElement) {
   return <AppLayout>{page}</AppLayout>
 }
 
-export default Home
+export default Profile

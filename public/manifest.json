@@ -1,0 +1,7 @@
+{
+  "name": "Deberes",
+  "short_name": "Deberes",
+  "start_url": "/",
+  "scope": "/",
+  "display": "fullscreen"
+}

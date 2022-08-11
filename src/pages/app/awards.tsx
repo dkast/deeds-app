@@ -5,17 +5,17 @@ import NavBar from "@/src/components/NavBar"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
 
-const Home: NextPageWithAuthAndLayout = () => {
+const Awards: NextPageWithAuthAndLayout = () => {
   return (
     <>
-      <NavBar title="Inicio"></NavBar>
+      <NavBar title="Premios"></NavBar>
     </>
   )
 }
 
-Home.auth = true
-Home.getLayout = function getLayout(page: React.ReactElement) {
+Awards.auth = true
+Awards.getLayout = function getLayout(page: React.ReactElement) {
   return <AppLayout>{page}</AppLayout>
 }
 
-export default Home
+export default Awards

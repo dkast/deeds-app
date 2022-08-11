@@ -5,17 +5,17 @@ import NavBar from "@/src/components/NavBar"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
 
-const Home: NextPageWithAuthAndLayout = () => {
+const Compose: NextPageWithAuthAndLayout = () => {
   return (
     <>
-      <NavBar title="Inicio"></NavBar>
+      <NavBar title="Agregar una Actividad"></NavBar>
     </>
   )
 }
 
-Home.auth = true
-Home.getLayout = function getLayout(page: React.ReactElement) {
+Compose.auth = true
+Compose.getLayout = function getLayout(page: React.ReactElement) {
   return <AppLayout>{page}</AppLayout>
 }
 
-export default Home
+export default Compose
