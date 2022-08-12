@@ -11,7 +11,7 @@ const Compose: NextPageWithAuthAndLayout = () => {
   return (
     <div className="flex flex-col items-center">
       <NavBar title="Agregar una Actividad"></NavBar>
-      <div className="my-8">
+      <div className="mt-4 mb-8">
         <h2 className="text-center text-xl font-bold text-violet-300">
           ¿Qué tarea completaste?
         </h2>

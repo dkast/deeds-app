@@ -37,7 +37,7 @@ const TabBarMenu = (): JSX.Element => {
   }
 
   return (
-    <nav className="flex justify-between bg-black px-6 py-8">
+    <nav className="flex items-center justify-between bg-black p-6">
       <TabLink
         name="Inicio"
         href="/app/home"
@@ -74,7 +74,7 @@ const TabLink = ({
         className={classNames(
           href === selectedPath
             ? "text-white"
-            : "text-gray-500 hover:text-blue-500"
+            : "text-gray-500 hover:text-violet-500"
         )}
       >
         <div className="h-8 w-8">{icon}</div>
@@ -87,7 +87,7 @@ const TabLink = ({
 const TabUser = ({ href, user }: TabUserProps): JSX.Element => {
   return (
     <Link href={href}>
-      <a className="text-gray-500 hover:text-blue-500">
+      <a className="text-gray-500 hover:text-violet-500">
         {user?.image ? (
           <div className="h-8 w-8 overflow-hidden rounded-full bg-gray-400">
             <img src={user.image} alt="Avatar" />
@@ -104,7 +104,7 @@ const TabAddAction = (): JSX.Element => {
   return (
     <Link href="/app/compose">
       <a>
-        <PlusIcon className="h-8 w-8 text-white" />
+        <PlusIcon className="h-12 w-12 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-red-400 p-2 text-white shadow-md shadow-pink-600/50" />
       </a>
     </Link>
   )

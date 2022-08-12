@@ -43,14 +43,14 @@ export const ACTIVITIES = [
   {
     id: "activity_excercise",
     icon: "triangle.svg",
-    description: "Hacer ejercicio 30 min",
+    description: "Ejercicio +30 min",
     points: 30,
     requireComments: true
   },
   {
     id: "activity_swim",
     icon: "swimmer.svg",
-    description: "Nadar 30 min",
+    description: "Nadar +30 min",
     points: 30,
     requireComments: false
   },
