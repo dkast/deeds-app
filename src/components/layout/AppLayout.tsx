@@ -37,7 +37,7 @@ const TabBarMenu = (): JSX.Element => {
   }
 
   return (
-    <nav className="flex items-center justify-between bg-black px-6 pt-3 pb-9">
+    <nav className="flex items-center justify-between bg-black px-6 pt-3 pb-9 sm:m-2 sm:rounded-2xl">
       <TabLink
         name="Inicio"
         href="/app/home"
@@ -112,7 +112,7 @@ const TabAddAction = (): JSX.Element => {
 
 const AppLayout = ({ children }: AppLayoutProps): JSX.Element => {
   return (
-    <div className="mx-auto flex h-screen w-full flex-col sm:w-1/2 lg:w-1/3">
+    <div className="mx-auto flex h-screen w-full flex-col sm:max-w-lg">
       <main className="grow overflow-y-scroll">{children}</main>
       <TabBarMenu />
     </div>

@@ -3,8 +3,7 @@ import React from "react"
 import superjson from "superjson"
 import { AppProps } from "next/app"
 import { withTRPC } from "@trpc/next"
-import Head from "next/head"
-// import type { AppType } from "next/dist/shared/lib/utils"
+import { Toaster } from "react-hot-toast"
 import { SessionProvider, signIn, useSession } from "next-auth/react"
 
 import type { AppRouter } from "@/src/server/router"
@@ -29,6 +28,16 @@ const MyApp = ({
       ) : (
         getLayout(<Component {...pageProps} />)
       )}
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            borderRadius: "10px",
+            background: "#6d28d9",
+            color: "#fff"
+          }
+        }}
+      />
     </SessionProvider>
   )
 }

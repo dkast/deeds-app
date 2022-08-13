@@ -71,3 +71,11 @@ export const ACTIVITIES: Activity[] = [
     requireComments: true
   }
 ]
+
+export const GREETINGS = [
+  "¡Muy bien! Sigue así 👍",
+  "¡Bien hecho! Tú puedes 💪",
+  "Estás arrasando hoy 🔥",
+  "Pan comido para ti 😎",
+  "¡Impresionante! Sigue así 👊"
+]
