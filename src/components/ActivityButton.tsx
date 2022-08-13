@@ -17,6 +17,7 @@ const ActivityButton = ({
     <button
       type="button"
       className="flex w-full flex-col items-center gap-2 rounded-2xl bg-violet-500 px-2 py-3"
+      onClick={onClick}
     >
       <div className="rounded-full border-4 border-cyan-300/70 bg-cyan-500 ">
         <img src={`../images/${iconName}`} className="h-12 w-12" />

@@ -5,7 +5,15 @@ export type NextPageWithAuthAndLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode
 }
 
-export const ACTIVITIES = [
+export type Activity = {
+  id: string
+  icon: string
+  description: string
+  points: number
+  requireComments: boolean
+}
+
+export const ACTIVITIES: Activity[] = [
   {
     id: "activity_tbrush",
     icon: "dental-care.svg",
@@ -38,7 +46,8 @@ export const ACTIVITIES = [
     id: "activity_online",
     icon: "laptop.svg",
     description: "Tomar clase online",
-    points: 30
+    points: 30,
+    requireComments: false
   },
   {
     id: "activity_excercise",

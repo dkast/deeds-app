@@ -1,13 +1,18 @@
-import React from "react"
+import React, { useState } from "react"
 
 import AppLayout from "@/components/layout/AppLayout"
 import NavBar from "@/src/components/NavBar"
 import ActivityButton from "@/src/components/ActivityButton"
 
 import { ACTIVITIES } from "@/src/types/types"
-import type { NextPageWithAuthAndLayout } from "@/src/types/types"
+import type { NextPageWithAuthAndLayout, Activity } from "@/src/types/types"
 
 const Compose: NextPageWithAuthAndLayout = () => {
+  const [open, setOpen] = useState<boolean>(false)
+
+  const onActivityTap = (actType: Activity) => {
+    console.dir(actType)
+  }
   return (
     <div className="flex flex-col items-center">
       <NavBar title="Agregar una Actividad"></NavBar>
@@ -24,6 +29,7 @@ const Compose: NextPageWithAuthAndLayout = () => {
                 iconName={act.icon}
                 text={act.description}
                 points={act.points}
+                onClick={() => onActivityTap(act)}
               ></ActivityButton>
             </li>
           ))}
@@ -39,3 +45,7 @@ Compose.getLayout = function getLayout(page: React.ReactElement) {
 }
 
 export default Compose
+
+export const AddComment = ({}) => {
+  return <div>AddComment</div>
+}

@@ -37,7 +37,7 @@ const TabBarMenu = (): JSX.Element => {
   }
 
   return (
-    <nav className="flex items-center justify-between bg-black p-6">
+    <nav className="flex items-center justify-between bg-black px-6 pt-3 pb-9">
       <TabLink
         name="Inicio"
         href="/app/home"
