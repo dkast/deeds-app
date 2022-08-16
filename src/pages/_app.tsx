@@ -1,5 +1,6 @@
 // src/pages/_app.tsx
 import React from "react"
+import Head from "next/head"
 import superjson from "superjson"
 import { AppProps } from "next/app"
 import { withTRPC } from "@trpc/next"
@@ -23,6 +24,10 @@ const MyApp = ({
 
   return (
     <SessionProvider session={session}>
+      {/* https://nextjs.org/docs/messages/no-document-viewport-meta */}
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       {Component.auth ? (
         <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
       ) : (

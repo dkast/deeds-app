@@ -75,7 +75,7 @@ export const ACTIVITIES: Activity[] = [
 export const GREETINGS = [
   "¡Muy bien! Sigue así 👍",
   "¡Bien hecho! Tú puedes 💪",
-  "Estás arrasando hoy 🔥",
-  "Pan comido para ti 😎",
-  "¡Impresionante! Sigue así 👊"
+  "Sigue arrasando 🔥",
+  "Eso fue pan comido 😎",
+  "¡Excelente! Sigue así 👊"
 ]

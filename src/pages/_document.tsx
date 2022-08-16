@@ -9,19 +9,9 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&family=Sora:wght@600&display=swap"
             rel="stylesheet"
           />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes"></meta>
-          <meta
-            name="theme-color"
-            content="#000000"
-            media="(prefers-color-scheme: dark)"
-          ></meta>
-          <meta
-            name="theme-color"
-            content="#ffffff"
-            media="(prefers-color-scheme: light)"
-          ></meta>
+          <meta name="theme-color" content="#171717"></meta>
           <link rel="manifest" href="/manifest.json" />
           <link
             rel="apple-touch-icon"
