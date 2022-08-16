@@ -1,3 +1,4 @@
+import { Deed, User } from "@prisma/client"
 import type { NextPage } from "next"
 
 export type NextPageWithAuthAndLayout = NextPage & {
@@ -79,3 +80,7 @@ export const GREETINGS = [
   "Eso fue pan comido 😎",
   "¡Excelente! Sigue así 👊"
 ]
+
+export interface UserDeed extends Deed {
+  User: User | null
+}

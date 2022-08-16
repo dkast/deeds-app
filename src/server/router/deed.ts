@@ -1,12 +1,14 @@
-import { resolve } from "path"
-import { Serializer } from "v8"
-import { string, z } from "zod"
+import { z } from "zod"
 import { createProtectedRouter } from "./protected-router"
 
 export const deedRouter = createProtectedRouter()
   .query("getAll", {
     resolve({ ctx }) {
-      return ctx.prisma.deed.findMany()
+      return ctx.prisma.deed.findMany({
+        include: {
+          User: true
+        }
+      })
     }
   })
   .mutation("create", {

@@ -1,7 +1,8 @@
 import React from "react"
 
-import AppLayout from "@/components/layout/AppLayout"
 import NavBar from "@/src/components/NavBar"
+import Timeline from "@/src/components/Timeline"
+import AppLayout from "@/components/layout/AppLayout"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
 
@@ -9,6 +10,7 @@ const Home: NextPageWithAuthAndLayout = () => {
   return (
     <>
       <NavBar title="Inicio"></NavBar>
+      <Timeline />
     </>
   )
 }
