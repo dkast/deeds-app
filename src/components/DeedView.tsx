@@ -67,7 +67,7 @@ const DeedView = ({ item }: DeedProps): JSX.Element => {
         <div className="col-span-3 flex flex-grow flex-col">
           <div className="flex items-baseline justify-between">
             <div>
-              <span className="font-semibold text-indigo-500">
+              <span className="font-semibold text-violet-500">
                 {item?.User?.name}
               </span>
               <span className="ml-1 text-gray-300">{message}</span>

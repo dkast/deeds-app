@@ -3,11 +3,12 @@ import { AnimatePresence, motion } from "framer-motion"
 
 import { trpc } from "@/src/utils/trpc"
 import DeedView from "@/components/DeedView"
+import Loader from "@/components/Loader"
 
 const Timeline = () => {
   const { data: deeds, isLoading } = trpc.useQuery(["deed.getAll"])
 
-  if (isLoading) return <div>Cargando...</div>
+  if (isLoading) return <Loader />
 
   return (
     <div>
