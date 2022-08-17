@@ -3,9 +3,9 @@ import React, { useState } from "react"
 import { useSession } from "next-auth/react"
 
 import AppLayout from "@/components/layout/AppLayout"
-import NavBar from "@/src/components/NavBar"
-import ActivityButton from "@/src/components/ActivityButton"
-import AddComments from "@/src/components/AddComments"
+import NavBar from "@/components/NavBar"
+import ActivityButton from "@/components/ActivityButton"
+import AddComments from "@/components/AddComments"
 import { trpc } from "@/src/utils/trpc"
 
 import { ACTIVITIES, GREETINGS } from "@/src/types/types"
