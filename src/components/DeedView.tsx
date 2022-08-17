@@ -57,15 +57,11 @@ const DeedView = ({ item }: DeedProps): JSX.Element => {
   }, [item])
 
   return (
-    <div className="mb-3 px-4">
+    <div className="m-3 rounded-xl bg-neutral-800 px-4 py-3">
       <div className="grid grid-cols-5 py-2">
         <div>
           <div className="relative h-12 w-12 rounded-full bg-gradient-to-br from-indigo-500 to-pink-300">
-            <img
-              src={`/static/images/${icon}`}
-              className="h-12 w-12"
-              alt="icon"
-            />
+            <img src={`../images/${icon}`} className="h-12 w-12" alt="icon" />
           </div>
         </div>
         <div className="col-span-3 flex flex-grow flex-col">
@@ -87,7 +83,7 @@ const DeedView = ({ item }: DeedProps): JSX.Element => {
         <div className="flex justify-end">
           <div className="my-2 flex w-16 items-center justify-center rounded-full px-3 py-0.5 dark:bg-orange-800 dark:bg-opacity-20">
             <img
-              src="/static/images/gem.svg"
+              src="../images/gem.svg"
               className="inline h-4 w-4"
               alt="coin"
             />
@@ -96,9 +92,11 @@ const DeedView = ({ item }: DeedProps): JSX.Element => {
             </span>
           </div>
         </div>
-        <span className="col-span-4 col-start-2 py-2 dark:text-white">
-          {item?.comments}
-        </span>
+        {item?.comments && (
+          <span className="col-span-4 col-start-2 mt-2 text-white">
+            {item?.comments}
+          </span>
+        )}
       </div>
     </div>
   )

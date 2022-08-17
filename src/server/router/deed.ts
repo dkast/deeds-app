@@ -7,7 +7,11 @@ export const deedRouter = createProtectedRouter()
       return ctx.prisma.deed.findMany({
         include: {
           User: true
-        }
+        },
+        orderBy: {
+          createdAt: "desc"
+        },
+        take: 20
       })
     }
   })

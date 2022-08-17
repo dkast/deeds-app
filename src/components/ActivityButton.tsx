@@ -1,4 +1,5 @@
 import React from "react"
+import { motion } from "framer-motion"
 
 type ActivityButtonProps = {
   iconName: string
@@ -14,7 +15,10 @@ const ActivityButton = ({
   onClick
 }: ActivityButtonProps) => {
   return (
-    <button
+    <motion.button
+      whileTap={{
+        scale: 0.9
+      }}
       type="button"
       className="flex w-full flex-col items-center gap-2 rounded-2xl bg-violet-500 px-2 py-3"
       onClick={onClick}
@@ -29,7 +33,7 @@ const ActivityButton = ({
           <img src="../images/gem.svg" className="h-4 w-4" alt="coin" />
         </div>
       </div>
-    </button>
+    </motion.button>
   )
 }
 

@@ -1,4 +1,5 @@
 import toast from "react-hot-toast"
+import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { useSession } from "next-auth/react"
 
@@ -12,11 +13,21 @@ import { ACTIVITIES, GREETINGS } from "@/src/types/types"
 import type { NextPageWithAuthAndLayout, Activity } from "@/src/types/types"
 
 const Compose: NextPageWithAuthAndLayout = () => {
+  const router = useRouter()
   const [open, setOpen] = useState<boolean>(false)
   const [comment, setComment] = useState<string>("")
   const [selectedActivity, setSelectedActivity] = useState<Activity>()
   const { data: session, status } = useSession()
-  const createDeed = trpc.useMutation("deed.create")
+  const createDeed = trpc.useMutation("deed.create", {
+    onError: () => {
+      toast.error("Algo salió mal 😥")
+    },
+    onSuccess: () => {
+      const greeting = getGreeting()
+      toast(greeting as string, { icon: "🎉" })
+      router.push("home")
+    }
+  })
 
   const onActivityTap = (actType: Activity) => {
     if (actType.requireComments) {
@@ -41,8 +52,6 @@ const Compose: NextPageWithAuthAndLayout = () => {
     })
 
     setComment("")
-    const greeting = getGreeting()
-    toast(greeting as string, { icon: "🎉" })
   }
 
   const getGreeting = (): string | undefined => {
