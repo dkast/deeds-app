@@ -4,11 +4,13 @@ import AppLayout from "@/components/layout/AppLayout"
 import NavBar from "@/src/components/NavBar"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
+import AwardList from "@/components/AwardList"
 
 const Awards: NextPageWithAuthAndLayout = () => {
   return (
     <>
       <NavBar title="Premios"></NavBar>
+      <AwardList />
     </>
   )
 }

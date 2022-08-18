@@ -87,6 +87,13 @@ model Family {
   members User[]
 }
 
+model Award {
+  id          String @id @default(cuid())
+  description String
+  imageUrl    String
+  points      Int
+}
+
 enum Role {
   MEMBER
   PARENT
