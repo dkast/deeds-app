@@ -26,7 +26,10 @@ const MyApp = ({
     <SessionProvider session={session}>
       {/* https://nextjs.org/docs/messages/no-document-viewport-meta */}
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          content="viewport-fit=cover, initial-scale=1, user-scalable=no"
+        />
       </Head>
       {Component.auth ? (
         <Auth>{getLayout(<Component {...pageProps} />)}</Auth>

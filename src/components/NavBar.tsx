@@ -3,16 +3,26 @@ import React from "react"
 
 type NavBarProps = {
   title: string
+  leftItem?: React.ReactNode
+  rightItem?: React.ReactNode
 }
 
-const NavBar = ({ title }: NavBarProps): JSX.Element => {
+const NavBar = ({ title, leftItem, rightItem }: NavBarProps): JSX.Element => {
   return (
     <>
       <Head>
         <title>Deberes - {title}</title>
       </Head>
-      <div className="w-full px-8 py-4">
-        <h1 className="text-center text-2xl font-bold text-white">{title}</h1>
+      <div className="fixed inset-x-0 z-10 w-full bg-neutral-800/50 px-6 py-4 backdrop-blur">
+        <div className="grid grid-cols-4">
+          <div className="flex items-center justify-start">{leftItem}</div>
+          <div className="col-span-2">
+            <h1 className="text-center text-2xl font-bold text-white">
+              {title}
+            </h1>
+          </div>
+          <div className="flex items-center justify-end">{rightItem}</div>
+        </div>
       </div>
     </>
   )

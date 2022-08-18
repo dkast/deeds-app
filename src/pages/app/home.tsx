@@ -10,7 +10,9 @@ const Home: NextPageWithAuthAndLayout = () => {
   return (
     <>
       <NavBar title="Inicio"></NavBar>
-      <Timeline />
+      <div className="mt-20 mb-28">
+        <Timeline />
+      </div>
     </>
   )
 }

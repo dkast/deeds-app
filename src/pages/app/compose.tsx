@@ -7,6 +7,7 @@ import AppLayout from "@/components/layout/AppLayout"
 import NavBar from "@/components/NavBar"
 import ActivityButton from "@/components/ActivityButton"
 import AddComments from "@/components/AddComments"
+import Loader from "@/components/Loader"
 import { trpc } from "@/src/utils/trpc"
 
 import { ACTIVITIES, GREETINGS } from "@/src/types/types"
@@ -62,10 +63,10 @@ const Compose: NextPageWithAuthAndLayout = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center">
-        <NavBar title="Agregar una Actividad"></NavBar>
+      <NavBar title="Agregar una Actividad" />
+      <div className="mt-20 mb-28 flex flex-col items-center">
         {status === "loading" ? (
-          "Cargando..."
+          <Loader />
         ) : (
           <>
             <div className="mt-4 mb-8">

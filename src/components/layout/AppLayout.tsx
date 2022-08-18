@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/outline"
 import { useRouter } from "next/router"
 import classNames from "@/src/lib/classnames"
+import { motion } from "framer-motion"
 
 type AppLayoutProps = {
   children: React.ReactNode
@@ -37,28 +38,30 @@ const TabBarMenu = (): JSX.Element => {
   }
 
   return (
-    <nav className="flex items-center justify-between bg-black px-6 pt-3 pb-9 sm:m-2 sm:rounded-2xl">
-      <TabLink
-        name="Inicio"
-        href="/app/home"
-        icon={<HomeIcon className="text-current" />}
-        selectedPath={asPath}
-      />
-      <TabLink
-        name="Premios"
-        href="/app/awards"
-        icon={<GiftIcon className="text-current" />}
-        selectedPath={asPath}
-      />
-      <TabAddAction />
-      <TabLink
-        name="Familia"
-        href="/app/family"
-        icon={<UserGroupIcon className="text-current" />}
-        selectedPath={asPath}
-      />
-      <TabUser href="/app/profile" user={session?.user as User} />
-    </nav>
+    <div className="fixed inset-x-0 bottom-0 sm:mx-auto sm:max-w-lg">
+      <nav className="flex items-center justify-between bg-black px-6 pt-3 pb-9 sm:m-2 sm:rounded-2xl">
+        <TabLink
+          name="Inicio"
+          href="/app/home"
+          icon={<HomeIcon className="text-current" />}
+          selectedPath={asPath}
+        />
+        <TabLink
+          name="Premios"
+          href="/app/awards"
+          icon={<GiftIcon className="text-current" />}
+          selectedPath={asPath}
+        />
+        <TabAddAction />
+        <TabLink
+          name="Familia"
+          href="/app/family"
+          icon={<UserGroupIcon className="text-current" />}
+          selectedPath={asPath}
+        />
+        <TabUser href="/app/profile" user={session?.user as User} />
+      </nav>
+    </div>
   )
 }
 
@@ -103,9 +106,9 @@ const TabUser = ({ href, user }: TabUserProps): JSX.Element => {
 const TabAddAction = (): JSX.Element => {
   return (
     <Link href="/app/compose">
-      <a>
+      <motion.a whileTap={{ scale: 0.9 }}>
         <PlusIcon className="h-12 w-12 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-red-400 p-2 text-white shadow-md shadow-pink-600/50" />
-      </a>
+      </motion.a>
     </Link>
   )
 }
