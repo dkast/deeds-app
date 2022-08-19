@@ -9,7 +9,7 @@ import {
   UserGroupIcon
 } from "@heroicons/react/outline"
 import { useRouter } from "next/router"
-import classNames from "@/src/lib/classnames"
+import classNames from "@/src/utils/classnames"
 import { motion } from "framer-motion"
 
 type AppLayoutProps = {

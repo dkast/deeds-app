@@ -13,7 +13,7 @@ const NavBar = ({ title, leftItem, rightItem }: NavBarProps): JSX.Element => {
       <Head>
         <title>Deberes - {title}</title>
       </Head>
-      <div className="fixed inset-x-0 z-10 w-full bg-neutral-800/50 px-6 py-4 backdrop-blur">
+      <div className="fixed inset-x-0 z-10 w-full bg-gradient-to-t from-neutral-800/50 to-neutral-800 px-6 py-4 backdrop-blur">
         <div className="grid grid-cols-4">
           <div className="flex items-center justify-start">{leftItem}</div>
           <div className="col-span-2">

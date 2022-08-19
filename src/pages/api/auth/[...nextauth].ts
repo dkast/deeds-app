@@ -9,11 +9,16 @@ import { env } from "../../../env/server.mjs"
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
-    session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id
+    async session({ session, user }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: user.id,
+          role: user.role,
+          familyId: user.familyId
+        }
       }
-      return session
     }
   },
   // Configure one or more authentication providers

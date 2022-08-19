@@ -7,7 +7,7 @@ type AwardProps = {
 
 const AwardView = ({ item }: AwardProps): JSX.Element => {
   return (
-    <div className="relative overflow-hidden rounded-lg border border-white/30 shadow-lg">
+    <div className="relative overflow-hidden rounded-lg shadow-lg">
       <img
         src={item.imageUrl}
         className="h-48 w-full rounded-lg object-cover"
