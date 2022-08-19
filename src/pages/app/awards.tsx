@@ -43,7 +43,7 @@ Awards.getLayout = function getLayout(page: React.ReactElement) {
 export default Awards
 
 type AddAwardButtonProps = {
-  role: string
+  role: string | undefined
   onClick: () => void
 }
 
