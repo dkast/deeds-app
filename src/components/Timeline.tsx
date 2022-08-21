@@ -11,7 +11,7 @@ const Timeline = () => {
   if (isLoading) return <Loader />
 
   return (
-    <div className="px-3">
+    <div className="flex flex-col gap-3 px-3">
       <AnimatePresence initial={false} mode="popLayout">
         {deeds?.map(deed => {
           console.dir(deed)

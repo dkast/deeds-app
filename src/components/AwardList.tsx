@@ -11,7 +11,7 @@ const AwardList = () => {
   if (isLoading) return <Loader />
 
   return (
-    <div className="mt-6 px-3">
+    <div className="mt-6 flex flex-col gap-4 px-3">
       <AnimatePresence initial={false} mode="popLayout">
         {awards?.map(award => {
           return (
