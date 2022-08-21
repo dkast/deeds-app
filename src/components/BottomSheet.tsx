@@ -21,7 +21,7 @@ const overlay = {
 const dialog = {
   visible: {
     y: 0,
-    transition: { duration: 0.3, ease: [0.36, 0.66, 0.04, 1] }
+    transition: { duration: 0.4, ease: [0.36, 0.66, 0.04, 1] }
   },
   hidden: {
     y: "100%",
@@ -56,7 +56,7 @@ const BottomSheet = ({ children, open, setOpen }: BottomSheetProps) => {
                       animate="visible"
                       exit="hidden"
                       variants={dialog}
-                      className="relative inline-block h-full w-full overflow-hidden rounded-xl bg-white px-4 pt-5 pb-4 text-left align-top shadow-xl sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
+                      className="relative inline-block h-full w-full overflow-hidden rounded-xl bg-neutral-800 px-4 pt-5 pb-4 text-left align-top shadow-xl outline-none sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
                     >
                       {children}
                     </motion.div>

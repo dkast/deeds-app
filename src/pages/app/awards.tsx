@@ -1,14 +1,21 @@
 import React, { useState } from "react"
 import { useSession } from "next-auth/react"
 import { PlusIcon } from "@heroicons/react/outline"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import Loader from "@/src/components/Loader"
 import NavBar from "@/src/components/NavBar"
 import AwardList from "@/components/AwardList"
 import AppLayout from "@/components/layout/AppLayout"
 import BottomSheet from "@/src/components/BottomSheet"
+import Input from "@/src/components/Input"
+import { trpc } from "@/src/utils/trpc"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
+import Button from "@/src/components/Button"
+import toast from "react-hot-toast"
 
 const Awards: NextPageWithAuthAndLayout = () => {
   const { data: session, status } = useSession()
@@ -30,7 +37,7 @@ const Awards: NextPageWithAuthAndLayout = () => {
       <div className="mt-20 mb-28">
         <AwardList />
       </div>
-      <AddAwardSheet open={open} onClose={setOpen} />
+      <AddAwardSheet open={open} setOpen={setOpen} />
     </>
   )
 }
@@ -59,13 +66,152 @@ const AddAwardButton = ({ role, onClick }: AddAwardButtonProps) => {
 
 type AddAwardSheetProps = {
   open: boolean
-  onClose: React.Dispatch<React.SetStateAction<boolean>>
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddAwardSheet = ({ open, onClose }: AddAwardSheetProps) => {
+interface IFormValues {
+  description: string
+  imageUrl: string
+  refUrl?: string
+  points: number
+}
+
+const schema = z.object({
+  description: z.string().min(1, { message: "Requerido" }),
+  imageUrl: z.string().url(),
+  refUrl: z.string().optional(),
+  points: z.number().int().positive()
+})
+
+const AddAwardSheet = ({ open, setOpen }: AddAwardSheetProps) => {
+  const [submitted, setSubmitted] = useState<boolean>(false)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<IFormValues>({
+    resolver: zodResolver(schema)
+  })
+  const ctx = trpc.useContext()
+  const createAward = trpc.useMutation("award.create", {
+    onError: () => {
+      toast.error("Error al guardar")
+    },
+    onSuccess: () => {
+      toast.success("Premio guardado")
+      setOpen(false)
+      reset()
+    },
+    onMutate: () => {
+      ctx.cancelQuery(["award.getAll"])
+
+      let optimisticUpdate = ctx.getQueryData(["award.getAll"])
+      if (optimisticUpdate) {
+        ctx.setQueryData(["award.getAll"], optimisticUpdate)
+      }
+    },
+    onSettled: () => {
+      ctx.invalidateQueries(["award.getAll"])
+      setSubmitted(false)
+    }
+  })
+
+  const onSubmit = (data: IFormValues) => {
+    setSubmitted(true)
+    createAward.mutate(data)
+  }
+
   return (
-    <BottomSheet open={open} setOpen={onClose}>
-      <span>Pruebas</span>
+    <BottomSheet open={open} setOpen={setOpen}>
+      <div className="flex h-full flex-col pt-3">
+        <div className="relative text-center">
+          <h2 className="text-xl text-white">Agregar Premio</h2>
+          <div className="absolute inset-y-0 right-0">
+            <button
+              onClick={() => setOpen(false)}
+              className="mr-1 text-white focus:outline-none"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+        <div className="flex-1 overflow-y-scroll">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="mt-6 flex flex-col gap-2">
+              <div>
+                <label
+                  htmlFor="description"
+                  className="ml-2 block font-medium text-neutral-400"
+                >
+                  Descripcion
+                </label>
+                <div className="p-1">
+                  <Input
+                    type="text"
+                    placeholder="Descripcion"
+                    {...register("description")}
+                    hasError={errors.description ? true : undefined}
+                  ></Input>
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="imageUrl"
+                  className="ml-2 block font-medium text-neutral-400"
+                >
+                  Imagen (URL)
+                </label>
+                <div className="p-1">
+                  <Input
+                    type="text"
+                    placeholder="Imagen (URL)"
+                    {...register("imageUrl")}
+                    hasError={errors.imageUrl ? true : undefined}
+                  ></Input>
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="points"
+                  className="ml-2 block font-medium text-neutral-400"
+                >
+                  Puntos
+                </label>
+                <div className="p-1">
+                  <Input
+                    type="number"
+                    placeholder="Puntos"
+                    {...register("points", { valueAsNumber: true })}
+                    hasError={errors.points ? true : undefined}
+                  ></Input>
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="refUrl"
+                  className="ml-2 block font-medium text-neutral-400"
+                >
+                  Liga
+                </label>
+                <div className="p-1">
+                  <Input
+                    type="text"
+                    placeholder="Liga"
+                    {...register("refUrl")}
+                    hasError={errors.refUrl ? true : undefined}
+                  ></Input>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 p-2">
+              <Button type="submit" variant="primary" isLoading={submitted}>
+                Guardar
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
     </BottomSheet>
   )
 }

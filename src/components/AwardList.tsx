@@ -1,4 +1,5 @@
 import React from "react"
+import { AnimatePresence, motion } from "framer-motion"
 
 import { trpc } from "@/src/utils/trpc"
 import Loader from "@/components/Loader"
@@ -10,14 +11,21 @@ const AwardList = () => {
   if (isLoading) return <Loader />
 
   return (
-    <div>
-      {awards?.map(award => {
-        return (
-          <div className="mt-6 px-3" key={award.id}>
-            <AwardView item={award} />
-          </div>
-        )
-      })}
+    <div className="mt-6 px-3">
+      <AnimatePresence initial={false} mode="popLayout">
+        {awards?.map(award => {
+          return (
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              key={award.id}
+            >
+              <AwardView item={award} />
+            </motion.div>
+          )
+        })}
+      </AnimatePresence>
     </div>
   )
 }
