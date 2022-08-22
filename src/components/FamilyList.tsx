@@ -13,8 +13,6 @@ const FamilyList = () => {
     }
   )
 
-  console.dir(users)
-
   if (isLoading || status === "loading") return <Loader />
 
   return (

@@ -116,9 +116,7 @@ const TabAddAction = (): JSX.Element => {
 const AppLayout = ({ children }: AppLayoutProps): JSX.Element => {
   return (
     <div className="mx-auto flex h-screen w-full flex-col sm:max-w-lg">
-      <main className="no-scroll-visible grow overflow-y-scroll">
-        {children}
-      </main>
+      <main className="grow overflow-y-scroll">{children}</main>
       <TabBarMenu />
     </div>
   )
