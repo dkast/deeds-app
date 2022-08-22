@@ -63,7 +63,7 @@ const Compose: NextPageWithAuthAndLayout = () => {
 
   return (
     <>
-      <NavBar title="Agregar una Actividad" />
+      <NavBar title="Agregar" />
       <div className="mt-20 mb-28 flex flex-col items-center">
         {status === "loading" ? (
           <Loader />

@@ -4,4 +4,8 @@
 
 body {
   -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+}
+.no-scroll-visible::-webkit-scrollbar {
+  display: none !important;
 }

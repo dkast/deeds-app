@@ -17,7 +17,7 @@ export const deedRouter = createProtectedRouter()
   })
   .mutation("create", {
     input: z.object({
-      userId: z.string().nullish(),
+      userId: z.string().optional(),
       activity: z.string(),
       points: z.number(),
       comments: z.string().nullish()
@@ -30,6 +30,16 @@ export const deedRouter = createProtectedRouter()
             activity: input.activity,
             points: input.points,
             comments: input.comments
+          }
+        })
+        await ctx.prisma.user.update({
+          where: {
+            id: input.userId
+          },
+          data: {
+            totalPoints: {
+              increment: input.points
+            }
           }
         })
       } catch (error) {
