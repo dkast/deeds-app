@@ -24,7 +24,7 @@ const FamilyList = () => {
           <div key={user.id}>
             <div className="flex flex-row items-center rounded-xl bg-neutral-800 px-4 py-3">
               <div className="h-16 w-16 overflow-hidden rounded-full bg-gray-400">
-                <img src={user.image} alt="Avatar" />
+                <img src={user.image as string | undefined} alt="Avatar" />
               </div>
               <div className="ml-6 flex flex-col">
                 <span className="font-semibold text-violet-500">
