@@ -19,6 +19,7 @@ const Compose: NextPageWithAuthAndLayout = () => {
   const [comment, setComment] = useState<string>("")
   const [selectedActivity, setSelectedActivity] = useState<Activity>()
   const { data: session, status } = useSession()
+  const ctx = trpc.useContext()
   const createDeed = trpc.useMutation("deed.create", {
     onError: () => {
       toast.error("Algo salió mal 😥")
@@ -27,6 +28,10 @@ const Compose: NextPageWithAuthAndLayout = () => {
       const greeting = getGreeting()
       toast(greeting as string, { icon: "🎉" })
       router.push("home")
+    },
+    onSettled: () => {
+      ctx.invalidateQueries(["user.getUser"])
+      ctx.invalidateQueries(["user.getFamilyMembers"])
     }
   })
 

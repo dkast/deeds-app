@@ -56,6 +56,7 @@ model User {
   Family        Family?   @relation(fields: [familyId], references: [id])
   familyId      String?
   totalPoints   Int       @default(0)
+  level         Int       @default(1)
 }
 
 model VerificationToken {
