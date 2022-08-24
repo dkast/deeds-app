@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useSession } from "next-auth/react"
-import { PlusIcon } from "@heroicons/react/outline"
+import { PlusIcon } from "@heroicons/react/24/outline"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -130,7 +130,7 @@ const AddAwardSheet = ({ open, setOpen }: AddAwardSheetProps) => {
           <div className="absolute inset-y-0 right-0">
             <button
               onClick={() => setOpen(false)}
-              className="mr-1 text-white focus:outline-none"
+              className="mr-1 text-violet-400 focus:outline-none"
             >
               Cerrar
             </button>

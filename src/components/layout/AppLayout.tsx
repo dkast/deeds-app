@@ -7,7 +7,7 @@ import {
   HomeIcon,
   PlusIcon,
   UserGroupIcon
-} from "@heroicons/react/outline"
+} from "@heroicons/react/24/outline"
 import { useRouter } from "next/router"
 import classNames from "@/src/utils/classnames"
 import { motion } from "framer-motion"

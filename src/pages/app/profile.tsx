@@ -9,7 +9,7 @@ import Loader from "@/components/Loader"
 import NavBar from "@/src/components/NavBar"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
-import { LogoutIcon } from "@heroicons/react/outline"
+import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline"
 
 const Profile: NextPageWithAuthAndLayout = () => {
   const { data: session, status } = useSession()
@@ -93,7 +93,7 @@ type LogoutButtonProps = {
 const LogoutButton = ({ onClick }: LogoutButtonProps) => {
   return (
     <button onClick={onClick}>
-      <LogoutIcon className="h-6 w-6 text-white" />
+      <ArrowLeftOnRectangleIcon className="h-6 w-6 rotate-180 text-white" />
     </button>
   )
 }
