@@ -22,7 +22,7 @@ const SignIn = ({
       <Head>
         <title>Deberes - Bienvenido</title>
       </Head>
-      <div className="flex min-h-screen flex-col items-center justify-center">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-neutral-900 to-violet-900">
         <div>
           <Lottie
             loop

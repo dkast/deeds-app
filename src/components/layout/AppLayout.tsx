@@ -26,6 +26,7 @@ type TabLinkProps = {
 type TabUserProps = {
   href: string
   user: User | undefined
+  selectedPath: string
 }
 
 const TabBarMenu = (): JSX.Element => {
@@ -39,7 +40,7 @@ const TabBarMenu = (): JSX.Element => {
 
   return (
     <div className="fixed inset-x-0 bottom-0 sm:mx-auto sm:max-w-lg">
-      <nav className="flex items-center justify-between bg-black px-6 pt-3 pb-9 sm:m-2 sm:rounded-2xl">
+      <nav className="flex items-center justify-between bg-black px-4 pb-9 sm:m-2 sm:rounded-2xl">
         <TabLink
           name="Inicio"
           href="/app/home"
@@ -59,7 +60,11 @@ const TabBarMenu = (): JSX.Element => {
           icon={<UserGroupIcon className="text-current" />}
           selectedPath={asPath}
         />
-        <TabUser href="/app/profile" user={session?.user as User} />
+        <TabUser
+          href="/app/profile"
+          user={session?.user as User}
+          selectedPath={asPath}
+        />
       </nav>
     </div>
   )
@@ -76,8 +81,9 @@ const TabLink = ({
       <a
         className={classNames(
           href === selectedPath
-            ? "text-white"
-            : "text-gray-500 hover:text-violet-500"
+            ? "border-t-2 border-violet-500 bg-gradient-to-b from-violet-800/50 to-black text-white"
+            : "text-gray-500 hover:text-violet-500",
+          "py-3 px-4"
         )}
       >
         <div className="h-8 w-8">{icon}</div>
@@ -87,10 +93,17 @@ const TabLink = ({
   )
 }
 
-const TabUser = ({ href, user }: TabUserProps): JSX.Element => {
+const TabUser = ({ href, user, selectedPath }: TabUserProps): JSX.Element => {
   return (
     <Link href={href}>
-      <a className="text-gray-500 hover:text-violet-500">
+      <a
+        className={classNames(
+          href === selectedPath
+            ? "border-t-2 border-violet-500 bg-gradient-to-b from-violet-800/50 to-black"
+            : "",
+          "py-3 px-4 pt-3"
+        )}
+      >
         {user?.image ? (
           <div className="h-8 w-8 overflow-hidden rounded-full bg-gray-400">
             <img src={user.image} alt="Avatar" />
@@ -107,7 +120,7 @@ const TabAddAction = (): JSX.Element => {
   return (
     <Link href="/app/compose">
       <motion.a whileTap={{ scale: 0.9 }}>
-        <PlusIcon className="h-12 w-12 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-red-400 p-2 text-white shadow-md shadow-pink-600/50" />
+        <PlusIcon className="mx-2 -mt-3 h-14 w-14 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-red-400 p-2 text-white shadow-lg shadow-pink-600/50" />
       </motion.a>
     </Link>
   )

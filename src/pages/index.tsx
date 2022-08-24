@@ -19,7 +19,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Aplicacion de Parenting 2.0" />
       </Head>
 
-      <div className="flex h-screen flex-col items-center justify-center gap-10">
+      <div className="flex h-screen flex-col items-center justify-center gap-10 bg-gradient-to-b from-neutral-900 to-violet-900">
         <div>
           <Lottie
             loop
