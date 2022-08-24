@@ -24,6 +24,24 @@ export const awardRouter = createProtectedRouter()
             refUrl: input?.refUrl
           }
         })
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  })
+  .mutation("delete", {
+    input: z.object({
+      id: z.string()
+    }),
+    async resolve({ ctx, input }) {
+      try {
+        await ctx.prisma.award.delete({
+          where: {
+            id: input.id
+          }
+        })
+      } catch (error) {
+        console.log(error)
+      }
     }
   })
