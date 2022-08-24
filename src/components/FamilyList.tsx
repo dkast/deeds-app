@@ -25,7 +25,7 @@ const FamilyList = () => {
                 <img src={user.image as string | undefined} alt="Avatar" />
               </div>
               <div className="ml-6 flex flex-col">
-                <span className="font-semibold text-violet-500">
+                <span className="font-semibold text-violet-400">
                   {user.name}
                 </span>
                 <span className="text-white">{user.totalPoints} puntos</span>

@@ -1,8 +1,8 @@
 import React from "react"
 import Head from "next/head"
 import { getProviders, signIn } from "next-auth/react"
-import Image from "next/image"
 import { unstable_getServerSession } from "next-auth/next"
+import Lottie from "react-lottie-player"
 
 import Button from "@/components/Button"
 import { authOptions } from "@/src/utils/auth"
@@ -12,16 +12,28 @@ import type {
   InferGetServerSidePropsType
 } from "next"
 
+import lottieJSON from "../../../../public/assets/robot-says-hi.json"
+
 const SignIn = ({
   providers
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <>
       <Head>
-        <title>Biztro - Bienvenido</title>
+        <title>Deberes - Bienvenido</title>
       </Head>
       <div className="flex min-h-screen flex-col items-center justify-center">
-        <h2 className="text-3xl font-semibold leading-9 text-white">Hola!</h2>
+        <div>
+          <Lottie
+            loop
+            animationData={lottieJSON}
+            play
+            className="h-60 w-60"
+          ></Lottie>
+        </div>
+        <h2 className="bg-gradient-to-l from-cyan-400 via-violet-400 to-pink-400 bg-clip-text text-3xl font-semibold leading-9 text-transparent">
+          Hola!
+        </h2>
         <span className="mt-2 text-neutral-500">
           Ingresa con tu cuenta de Discord
         </span>

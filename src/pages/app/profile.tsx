@@ -63,7 +63,7 @@ const Profile: NextPageWithAuthAndLayout = () => {
             >
               <Progress.ProgressIndicator
                 style={{ width: `${getPct(user?.totalPoints)}%` }}
-                className="h-full bg-violet-500 duration-300 ease-in-out"
+                className="h-full bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-400 duration-300 ease-in-out"
               />
             </Progress.Root>
           </div>

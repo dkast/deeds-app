@@ -74,11 +74,11 @@ const Compose: NextPageWithAuthAndLayout = () => {
           <Loader />
         ) : (
           <>
-            <div className="mt-4 mb-8">
+            {/* <div className="mt-4 mb-8">
               <h2 className="text-center text-xl font-bold text-violet-300">
                 ¿Qué tarea completaste?
               </h2>
-            </div>
+            </div> */}
             <div>
               <ul className="grid grid-cols-2 gap-2">
                 {ACTIVITIES.map(act => (

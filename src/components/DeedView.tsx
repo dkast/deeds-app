@@ -60,14 +60,14 @@ const DeedView = ({ item }: DeedProps): JSX.Element => {
     <div className="rounded-xl bg-neutral-800 px-4 py-3">
       <div className="grid grid-cols-5 py-2">
         <div>
-          <div className="relative h-12 w-12 rounded-full bg-gradient-to-br from-indigo-500 to-pink-300">
+          <div className="relative h-12 w-12 rounded-full bg-gradient-to-br from-cyan-300 to-pink-400">
             <img src={`../images/${icon}`} className="h-12 w-12" alt="icon" />
           </div>
         </div>
         <div className="col-span-3 flex flex-grow flex-col">
           <div className="flex items-baseline justify-between">
             <div>
-              <span className="font-semibold text-violet-500">
+              <span className="font-semibold text-violet-400">
                 {item?.User?.name}
               </span>
               <span className="ml-1 text-gray-300">{message}</span>
