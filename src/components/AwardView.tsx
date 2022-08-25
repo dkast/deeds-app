@@ -44,8 +44,8 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
     // console.log(velocity)
     if (distance < -250 && velocity < -200) {
       // Delete item
-      console.log("delete")
-      // deleteAward.mutate({ id: awardId })
+      // console.log("delete")
+      deleteAward.mutate({ id: awardId })
     }
   }
 
