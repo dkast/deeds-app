@@ -44,8 +44,8 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
     // console.log(velocity)
     if (distance < -250 && velocity < -200) {
       // Delete item
-      // console.log("delete")
-      deleteAward.mutate({ id: awardId })
+      console.log("delete")
+      // deleteAward.mutate({ id: awardId })
     }
   }
 
@@ -53,8 +53,9 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
     <div className="relative">
       <motion.div
         drag={allowDelete ? "x" : false}
-        dragConstraints={{ left: 0, right: 0 }}
+        dragConstraints={{ left: 0, right: -100 }}
         dragDirectionLock
+        dragSnapToOrigin
         onDragEnd={(_, info) => handleDragEnd(info, item.id)}
         onDrag={(_, info) => x.set(info.offset.x)}
         className="relative z-10 overflow-hidden rounded-lg shadow-lg"
