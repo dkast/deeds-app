@@ -13,8 +13,8 @@ type AwardProps = {
 }
 
 const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
-  const x = useMotionValue(0)
-  const xInput = [-250, 0]
+  const x = useMotionValue(100)
+  const xInput = [-100, 100]
   const opacityOutput = [1, 0]
   const scaleOutput = [1, 0.9]
   const opacity = useTransform(x, xInput, opacityOutput)
@@ -38,25 +38,17 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
     }
   })
 
-  const handleDragEnd = (info: PanInfo, awardId: string) => {
-    const distance = info.offset.x
-    const velocity = info.velocity.x
-    // console.log(velocity)
-    if (distance < -250 && velocity < -200) {
-      // Delete item
-      // console.log("delete")
-      deleteAward.mutate({ id: awardId })
-    }
+  const deleteItem = (awardId: string) => {
+    x.set(0)
+    deleteAward.mutate({ id: awardId })
   }
 
   return (
     <div className="relative">
       <motion.div
         drag={allowDelete ? "x" : false}
-        dragConstraints={{ left: 0, right: -100 }}
+        dragConstraints={{ left: -110, right: 0 }}
         dragDirectionLock
-        dragSnapToOrigin
-        onDragEnd={(_, info) => handleDragEnd(info, item.id)}
         onDrag={(_, info) => x.set(info.offset.x)}
         className="relative z-10 overflow-hidden rounded-lg shadow-lg"
       >
@@ -85,12 +77,14 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
           </div>
         </div>
       </motion.div>
-      <motion.div
+      <motion.button
+        whileTap={{ scale: 0.95 }}
         style={{ opacity, scale }}
+        onClick={() => deleteItem(item.id)}
         className="absolute inset-y-0 right-0 flex w-[100px] items-center justify-center rounded-xl bg-red-500 text-white"
       >
         <TrashIcon className="h-8 w-8 text-current" />
-      </motion.div>
+      </motion.button>
     </div>
   )
 }
