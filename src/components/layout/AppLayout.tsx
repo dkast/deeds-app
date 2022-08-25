@@ -39,7 +39,7 @@ const TabBarMenu = (): JSX.Element => {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 sm:mx-auto sm:max-w-lg">
+    <div className="fixed inset-x-0 bottom-0 z-20 sm:mx-auto sm:max-w-lg">
       <nav className="flex items-center justify-between bg-black px-4 pb-9 sm:m-2 sm:rounded-2xl">
         <TabLink
           name="Inicio"
