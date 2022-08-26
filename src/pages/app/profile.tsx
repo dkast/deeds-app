@@ -55,14 +55,14 @@ const Profile: NextPageWithAuthAndLayout = () => {
           </div>
           <div className="flex flex-col items-start justify-center rounded-xl bg-neutral-800 p-4">
             <span className="mb-6 text-2xl font-semibold text-white">
-              Nivel {user?.level}
+              Nivel {getLevel(user?.levelPoints)}
             </span>
             <Progress.Root
-              value={getPct(user?.totalPoints)}
+              value={getPct(user?.levelPoints)}
               className="relative h-2 w-full overflow-hidden rounded-full bg-neutral-900"
             >
               <Progress.ProgressIndicator
-                style={{ width: `${getPct(user?.totalPoints)}%` }}
+                style={{ width: `${getPct(user?.levelPoints)}%` }}
                 className="h-full bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-400 duration-300 ease-in-out"
               />
             </Progress.Root>
@@ -80,10 +80,15 @@ Profile.getLayout = function getLayout(page: React.ReactElement) {
 
 export default Profile
 
-function getPct(totalPoints: number | undefined): number {
-  const levelPoints = !totalPoints ? 0 : totalPoints % 1000
-  const pct = Math.round((levelPoints / 1000) * 100)
+function getPct(levelPoints: number | undefined): number {
+  const points = !levelPoints ? 0 : levelPoints % 1000
+  const pct = Math.round((points / 1000) * 100)
   return pct
+}
+
+function getLevel(levelPoints: number | undefined): number {
+  const level = !levelPoints ? 1 : Math.floor(levelPoints / 1000) + 1
+  return level
 }
 
 type LogoutButtonProps = {

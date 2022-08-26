@@ -24,24 +24,29 @@ export const deedRouter = createProtectedRouter()
     }),
     async resolve({ ctx, input }) {
       try {
-        await ctx.prisma.deed.create({
-          data: {
-            userId: input.userId,
-            activity: input.activity,
-            points: input.points,
-            comments: input.comments
-          }
-        })
-        await ctx.prisma.user.update({
-          where: {
-            id: input.userId
-          },
-          data: {
-            totalPoints: {
-              increment: input.points
+        await ctx.prisma.$transaction([
+          ctx.prisma.deed.create({
+            data: {
+              userId: input.userId,
+              activity: input.activity,
+              points: input.points,
+              comments: input.comments
             }
-          }
-        })
+          }),
+          ctx.prisma.user.update({
+            where: {
+              id: input.userId
+            },
+            data: {
+              totalPoints: {
+                increment: input.points
+              },
+              levelPoints: {
+                increment: input.points
+              }
+            }
+          })
+        ])
       } catch (error) {
         console.log(error)
       }

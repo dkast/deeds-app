@@ -39,21 +39,13 @@ const dialog = {
   }
 }
 
-type AddCommentsProps = {
+type ModalProps = {
+  children: React.ReactNode
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  comment: string
-  setComment: React.Dispatch<React.SetStateAction<string>>
-  onClose: () => void
 }
 
-const AddComments = ({
-  open,
-  setOpen,
-  comment,
-  setComment,
-  onClose
-}: AddCommentsProps) => {
+const Modal = ({ children, open, setOpen }: ModalProps) => {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <AnimatePresence>
@@ -74,26 +66,9 @@ const AddComments = ({
                       animate="visible"
                       exit="hidden"
                       variants={dialog}
-                      className="relative inline-block w-full overflow-hidden rounded-xl bg-white px-4 pt-5 pb-4 text-left align-top shadow-xl sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
+                      className="relative inline-block w-full overflow-hidden rounded-xl bg-neutral-700 px-4 pt-5 pb-4 text-left align-top shadow-xl outline-none sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
                     >
-                      <div className="flex flex-col">
-                        <textarea
-                          name="comments"
-                          rows={3}
-                          placeholder="Dinos un poco más.."
-                          className="mb-4 border-0 focus:ring-0"
-                          value={comment}
-                          onChange={event => setComment(event.target.value)}
-                        ></textarea>
-                        <button
-                          type="submit"
-                          disabled={comment.length === 0 ? true : false}
-                          className="rounded-full bg-violet-500 py-2 text-white shadow-lg shadow-violet-500/50 active:bg-violet-600 disabled:text-violet-300"
-                          onClick={onClose}
-                        >
-                          Agregar
-                        </button>
-                      </div>
+                      {children}
                     </motion.div>
                   </Dialog.Content>
                 </div>
@@ -106,4 +81,4 @@ const AddComments = ({
   )
 }
 
-export default AddComments
+export default Modal

@@ -1,21 +1,28 @@
 import toast from "react-hot-toast"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
+import Lottie from "react-lottie-player"
 import { useSession } from "next-auth/react"
+import { useConfetti } from "@stevent-team/react-party"
 
+import { trpc } from "@/src/utils/trpc"
 import AppLayout from "@/components/layout/AppLayout"
 import NavBar from "@/components/NavBar"
 import ActivityButton from "@/components/ActivityButton"
 import AddComments from "@/components/AddComments"
 import Loader from "@/components/Loader"
-import { trpc } from "@/src/utils/trpc"
+import Modal from "@/src/components/Modal"
+import Button from "@/src/components/Button"
 
 import { ACTIVITIES, GREETINGS } from "@/src/types/types"
 import type { NextPageWithAuthAndLayout, Activity } from "@/src/types/types"
 
+import lottieJSON from "../../../public/assets/stone.json"
+
 const Compose: NextPageWithAuthAndLayout = () => {
   const router = useRouter()
   const [open, setOpen] = useState<boolean>(false)
+  const [modalOpen, setModalOpen] = useState(false)
   const [comment, setComment] = useState<string>("")
   const [selectedActivity, setSelectedActivity] = useState<Activity>()
   const { data: session, status } = useSession()
@@ -50,14 +57,15 @@ const Compose: NextPageWithAuthAndLayout = () => {
   }
 
   const saveActivity = (actType: Activity) => {
-    createDeed.mutate({
-      userId: session?.user?.id,
-      activity: actType.id,
-      points: actType.points,
-      comments: comment
-    })
+    // createDeed.mutate({
+    //   userId: session?.user?.id,
+    //   activity: actType.id,
+    //   points: actType.points,
+    //   comments: comment
+    // })
 
-    setComment("")
+    // setComment("")
+    setModalOpen(true)
   }
 
   const getGreeting = (): string | undefined => {
@@ -103,6 +111,7 @@ const Compose: NextPageWithAuthAndLayout = () => {
         setComment={setComment}
         onClose={onCloseComments}
       />
+      <LevelModal open={modalOpen} setOpen={setModalOpen} />
     </>
   )
 }
@@ -113,3 +122,54 @@ Compose.getLayout = function getLayout(page: React.ReactElement) {
 }
 
 export default Compose
+
+type LevelModalProps = {
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const LevelModal = ({ open, setOpen }: LevelModalProps) => {
+  const { createConfetti, canvasProps } = useConfetti({
+    // Control the distribution of shapes
+    shapeWeights: {
+      triangle: 2,
+      circle: 2,
+      square: 3,
+      star: 1
+    },
+
+    // Speed up the movement
+    speed: 1.2,
+
+    // Decrease gravity,
+    gravity: 6,
+
+    // Use your own colors #vampireconfetti
+    colors: ["red", "orange", "darkred", "black"]
+  })
+
+  return (
+    <Modal open={open} setOpen={setOpen}>
+      <div className="flex flex-col items-center gap-3 text-neutral-400">
+        <canvas {...canvasProps} />
+        <div>
+          <Lottie
+            loop
+            animationData={lottieJSON}
+            play
+            className="h-52 w-60"
+          ></Lottie>
+        </div>
+        <div className="text-center">
+          <h2 className="bg-gradient-to-r from-cyan-400 via-violet-400 to-orange-400 bg-clip-text text-xl font-semibold leading-9 text-transparent">
+            ¡Felicidades! Subiste de Nivel
+          </h2>
+          <span>Sigue así 😎</span>
+        </div>
+        <Button type="button" variant="primary" onClick={() => createConfetti}>
+          Listo
+        </Button>
+      </div>
+    </Modal>
+  )
+}
