@@ -3,7 +3,8 @@ import { useRouter } from "next/router"
 import React, { useState } from "react"
 import Lottie from "react-lottie-player"
 import { useSession } from "next-auth/react"
-import { useConfetti } from "@stevent-team/react-party"
+import useWindowSize from "react-use/lib/useWindowSize"
+import Confetti from "react-confetti"
 
 import { trpc } from "@/src/utils/trpc"
 import AppLayout from "@/components/layout/AppLayout"
@@ -17,7 +18,7 @@ import Button from "@/src/components/Button"
 import { ACTIVITIES, GREETINGS } from "@/src/types/types"
 import type { NextPageWithAuthAndLayout, Activity } from "@/src/types/types"
 
-import lottieJSON from "../../../public/assets/stone.json"
+import lottieJSON from "../../../public/assets/trophy.json"
 
 const Compose: NextPageWithAuthAndLayout = () => {
   const router = useRouter()
@@ -129,32 +130,15 @@ type LevelModalProps = {
 }
 
 const LevelModal = ({ open, setOpen }: LevelModalProps) => {
-  const { createConfetti, canvasProps } = useConfetti({
-    // Control the distribution of shapes
-    shapeWeights: {
-      triangle: 2,
-      circle: 2,
-      square: 3,
-      star: 1
-    },
-
-    // Speed up the movement
-    speed: 1.2,
-
-    // Decrease gravity,
-    gravity: 6,
-
-    // Use your own colors #vampireconfetti
-    colors: ["red", "orange", "darkred", "black"]
-  })
+  const { width, height } = useWindowSize()
 
   return (
     <Modal open={open} setOpen={setOpen}>
       <div className="flex flex-col items-center gap-3 text-neutral-400">
-        <canvas {...canvasProps} />
+        <Confetti width={width} height={height} />
         <div>
           <Lottie
-            loop
+            loop={false}
             animationData={lottieJSON}
             play
             className="h-52 w-60"
@@ -166,7 +150,7 @@ const LevelModal = ({ open, setOpen }: LevelModalProps) => {
           </h2>
           <span>Sigue así 😎</span>
         </div>
-        <Button type="button" variant="primary" onClick={() => createConfetti}>
+        <Button type="button" variant="primary" onClick={() => setOpen(false)}>
           Listo
         </Button>
       </div>
