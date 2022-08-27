@@ -14,7 +14,6 @@ const Timeline = () => {
     <div className="flex flex-col gap-3 px-3">
       <AnimatePresence initial={false} mode="popLayout">
         {deeds?.map(deed => {
-          console.dir(deed)
           return (
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}

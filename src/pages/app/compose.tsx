@@ -1,10 +1,7 @@
 import toast from "react-hot-toast"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
-import Lottie from "react-lottie-player"
 import { useSession } from "next-auth/react"
-import useWindowSize from "react-use/lib/useWindowSize"
-import Confetti from "react-confetti"
 
 import { trpc } from "@/src/utils/trpc"
 import AppLayout from "@/components/layout/AppLayout"
@@ -12,22 +9,29 @@ import NavBar from "@/components/NavBar"
 import ActivityButton from "@/components/ActivityButton"
 import AddComments from "@/components/AddComments"
 import Loader from "@/components/Loader"
-import Modal from "@/src/components/Modal"
-import Button from "@/src/components/Button"
 
 import { ACTIVITIES, GREETINGS } from "@/src/types/types"
 import type { NextPageWithAuthAndLayout, Activity } from "@/src/types/types"
 
-import lottieJSON from "../../../public/assets/trophy.json"
+import useAchievementStore from "@/src/store/achievement"
 
 const Compose: NextPageWithAuthAndLayout = () => {
   const router = useRouter()
   const [open, setOpen] = useState<boolean>(false)
-  const [modalOpen, setModalOpen] = useState(false)
   const [comment, setComment] = useState<string>("")
   const [selectedActivity, setSelectedActivity] = useState<Activity>()
-  const { data: session, status } = useSession()
+
+  // Zustand Store
+  const setUnlocked = useAchievementStore(state => state.setUnlocked)
+
   const ctx = trpc.useContext()
+  const { data: session, status } = useSession()
+  const { data: user, isLoading } = trpc.useQuery(
+    ["user.getUser", { userId: session?.user?.id }],
+    {
+      enabled: !!session?.user
+    }
+  )
   const createDeed = trpc.useMutation("deed.create", {
     onError: () => {
       toast.error("Algo salió mal 😥")
@@ -58,15 +62,26 @@ const Compose: NextPageWithAuthAndLayout = () => {
   }
 
   const saveActivity = (actType: Activity) => {
-    // createDeed.mutate({
-    //   userId: session?.user?.id,
-    //   activity: actType.id,
-    //   points: actType.points,
-    //   comments: comment
-    // })
+    achievementUnlocked(actType.points, user?.levelPoints)
 
-    // setComment("")
-    setModalOpen(true)
+    createDeed.mutate({
+      userId: session?.user?.id,
+      activity: actType.id,
+      points: actType.points,
+      comments: comment
+    })
+
+    setComment("")
+  }
+
+  const achievementUnlocked = (
+    points: number,
+    levelPoints: number | undefined
+  ) => {
+    const modPoints = levelPoints! % 1000
+    if (modPoints + points >= 1000) {
+      setUnlocked(true)
+    }
   }
 
   const getGreeting = (): string | undefined => {
@@ -79,7 +94,7 @@ const Compose: NextPageWithAuthAndLayout = () => {
     <>
       <NavBar title="Agregar" />
       <div className="mt-20 mb-28 flex flex-col items-center">
-        {status === "loading" ? (
+        {status === "loading" || isLoading ? (
           <Loader />
         ) : (
           <>
@@ -112,7 +127,6 @@ const Compose: NextPageWithAuthAndLayout = () => {
         setComment={setComment}
         onClose={onCloseComments}
       />
-      <LevelModal open={modalOpen} setOpen={setModalOpen} />
     </>
   )
 }
@@ -123,37 +137,3 @@ Compose.getLayout = function getLayout(page: React.ReactElement) {
 }
 
 export default Compose
-
-type LevelModalProps = {
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const LevelModal = ({ open, setOpen }: LevelModalProps) => {
-  const { width, height } = useWindowSize()
-
-  return (
-    <Modal open={open} setOpen={setOpen}>
-      <div className="flex flex-col items-center gap-3 text-neutral-400">
-        <Confetti width={width} height={height} />
-        <div>
-          <Lottie
-            loop={false}
-            animationData={lottieJSON}
-            play
-            className="h-52 w-60"
-          ></Lottie>
-        </div>
-        <div className="text-center">
-          <h2 className="bg-gradient-to-r from-cyan-400 via-violet-400 to-orange-400 bg-clip-text text-xl font-semibold leading-9 text-transparent">
-            ¡Felicidades! Subiste de Nivel
-          </h2>
-          <span>Sigue así 😎</span>
-        </div>
-        <Button type="button" variant="primary" onClick={() => setOpen(false)}>
-          Listo
-        </Button>
-      </div>
-    </Modal>
-  )
-}
