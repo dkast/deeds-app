@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { trpc } from "@/src/utils/trpc"
 import DeedView from "@/components/DeedView"
 import Loader from "@/components/Loader"
+import LevelUpView from "./LevelUpView"
 
 const Timeline = () => {
   const { data: deeds, isLoading } = trpc.useQuery(["deed.getAll"])
@@ -21,7 +22,11 @@ const Timeline = () => {
               exit={{ scale: 0.8, opacity: 0 }}
               key={deed.id}
             >
-              <DeedView item={deed} />
+              {deed.activity === "activity_levelup" ? (
+                <LevelUpView item={deed} />
+              ) : (
+                <DeedView item={deed} />
+              )}
             </motion.div>
           )
         })}

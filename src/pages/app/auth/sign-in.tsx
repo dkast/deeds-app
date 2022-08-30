@@ -34,7 +34,7 @@ const SignIn = ({
         <h2 className="bg-gradient-to-l from-cyan-400 via-violet-400 to-pink-400 bg-clip-text text-3xl font-semibold leading-9 text-transparent">
           Hola!
         </h2>
-        <span className="mt-2 text-neutral-500">
+        <span className="mt-2 text-violet-500">
           Ingresa con tu cuenta de Discord
         </span>
 

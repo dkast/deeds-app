@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react"
 import Lottie from "react-lottie-player"
+import { useSession } from "next-auth/react"
 import useWindowSize from "react-use/lib/useWindowSize"
 import Confetti from "react-confetti"
 
 import Modal from "@/src/components/Modal"
 import Button from "@/src/components/Button"
-import lottieJSON from "../../public/assets/trophy.json"
 import useAchievementStore from "@/src/store/achievement"
+import { trpc } from "@/src/utils/trpc"
+
+import lottieJSON from "../../public/assets/trophy.json"
 
 type LevelModalProps = {
   show: boolean
@@ -15,6 +18,27 @@ export const LevelModal = ({ show }: LevelModalProps) => {
   const { width, height } = useWindowSize()
   const [open, setOpen] = useState(show)
   const setUnlocked = useAchievementStore(state => state.setUnlocked)
+  const ctx = trpc.useContext()
+  const { data: session, status } = useSession()
+
+  const createDeed = trpc.useMutation("deed.create", {
+    onError: () => {
+      console.error("Error al guardar registro")
+    },
+    onMutate: () => {
+      ctx.cancelQuery(["deed.getAll"])
+
+      let optimisticUpdate = ctx.getQueryData(["deed.getAll"])
+      if (optimisticUpdate) {
+        ctx.setQueryData(["deed.getAll"], optimisticUpdate)
+      }
+    },
+    onSettled: () => {
+      ctx.invalidateQueries(["deed.getAll"])
+      ctx.invalidateQueries(["user.getUser"])
+      ctx.invalidateQueries(["user.getFamilyMembers"])
+    }
+  })
 
   useEffect(() => {
     setOpen(show)
@@ -23,6 +47,12 @@ export const LevelModal = ({ show }: LevelModalProps) => {
   const onCloseModal = () => {
     setOpen(false)
     setUnlocked(false)
+    createDeed.mutate({
+      userId: session?.user?.id,
+      activity: "activity_levelup",
+      points: 30,
+      comments: ""
+    })
   }
 
   return (
@@ -43,8 +73,13 @@ export const LevelModal = ({ show }: LevelModalProps) => {
           </h2>
           <span>Sigue así 😎</span>
         </div>
-        <Button type="button" variant="primary" onClick={() => onCloseModal()}>
-          Listo
+        <Button
+          type="button"
+          variant="primary"
+          isLoading={status === "loading"}
+          onClick={() => onCloseModal()}
+        >
+          Reclamar puntos
         </Button>
       </div>
     </Modal>

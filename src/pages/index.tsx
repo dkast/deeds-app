@@ -20,12 +20,20 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="flex h-screen flex-col items-center justify-center gap-10 bg-gradient-to-b from-neutral-900 to-violet-900">
+        <div className="relative mb-16 gap-2">
+          <h1 className="text-4xl font-semibold text-violet-300">Deberes</h1>
+          <div className="absolute top-0 -right-10">
+            <small className="rounded-full bg-cyan-500 px-2 text-sm font-semibold tracking-tight text-cyan-900">
+              v3
+            </small>
+          </div>
+        </div>
         <div>
           <Lottie
             loop
             animationData={lottieJSON}
             play
-            className="h-60 w-60"
+            className="h-48 w-48"
           ></Lottie>
         </div>
         <Link href="/app/home">

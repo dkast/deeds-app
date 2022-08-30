@@ -82,7 +82,7 @@ const DeedView = ({ item }: DeedProps): JSX.Element => {
         </div>
         <div className="flex justify-end">
           <div>
-            <div className="my-2 flex w-16 items-center justify-center rounded-full bg-orange-800 bg-opacity-20 px-3 py-0.5">
+            <div className="flex items-center justify-center rounded-full bg-orange-800 bg-opacity-20 px-2 py-0.5">
               <img
                 src="../images/gem.svg"
                 className="inline h-4 w-4"
