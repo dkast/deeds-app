@@ -7,6 +7,7 @@ import AppLayout from "@/components/layout/AppLayout"
 import { trpc } from "@/src/utils/trpc"
 import Loader from "@/components/Loader"
 import NavBar from "@/src/components/NavBar"
+import getLevel from "@/src/utils/getLevel"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline"
@@ -84,11 +85,6 @@ function getPct(levelPoints: number | undefined): number {
   const points = !levelPoints ? 0 : levelPoints % 1000
   const pct = Math.round((points / 1000) * 100)
   return pct
-}
-
-function getLevel(levelPoints: number | undefined): number {
-  const level = !levelPoints ? 1 : Math.floor(levelPoints / 1000) + 1
-  return level
 }
 
 type LogoutButtonProps = {
