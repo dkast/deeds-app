@@ -47,6 +47,7 @@ const NewUser: NextPage = () => {
     onSettled: () => {
       setSubmitted(false)
       ctx.invalidateQueries(["user.getUser"])
+      ctx.invalidateQueries(["user.getFamilyMembers"])
     }
   })
 
