@@ -5,12 +5,6 @@ import Lottie from "react-lottie-player"
 
 import lottieJSON from "../../public/assets/robot-playing.json"
 
-type TechnologyCardProps = {
-  name: string
-  description: string
-  documentation: string
-}
-
 const Home: NextPage = () => {
   return (
     <>

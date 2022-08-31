@@ -3,7 +3,7 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
+  previewFeatures = ["referentialIntegrity", "interactiveTransactions"]
 }
 
 datasource db {
@@ -79,8 +79,9 @@ model Deed {
 }
 
 model Family {
-  id      String @id @default(cuid())
+  id      String  @id @default(cuid())
   name    String
+  slug    String?
   members User[]
 }
 

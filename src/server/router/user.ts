@@ -1,4 +1,7 @@
+import * as trpc from "@trpc/server"
+import { PrismaClient, Prisma } from "@prisma/client"
 import { z } from "zod"
+
 import { createProtectedRouter } from "./protected-router"
 
 export const userRouter = createProtectedRouter()
@@ -24,5 +27,44 @@ export const userRouter = createProtectedRouter()
           id: input.userId
         }
       })
+    }
+  })
+  .mutation("updateNewMebmer", {
+    input: z.object({
+      userId: z.string(),
+      name: z.string(),
+      familySlug: z.string()
+    }),
+    async resolve({ ctx, input }) {
+      await ctx.prisma.$transaction(
+        async (prisma: Prisma.TransactionClient) => {
+          // Search family by slug
+          const family = await prisma.family.findFirst({
+            where: {
+              slug: input.familySlug
+            }
+          })
+
+          if (family == null) {
+            throw new trpc.TRPCError({
+              code: "NOT_FOUND",
+              message: "Familia no encontrada"
+            })
+          }
+
+          // Update user data
+          const user = prisma.user.update({
+            data: {
+              name: input.name,
+              familyId: family.id
+            },
+            where: {
+              id: input.userId
+            }
+          })
+
+          return user
+        }
+      )
     }
   })

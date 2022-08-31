@@ -31,7 +31,8 @@ export const authOptions: NextAuthOptions = {
     // ...add more providers here
   ],
   pages: {
-    signIn: "/app/auth/sign-in"
+    signIn: "/app/auth/sign-in",
+    newUser: "/app/auth/new-user"
   },
   secret: env.NEXTAUTH_SECRET
 }
