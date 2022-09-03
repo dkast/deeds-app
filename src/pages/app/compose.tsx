@@ -14,6 +14,7 @@ import { ACTIVITIES, GREETINGS } from "@/src/types/types"
 import type { NextPageWithAuthAndLayout, Activity } from "@/src/types/types"
 
 import useAchievementStore from "@/src/store/achievement"
+import { Deed } from "@prisma/client"
 
 const Compose: NextPageWithAuthAndLayout = () => {
   const router = useRouter()
@@ -47,6 +48,8 @@ const Compose: NextPageWithAuthAndLayout = () => {
     }
   })
 
+  const createMessage = trpc.useMutation("deed.message")
+
   const onActivityTap = (actType: Activity) => {
     if (actType.requireComments) {
       setSelectedActivity(actType)
@@ -71,6 +74,9 @@ const Compose: NextPageWithAuthAndLayout = () => {
       comments: comment
     })
 
+    // Sends message notification to Discord (via webhoook)
+    sendMessage(actType, comment)
+
     setComment("")
   }
 
@@ -88,6 +94,49 @@ const Compose: NextPageWithAuthAndLayout = () => {
     const i = Math.floor(Math.random() * GREETINGS.length)
     const greeting = GREETINGS[i]
     return greeting
+  }
+
+  const sendMessage = (actType: Activity, comment: string) => {
+    let message: string = ""
+    const userName = session?.user?.name
+    const avatar = session?.user?.image
+
+    switch (actType?.id) {
+      case "activity_tbrush":
+        message = "se cepilló los dientes."
+        break
+      case "activity_bath":
+        message = "se dió un baño."
+        break
+      case "activity_homework":
+        message = "hizo la tarea."
+        break
+      case "activity_help":
+        message = "ayudó en la casa."
+        break
+      case "activity_online":
+        message = "tomó clase online."
+        break
+      case "activity_excercise":
+        message = "hizo ejercicio."
+        break
+      case "activity_swim":
+        message = "hizo natación."
+        break
+      case "activity_diet":
+        message = "comió saludable."
+        break
+      default:
+        break
+    }
+
+    createMessage.mutate({
+      content: `**${userName}** ${message}`,
+      author: `${session?.user?.name} dijo:`,
+      authorAvatar: avatar!,
+      description: comment,
+      color: 5195493
+    })
   }
 
   return (

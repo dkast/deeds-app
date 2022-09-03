@@ -1,4 +1,7 @@
 import { z } from "zod"
+import * as trpc from "@trpc/server"
+import { MessageBuilder } from "discord-webhook-node"
+
 import { createProtectedRouter } from "./protected-router"
 
 export const deedRouter = createProtectedRouter()
@@ -48,7 +51,31 @@ export const deedRouter = createProtectedRouter()
           })
         ])
       } catch (error) {
-        console.log(error)
+        throw new trpc.TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: error as string
+        })
+      }
+    }
+  })
+  .mutation("message", {
+    input: z.object({
+      content: z.string(),
+      author: z.string().optional(),
+      authorAvatar: z.string().optional(),
+      description: z.string().optional(),
+      color: z.number()
+    }),
+    async resolve({ ctx, input }) {
+      if (input.description) {
+        const msg = new MessageBuilder()
+        msg.setText(input.content)
+        msg.setAuthor(input.author, input.authorAvatar)
+        msg.setDescription(input.description!)
+        msg.setColor(input.color)
+        ctx.discord.send(msg)
+      } else {
+        ctx.discord.send(input.content)
       }
     }
   })

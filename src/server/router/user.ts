@@ -1,5 +1,5 @@
 import * as trpc from "@trpc/server"
-import { PrismaClient, Prisma } from "@prisma/client"
+import { Prisma } from "@prisma/client"
 import { z } from "zod"
 
 import { createProtectedRouter } from "./protected-router"

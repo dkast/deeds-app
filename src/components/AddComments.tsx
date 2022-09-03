@@ -88,7 +88,7 @@ const AddComments = ({
                         <button
                           type="submit"
                           disabled={comment.length === 0 ? true : false}
-                          className="rounded-full bg-violet-500 py-2 text-white shadow-lg shadow-violet-500/50 active:bg-violet-600 disabled:text-violet-300"
+                          className="rounded-full bg-violet-600 py-2 text-white shadow-lg shadow-violet-500/50 active:bg-violet-600 disabled:text-violet-300"
                           onClick={onClose}
                         >
                           Agregar

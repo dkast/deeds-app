@@ -70,8 +70,8 @@ const NewUser: NextPage = () => {
         <meta name="description" content="Aplicacion de Parenting 2.0" />
       </Head>
 
-      <div className="flex h-screen flex-col items-center justify-start gap-10 bg-gradient-to-b from-neutral-900 to-violet-900 pt-20">
-        <div className="rounded-xl border border-violet-700/50 bg-neutral-800 px-4 py-6 shadow shadow-violet-900/50">
+      <div className="flex h-screen flex-col items-center justify-start gap-10 bg-gradient-to-b from-neutral-900 to-violet-900 px-4 pt-20">
+        <div className="w-full rounded-xl border border-violet-700/50 bg-neutral-800 px-4 py-6 shadow shadow-violet-900/50 sm:max-w-lg">
           <div className="flex justify-between">
             <div className="text-xl font-bold text-white">
               Hola {session?.user?.name}
