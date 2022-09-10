@@ -24,8 +24,8 @@
     "@trpc/server": "^9.27.2",
     "date-fns": "^2.29.2",
     "discord-webhook-node": "^1.1.8",
-    "framer-motion": "^7.2.1",
-    "next": "12.2.5",
+    "framer-motion": "^7.3.2",
+    "next": "12.3.0",
     "next-auth": "^4.10.3",
     "react": "18.2.0",
     "react-confetti": "^6.1.0",
@@ -37,23 +37,23 @@
     "react-spinners-kit": "^1.9.1",
     "react-use": "^17.4.0",
     "superjson": "^1.9.1",
-    "tailwindcss-radix": "^2.5.0",
+    "tailwindcss-radix": "^2.6.0",
     "zod": "^3.19.0",
     "zustand": "^4.1.1"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
-    "@types/node": "18.7.15",
+    "@types/node": "18.7.16",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "^10.4.8",
     "eslint": "8.23.0",
-    "eslint-config-next": "12.2.5",
+    "eslint-config-next": "12.3.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "prisma": "^4.3.1",
     "tailwindcss": "^3.1.8",
-    "typescript": "4.8.2"
+    "typescript": "4.8.3"
   }
 }

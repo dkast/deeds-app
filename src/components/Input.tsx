@@ -1,5 +1,5 @@
 import React from "react"
-import { ExclaimationCircleIcon } from "@heroicons/react/20/solid"
+import { ExclamationCircleIcon } from "@heroicons/react/20/solid"
 
 const DEFAULT =
   "block w-full rounded-lg transition duration-150 ease-in-out shadow-sm bg-neutral-900 text-white"
@@ -49,7 +49,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         />
         {hasError ? (
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-            <ExclaimationCircleIcon
+            <ExclamationCircleIcon
               className="h-5 w-5 text-red-500"
               aria-hidden="true"
             />
