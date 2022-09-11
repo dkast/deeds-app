@@ -131,7 +131,7 @@ const Compose: NextPageWithAuthAndLayout = () => {
     }
 
     createMessage.mutate({
-      content: `**${userName}** ${message}`,
+      content: `${userName} ${message}`,
       author: `${session?.user?.name} dijo:`,
       authorAvatar: avatar!,
       description: comment,
