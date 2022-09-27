@@ -5,6 +5,7 @@ import { trpc } from "@/src/utils/trpc"
 import Loader from "@/components/Loader"
 import getLevel from "@/src/utils/getLevel"
 import { ChevronUpIcon, StarIcon } from "@heroicons/react/20/solid"
+import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
 
 const FamilyList = () => {
   const { data: session, status } = useSession()
@@ -18,7 +19,7 @@ const FamilyList = () => {
   if (isLoading || status === "loading") return <Loader />
 
   return (
-    <div className="mt-6 px-3">
+    <div className="mt-6 flex flex-col gap-2 px-3">
       {users?.map(user => {
         return (
           <div key={user.id}>
@@ -44,6 +45,9 @@ const FamilyList = () => {
                     </span>
                   </div>
                 </div>
+              </div>
+              <div>
+                <EllipsisVerticalIcon className="h-6 w-6 text-neutral-400" />
               </div>
             </div>
           </div>
