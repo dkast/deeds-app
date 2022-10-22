@@ -68,3 +68,47 @@ export const userRouter = createProtectedRouter()
       )
     }
   })
+  .mutation("addPoints", {
+    input: z.object({
+      userId: z.string(),
+      points: z.number()
+    }),
+    async resolve({ ctx, input }) {
+      try {
+        await ctx.prisma.user.update({
+          where: {
+            id: input.userId
+          },
+          data: {
+            totalPoints: {
+              increment: input.points
+            }
+          }
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  })
+  .mutation("substractPoints", {
+    input: z.object({
+      userId: z.string(),
+      points: z.number()
+    }),
+    async resolve({ ctx, input }) {
+      try {
+        await ctx.prisma.user.update({
+          where: {
+            id: input.userId
+          },
+          data: {
+            totalPoints: {
+              decrement: input.points
+            }
+          }
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  })

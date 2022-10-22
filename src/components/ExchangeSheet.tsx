@@ -1,11 +1,10 @@
-import React from "react"
-import { motion } from "framer-motion"
+import React, { useState } from "react"
+import toast from "react-hot-toast"
 
 import BottomSheet from "@/components/BottomSheet"
 import Input from "@/components/Input"
 import Button from "@/components/Button"
 import { trpc } from "@/src/utils/trpc"
-import AwardView from "@/components/AwardView"
 import { Award } from "@prisma/client"
 
 type ExchangeSheetProps = {
@@ -15,7 +14,50 @@ type ExchangeSheetProps = {
 }
 
 const ExchangeSheet = ({ open, setOpen, userId }: ExchangeSheetProps) => {
+  const [points, setPoints] = useState<string>("0")
   const { data: awards, isLoading } = trpc.useQuery(["award.getAll"])
+  const ctx = trpc.useContext()
+
+  const claimPoints = trpc.useMutation("user.substractPoints", {
+    onError: () => {
+      toast.error("Algo salió mal 😥")
+    },
+    onSuccess: () => {
+      toast.success("Puntos reclamados")
+    },
+    onSettled: () => {
+      ctx.invalidateQueries(["user.getUser"])
+      ctx.invalidateQueries(["user.getFamilyMembers"])
+    }
+  })
+
+  const onClaimPoints = () => {
+    claimPoints.mutate({
+      userId: userId,
+      points: parseInt(points)
+    })
+  }
+
+  const rewardPoints = trpc.useMutation("user.addPoints", {
+    onError: () => {
+      toast.error("Algo salió mal 😥")
+    },
+    onSuccess: () => {
+      toast.success("Puntos añadidos")
+    },
+    onSettled: () => {
+      ctx.invalidateQueries(["user.getUser"])
+      ctx.invalidateQueries(["user.getFamilyMembers"])
+    }
+  })
+
+  const onRewardPoints = () => {
+    console.dir(points)
+    rewardPoints.mutate({
+      userId: userId,
+      points: parseInt(points)
+    })
+  }
 
   return (
     <BottomSheet open={open} setOpen={setOpen}>
@@ -41,13 +83,20 @@ const ExchangeSheet = ({ open, setOpen, userId }: ExchangeSheetProps) => {
               Puntos
             </label>
             <div className="p-1">
-              <Input type="number" placeholder="0"></Input>
+              <Input
+                type="number"
+                placeholder="0"
+                value={points}
+                onChange={event =>
+                  setPoints((event.target as HTMLInputElement).value)
+                }
+              ></Input>
             </div>
             <div className="flex gap-2">
-              <Button type="button" variant="primary">
+              <Button type="button" variant="primary" onClick={onRewardPoints}>
                 Agregar
               </Button>
-              <Button type="button" variant="danger">
+              <Button type="button" variant="danger" onClick={onClaimPoints}>
                 Restar
               </Button>
             </div>
@@ -58,7 +107,10 @@ const ExchangeSheet = ({ open, setOpen, userId }: ExchangeSheetProps) => {
               {awards?.map(award => {
                 return (
                   <div key={award.id} className="select-none">
-                    <ExchangeAwardItem item={award}></ExchangeAwardItem>
+                    <ExchangeAwardItem
+                      item={award}
+                      userId={userId}
+                    ></ExchangeAwardItem>
                   </div>
                 )
               })}
@@ -74,27 +126,55 @@ export default ExchangeSheet
 
 type ExchangeAwardItemProps = {
   item: Award
+  userId: string
 }
 
-const ExchangeAwardItem = ({ item }: ExchangeAwardItemProps) => {
+const ExchangeAwardItem = ({ item, userId }: ExchangeAwardItemProps) => {
+  const ctx = trpc.useContext()
+
+  const claimPoints = trpc.useMutation("user.substractPoints", {
+    onError: () => {
+      toast.error("Algo salió mal 😥")
+    },
+    onSuccess: () => {
+      toast.success("Puntos reclamados")
+    },
+    onSettled: () => {
+      ctx.invalidateQueries(["user.getUser"])
+      ctx.invalidateQueries(["user.getFamilyMembers"])
+    }
+  })
+
+  const onClaimPoints = (points: number) => {
+    claimPoints.mutate({
+      userId: userId,
+      points: points
+    })
+  }
+
   return (
-    <div className="z-10 flex overflow-hidden rounded-lg bg-neutral-700 shadow-lg">
+    <div className="relative z-10 flex overflow-hidden rounded-lg bg-neutral-700 shadow-lg">
       <img
         draggable="false"
         src={item.imageUrl}
-        className="h-36 w-36 object-cover"
+        className="absolute inset-0 -z-10 h-36 w-full object-cover"
       />
-      <div className="flex w-full flex-col items-start justify-between gap-2 p-4">
+      <div className="flex w-full flex-col items-start justify-between gap-8 bg-black/60 px-6 py-4">
         <div className="flex w-full items-center justify-between">
           <span className="text-xl font-bold text-gray-200">
             {item.description}
           </span>
-          <div className="flex items-center rounded-full bg-neutral-500 px-2 py-1 text-white">
+          <div className="flex items-center rounded-full bg-black/60 px-2 py-1 text-white">
             <img src="../images/gem.svg" className="mr-1 h-4 w-4" alt="coin" />
             <span className="text-sm font-bold">{item.points}</span>
           </div>
         </div>
-        <Button type="button" variant="primary" size="sm">
+        <Button
+          type="button"
+          variant="primary"
+          size="sm"
+          onClick={() => onClaimPoints(item.points)}
+        >
           Canjear
         </Button>
       </div>
