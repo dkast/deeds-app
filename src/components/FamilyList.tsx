@@ -1,12 +1,13 @@
 import React, { useState } from "react"
+import Link from "next/link"
 import { useSession } from "next-auth/react"
+import { ChevronUpIcon, StarIcon } from "@heroicons/react/20/solid"
+import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
 
 import { trpc } from "@/src/utils/trpc"
 import Loader from "@/components/Loader"
 import getLevel from "@/src/utils/getLevel"
-import { ChevronUpIcon, StarIcon } from "@heroicons/react/20/solid"
-import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
-import ExchangeSheet from "./ExchangeSheet"
+import ExchangeSheet from "@/components/ExchangeSheet"
 
 const FamilyList = () => {
   const [open, setOpen] = useState<boolean>(false)
@@ -34,12 +35,21 @@ const FamilyList = () => {
             <div key={user.id}>
               <div className="flex flex-row items-center rounded-xl bg-neutral-800 px-4 py-3">
                 <div className="h-16 w-16 overflow-hidden rounded-full bg-gray-400">
-                  <img src={user.image as string | undefined} alt="Avatar" />
+                  <Link href={`/app/member/${user?.id}`}>
+                    <a>
+                      <img
+                        src={user.image as string | undefined}
+                        alt="Avatar"
+                      />
+                    </a>
+                  </Link>
                 </div>
                 <div className="ml-6 flex grow flex-col justify-between gap-2">
-                  <span className="text-xl font-semibold text-violet-400">
-                    {user.name}
-                  </span>
+                  <Link href={`/app/member/${user?.id}`}>
+                    <a className="text-xl font-semibold text-violet-400">
+                      {user.name}
+                    </a>
+                  </Link>
                   <div className="flex gap-6">
                     <div className="flex items-end gap-2">
                       <StarIcon className="h-5 w-5 rounded-full bg-neutral-600/40 p-1 text-neutral-400" />
