@@ -93,10 +93,14 @@ const ExchangeSheet = ({ open, setOpen, userId }: ExchangeSheetProps) => {
               ></Input>
             </div>
             <div className="flex gap-2">
-              <Button type="button" variant="primary" onClick={onRewardPoints}>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={onRewardPoints}
+              >
                 Agregar
               </Button>
-              <Button type="button" variant="danger" onClick={onClaimPoints}>
+              <Button type="button" variant="secondary" onClick={onClaimPoints}>
                 Restar
               </Button>
             </div>
@@ -153,25 +157,25 @@ const ExchangeAwardItem = ({ item, userId }: ExchangeAwardItemProps) => {
   }
 
   return (
-    <div className="relative z-10 flex overflow-hidden rounded-lg bg-neutral-700 shadow-lg">
+    <div className="z-10 flex overflow-hidden rounded-xl border border-neutral-700 p-3 shadow-lg">
       <img
         draggable="false"
         src={item.imageUrl}
-        className="absolute inset-0 -z-10 h-36 w-full object-cover"
+        className="h-24 w-24 rounded-lg object-cover"
       />
-      <div className="flex w-full flex-col items-start justify-between gap-8 bg-black/60 px-6 py-4">
-        <div className="flex w-full items-center justify-between">
-          <span className="text-xl font-bold text-gray-200">
+      <div className="flex w-full flex-col items-start justify-between pl-4">
+        <div>
+          <span className="mb-2 font-bold text-zinc-200">
             {item.description}
           </span>
-          <div className="flex items-center rounded-full bg-black/60 px-2 py-1 text-white">
-            <img src="../images/gem.svg" className="mr-1 h-4 w-4" alt="coin" />
+          <div className="flex items-center text-zinc-400">
+            <img src="../images/gem.svg" className="mr-1 h-3 w-3" alt="coin" />
             <span className="text-sm font-bold">{item.points}</span>
           </div>
         </div>
         <Button
           type="button"
-          variant="primary"
+          variant="secondary"
           size="sm"
           onClick={() => onClaimPoints(item.points)}
         >
