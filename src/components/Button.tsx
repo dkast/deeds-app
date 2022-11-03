@@ -12,17 +12,17 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const DEFAULT =
-  "w-full select-none sm:w-auto inline-flex items-center justify-center border font-medium rounded-lg transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2"
+  "w-full select-none sm:w-auto inline-flex items-center justify-center font-medium rounded-lg transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2"
 
 const VARIANT = {
   primary:
-    "border-transparent text-white bg-violet-600 hover:bg-violet-700 focus:ring-violet-700 active:bg-violet-800",
+    "text-white bg-violet-600 hover:bg-violet-700 focus:ring-violet-700 active:bg-violet-800",
   secondary:
-    "border-gray-300 text-gray-700 shadow bg-white hover:bg-gray-50 focus:ring-zinc-700 active:text-gray-800 active:bg-gray-200",
-  warn: "border-transparent text-red-700 bg-red-100 hover:bg-red-200 focus:ring-red-500 active:bg-red-300",
+    "text-white bg-zinc-600 hover:bg-neutral-500 focus:ring-neutral-700 active:text-neutral-800 active:bg-neutral-200",
+  warn: "text-red-700 bg-red-100 hover:bg-red-200 focus:ring-red-500 active:bg-red-300",
   danger:
-    "border-transparent text-white bg-red-600 hover:bg-red-700 focus:ring-red-500 active:bg-red-800",
-  flat: "border-transparent text-gray-700 bg-white hover:bg-gray-100 focus:ring-zinc-700 active:text-gray-800 active:bg-gray-200"
+    "text-white bg-red-600 hover:bg-red-700 focus:ring-red-500 active:bg-red-800",
+  flat: "text-zinc-700 bg-white hover:bg-zinc-100 focus:ring-zinc-700 active:text-zinc-800 active:bg-zinc-200"
 }
 
 const MODE = {

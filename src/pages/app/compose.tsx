@@ -14,7 +14,6 @@ import { ACTIVITIES, GREETINGS } from "@/src/types/types"
 import type { NextPageWithAuthAndLayout, Activity } from "@/src/types/types"
 
 import useAchievementStore from "@/src/store/achievement"
-import { Deed } from "@prisma/client"
 
 const Compose: NextPageWithAuthAndLayout = () => {
   const router = useRouter()
