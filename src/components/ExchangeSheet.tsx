@@ -14,7 +14,7 @@ type ExchangeSheetProps = {
 }
 
 const ExchangeSheet = ({ open, setOpen, userId }: ExchangeSheetProps) => {
-  const [points, setPoints] = useState<string>("0")
+  const [points, setPoints] = useState<string>("")
   const { data: awards, isLoading } = trpc.useQuery(["award.getAll"])
   const ctx = trpc.useContext()
 
@@ -61,7 +61,7 @@ const ExchangeSheet = ({ open, setOpen, userId }: ExchangeSheetProps) => {
 
   return (
     <BottomSheet open={open} setOpen={setOpen}>
-      <div className="flex h-full flex-col pt-3">
+      <div className="pb-safe flex h-full flex-col pt-3">
         <div className="relative text-center">
           <h2 className="text-xl text-white">Canjear Puntos</h2>
           <div className="absolute inset-y-0 right-0">
@@ -75,23 +75,21 @@ const ExchangeSheet = ({ open, setOpen, userId }: ExchangeSheetProps) => {
         </div>
         <div className="flex-1 overflow-y-scroll">
           {/* <span className="text-white">{userId}</span> */}
-          <div className="mt-6 flex flex-col gap-2">
+          <div className="mt-6 flex flex-col gap-2 p-1">
             <label
               htmlFor="points"
-              className="ml-2 block font-medium text-neutral-400"
+              className="block font-medium text-neutral-400"
             >
               Puntos
             </label>
-            <div className="p-1">
-              <Input
-                type="number"
-                placeholder="0"
-                value={points}
-                onChange={event =>
-                  setPoints((event.target as HTMLInputElement).value)
-                }
-              ></Input>
-            </div>
+            <Input
+              type="number"
+              placeholder="0"
+              value={points}
+              onChange={event =>
+                setPoints((event.target as HTMLInputElement).value)
+              }
+            ></Input>
             <div className="flex gap-2">
               <Button
                 type="button"
@@ -170,7 +168,7 @@ const ExchangeAwardItem = ({ item, userId }: ExchangeAwardItemProps) => {
           </span>
           <div className="flex items-center text-zinc-400">
             <img src="../images/gem.svg" className="mr-1 h-3 w-3" alt="coin" />
-            <span className="text-sm font-bold">{item.points}</span>
+            <span className="text-sm">{item.points}</span>
           </div>
         </div>
         <Button
