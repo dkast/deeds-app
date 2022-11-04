@@ -1,5 +1,4 @@
 import React from "react"
-import * as Progress from "@radix-ui/react-progress"
 import { useRouter } from "next/router"
 
 import AppLayout from "@/components/layout/AppLayout"
@@ -7,7 +6,8 @@ import AppLayout from "@/components/layout/AppLayout"
 import { trpc } from "@/src/utils/trpc"
 import Loader from "@/components/Loader"
 import NavBar from "@/src/components/NavBar"
-import getLevel from "@/src/utils/getLevel"
+import { ProfilePoints } from "@/src/components/ProfilePoints"
+import { ProfileLevel } from "@/src/components/ProfileLevel"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
 
@@ -43,29 +43,8 @@ const User: NextPageWithAuthAndLayout = () => {
           <span className="text-xl font-semibold text-white">{user?.name}</span>
         </div>
         <div className="mx-3 mt-10 grid grid-cols-2 gap-2">
-          <div className="flex flex-col items-start justify-center rounded-xl bg-neutral-800 p-4">
-            <span className="mb-4 text-2xl font-semibold text-white">
-              {user?.totalPoints}
-            </span>
-            <span className="flex items-center gap-2 text-neutral-400">
-              <img src="../../images/gem.svg" className="h-4 w-4" alt="coin" />{" "}
-              puntos
-            </span>
-          </div>
-          <div className="flex flex-col items-start justify-center rounded-xl bg-neutral-800 p-4">
-            <span className="mb-6 text-2xl font-semibold text-white">
-              Nivel {getLevel(user?.levelPoints)}
-            </span>
-            <Progress.Root
-              value={getPct(user?.levelPoints)}
-              className="relative h-2 w-full overflow-hidden rounded-full bg-neutral-900"
-            >
-              <Progress.ProgressIndicator
-                style={{ width: `${getPct(user?.levelPoints)}%` }}
-                className="h-full bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-400 duration-300 ease-in-out"
-              />
-            </Progress.Root>
-          </div>
+          <ProfilePoints totalPoints={user?.totalPoints} />
+          <ProfileLevel levelPoints={user?.levelPoints} />
         </div>
       </div>
     </>
@@ -78,9 +57,3 @@ User.getLayout = function getLayout(page: React.ReactElement) {
 }
 
 export default User
-
-function getPct(levelPoints: number | undefined): number {
-  const points = !levelPoints ? 0 : levelPoints % 1000
-  const pct = Math.round((points / 1000) * 100)
-  return pct
-}
