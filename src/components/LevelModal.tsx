@@ -40,6 +40,8 @@ export const LevelModal = ({ show }: LevelModalProps) => {
     }
   })
 
+  const createMessage = trpc.useMutation("deed.message")
+
   useEffect(() => {
     setOpen(show)
   }, [show])
@@ -52,6 +54,11 @@ export const LevelModal = ({ show }: LevelModalProps) => {
       activity: "activity_levelup",
       points: 30,
       comments: ""
+    })
+
+    createMessage.mutate({
+      content: `${session?.user?.name} subió de nivel 🚀`,
+      color: 0
     })
   }
 
