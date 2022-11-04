@@ -61,7 +61,7 @@ const DeedView = ({ item }: DeedProps): JSX.Element => {
       <div className="grid grid-cols-5 py-2">
         <div>
           <div className="relative h-12 w-12 rounded-full bg-gradient-to-br from-cyan-300 to-pink-400">
-            <img src={`../images/${icon}`} className="h-12 w-12" alt="icon" />
+            <img src={`/images/${icon}`} className="h-12 w-12" alt="icon" />
           </div>
         </div>
         <div className="col-span-3 flex flex-grow flex-col">
@@ -84,7 +84,7 @@ const DeedView = ({ item }: DeedProps): JSX.Element => {
           <div>
             <div className="flex items-center justify-center rounded-full bg-orange-800 bg-opacity-20 px-2 py-0.5">
               <img
-                src="../images/gem.svg"
+                src="/images/gem.svg"
                 className="inline h-4 w-4"
                 alt="coin"
               />
