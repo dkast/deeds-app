@@ -72,7 +72,7 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
             <span className="font-bold">{item.description}</span>
           )}
           <div className="flex items-center rounded-full bg-orange-500 px-2 py-1 text-white">
-            <img src="../images/gem.svg" className="mr-1 h-4 w-4" alt="coin" />
+            <img src="/images/gem.svg" className="mr-1 h-4 w-4" alt="coin" />
             <span className="text-sm font-bold">{item.points}</span>
           </div>
         </div>
