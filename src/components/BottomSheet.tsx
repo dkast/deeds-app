@@ -1,6 +1,6 @@
-import React from "react"
+import React, { useRef } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion, PanInfo } from "framer-motion"
 
 const overlay = {
   visible: {
@@ -36,6 +36,21 @@ type BottomSheetProps = {
 }
 
 const BottomSheet = ({ children, open, setOpen }: BottomSheetProps) => {
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  const handleDrag = (
+    _: MouseEvent | PointerEvent | TouchEvent,
+    info: PanInfo
+  ): void => {
+    const height = modalRef.current?.getBoundingClientRect().height
+    const offset = info.offset.y
+    const velocity = info.velocity.y
+
+    if (offset > height! / 2 || velocity > 800) {
+      setOpen(false)
+    }
+  }
+
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <AnimatePresence>
@@ -52,12 +67,21 @@ const BottomSheet = ({ children, open, setOpen }: BottomSheetProps) => {
                 <div className="fixed inset-0 z-50 flex min-h-screen items-start justify-center overflow-y-auto pt-10">
                   <Dialog.Content asChild forceMount>
                     <motion.div
+                      ref={modalRef}
                       initial="hidden"
                       animate="visible"
                       exit="hidden"
                       variants={dialog}
-                      className="relative inline-block h-full w-full overflow-hidden rounded-xl bg-neutral-800 px-4 pt-5 pb-4 text-left align-top shadow-xl outline-none sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
+                      drag="y"
+                      dragDirectionLock
+                      dragElastic={{ top: 0, bottom: 1 }}
+                      dragConstraints={{ top: 0, bottom: 0 }}
+                      onDragEnd={handleDrag}
+                      className="relative inline-block h-full w-full overflow-hidden rounded-2xl bg-neutral-800 px-4 pt-2 pb-4 text-left align-top shadow-xl outline-none sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
                     >
+                      <div className="mb-3 flex justify-center">
+                        <div className="h-1 w-8 rounded-full bg-neutral-700"></div>
+                      </div>
                       {children}
                     </motion.div>
                   </Dialog.Content>
