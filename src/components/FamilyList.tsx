@@ -36,19 +36,15 @@ const FamilyList = () => {
               <div className="flex flex-row items-center rounded-xl bg-neutral-800 px-4 py-3">
                 <div className="h-16 w-16 overflow-hidden rounded-full bg-gray-400">
                   <Link href={`/app/member/${user?.id}`}>
-                    <a>
-                      <img
-                        src={user.image as string | undefined}
-                        alt="Avatar"
-                      />
-                    </a>
+                    <img src={user.image as string | undefined} alt="Avatar" />
                   </Link>
                 </div>
                 <div className="ml-6 flex grow flex-col justify-between gap-2">
-                  <Link href={`/app/member/${user?.id}`}>
-                    <a className="text-xl font-semibold text-violet-400">
-                      {user.name}
-                    </a>
+                  <Link
+                    href={`/app/member/${user?.id}`}
+                    className="text-xl font-semibold text-violet-400"
+                  >
+                    {user.name}
                   </Link>
                   <div className="flex gap-6">
                     <div className="flex items-end gap-2">
