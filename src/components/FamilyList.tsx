@@ -5,7 +5,7 @@ import { ChevronUpIcon, StarIcon } from "@heroicons/react/20/solid"
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
 
 import { trpc } from "@/src/utils/trpc"
-import Loader from "@/components/Loader"
+import Loader from "@/ui/Loader"
 import getLevel from "@/src/utils/getLevel"
 import ExchangeSheet from "@/components/ExchangeSheet"
 

@@ -3,8 +3,8 @@ import { AnimatePresence, motion } from "framer-motion"
 
 import { trpc } from "@/src/utils/trpc"
 import DeedView from "@/components/DeedView"
-import Loader from "@/components/Loader"
-import LevelUpView from "./LevelUpView"
+import Loader from "@/ui/Loader"
+import LevelUpView from "@/components/LevelUpView"
 
 const Timeline = () => {
   const { data: deeds, isLoading } = trpc.useQuery(["deed.getAll"])
