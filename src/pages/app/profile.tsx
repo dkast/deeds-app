@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { signOut, useSession } from "next-auth/react"
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline"
 import { PencilIcon } from "@heroicons/react/24/solid"
@@ -11,8 +11,11 @@ import NavBar from "@/src/components/NavBar"
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
 import { ProfileLevel } from "@/src/components/ProfileLevel"
 import { ProfilePoints } from "@/src/components/ProfilePoints"
+import ProfileEditSheet from "@/src/components/ProfileEditSheet"
+import { User } from "@prisma/client"
 
 const Profile: NextPageWithAuthAndLayout = () => {
+  const [open, setOpen] = useState<boolean>(false)
   const { data: session, status } = useSession()
   const { data: user, isLoading } = trpc.useQuery(
     ["user.getUser", { userId: session?.user?.id }],
@@ -47,6 +50,7 @@ const Profile: NextPageWithAuthAndLayout = () => {
             <button
               type="button"
               className="rounded-full bg-neutral-700/50 p-1"
+              onClick={() => setOpen(true)}
             >
               <PencilIcon className="h-4 w-4 text-neutral-400"></PencilIcon>
             </button>
@@ -57,6 +61,7 @@ const Profile: NextPageWithAuthAndLayout = () => {
           <ProfileLevel levelPoints={user?.levelPoints} />
         </div>
       </div>
+      <ProfileEditSheet open={open} setOpen={setOpen} user={user!} />
     </>
   )
 }
