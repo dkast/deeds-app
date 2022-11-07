@@ -4,8 +4,8 @@ import { useSession } from "next-auth/react"
 import useWindowSize from "react-use/lib/useWindowSize"
 import Confetti from "react-confetti"
 
-import Modal from "@/src/components/Modal"
-import Button from "@/src/components/Button"
+import Modal from "@/ui/Modal"
+import Button from "@/ui/Button"
 import useAchievementStore from "@/src/store/achievement"
 import { trpc } from "@/src/utils/trpc"
 

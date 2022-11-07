@@ -5,16 +5,16 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import Loader from "@/src/components/Loader"
+import Loader from "@/src/components/ui/Loader"
 import NavBar from "@/src/components/NavBar"
 import AwardList from "@/components/AwardList"
 import AppLayout from "@/components/layout/AppLayout"
-import BottomSheet from "@/src/components/BottomSheet"
-import Input from "@/src/components/Input"
+import BottomSheet from "@/src/components/ui/BottomSheet"
+import Input from "@/src/components/ui/Input"
 import { trpc } from "@/src/utils/trpc"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"
-import Button from "@/src/components/Button"
+import Button from "@/src/components/ui/Button"
 import toast from "react-hot-toast"
 
 const Awards: NextPageWithAuthAndLayout = () => {

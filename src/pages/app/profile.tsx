@@ -5,7 +5,7 @@ import { PencilIcon } from "@heroicons/react/24/solid"
 
 import AppLayout from "@/components/layout/AppLayout"
 import { trpc } from "@/src/utils/trpc"
-import Loader from "@/components/Loader"
+import Loader from "@/src/components/ui/Loader"
 import NavBar from "@/src/components/NavBar"
 
 import type { NextPageWithAuthAndLayout } from "@/src/types/types"

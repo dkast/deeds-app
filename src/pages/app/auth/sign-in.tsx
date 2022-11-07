@@ -4,7 +4,7 @@ import { getProviders, signIn } from "next-auth/react"
 import { unstable_getServerSession } from "next-auth/next"
 import Lottie from "react-lottie-player"
 
-import Button from "@/components/Button"
+import Button from "@/src/components/ui/Button"
 import { authOptions } from "@/src/utils/auth"
 
 import type {
