@@ -112,3 +112,23 @@ export const userRouter = createProtectedRouter()
       }
     }
   })
+  .mutation("updateUser", {
+    input: z.object({
+      userId: z.string(),
+      name: z.string()
+    }),
+    async resolve({ ctx, input }) {
+      try {
+        await ctx.prisma.user.update({
+          where: {
+            id: input.userId
+          },
+          data: {
+            name: input.name
+          }
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  })

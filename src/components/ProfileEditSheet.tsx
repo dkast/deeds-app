@@ -4,6 +4,8 @@ import { User } from "@prisma/client"
 import BottomSheet from "@/ui/BottomSheet"
 import Input from "@/ui/Input"
 import Button from "./ui/Button"
+import { trpc } from "@/src/utils/trpc"
+import toast from "react-hot-toast"
 
 type ProfileEditSheetProps = {
   open: boolean
@@ -13,6 +15,30 @@ type ProfileEditSheetProps = {
 
 const ProfileEditSheet = ({ open, setOpen, user }: ProfileEditSheetProps) => {
   const [name, setName] = useState<string>(user.name!)
+  const [submitted, setSubmitted] = useState<boolean>(false)
+  const ctx = trpc.useContext()
+
+  const updateUser = trpc.useMutation("user.updateUser", {
+    onError: () => {
+      toast.error("Algo salió mal 😥")
+    },
+    onSuccess: () => {
+      setOpen(false)
+    },
+    onSettled: () => {
+      ctx.invalidateQueries(["user.getUser"])
+      ctx.invalidateQueries(["user.getFamilyMembers"])
+      setSubmitted(false)
+    }
+  })
+
+  const onUpdateUser = () => {
+    setSubmitted(true)
+    updateUser.mutate({
+      userId: user.id,
+      name: name
+    })
+  }
 
   return (
     <BottomSheet open={open} setOpen={setOpen}>
@@ -44,7 +70,12 @@ const ProfileEditSheet = ({ open, setOpen, user }: ProfileEditSheetProps) => {
                 setName((event.target as HTMLInputElement).value)
               }
             ></Input>
-            <Button type="button" variant="primary">
+            <Button
+              type="button"
+              variant="primary"
+              onClick={onUpdateUser}
+              isLoading={submitted}
+            >
               Guardar
             </Button>
           </div>
