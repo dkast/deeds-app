@@ -9,9 +9,9 @@ import toast from "react-hot-toast"
 import { trpc } from "@/src/utils/trpc"
 import { useRouter } from "next/router"
 
-import Loader from "@/src/components/Loader"
-import Input from "@/src/components/Input"
-import Button from "@/src/components/Button"
+import Loader from "@/src/components/ui/Loader"
+import Input from "@/src/components/ui/Input"
+import Button from "@/src/components/ui/Button"
 
 interface IFormValues {
   name: string

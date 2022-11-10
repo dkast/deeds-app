@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useSession } from "next-auth/react"
 
 import { trpc } from "@/src/utils/trpc"
-import Loader from "@/components/Loader"
+import Loader from "@/ui/Loader"
 import AwardView from "@/components/AwardView"
 import { Role } from "@prisma/client"
 

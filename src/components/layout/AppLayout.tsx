@@ -77,41 +77,38 @@ const TabLink = ({
   selectedPath
 }: TabLinkProps): JSX.Element => {
   return (
-    <Link href={href}>
-      <a
-        className={classNames(
-          href === selectedPath
-            ? "border-t-2 border-violet-500 bg-gradient-to-b from-violet-800/50 to-black text-white"
-            : "text-gray-500 hover:text-violet-500",
-          "py-3 px-4"
-        )}
-      >
-        <div className="h-8 w-8">{icon}</div>
-        {/* {name} */}
-      </a>
+    <Link
+      href={href}
+      className={classNames(
+        href === selectedPath
+          ? "border-t-2 border-violet-500 bg-gradient-to-b from-violet-800/50 to-black text-white"
+          : "text-gray-500 hover:text-violet-500",
+        "py-3 px-4"
+      )}
+    >
+      <div className="h-8 w-8">{icon}</div>
     </Link>
   )
 }
 
 const TabUser = ({ href, user, selectedPath }: TabUserProps): JSX.Element => {
   return (
-    <Link href={href}>
-      <a
-        className={classNames(
-          href === selectedPath
-            ? "border-t-2 border-violet-500 bg-gradient-to-b from-violet-800/50 to-black"
-            : "",
-          "py-3 px-4 pt-3"
-        )}
-      >
-        {user?.image ? (
-          <div className="h-8 w-8 overflow-hidden rounded-full bg-gray-400">
-            <img src={user.image} alt="Avatar" />
-          </div>
-        ) : (
-          <div className="h-8 w-8 rounded-full bg-gray-400"></div>
-        )}
-      </a>
+    <Link
+      href={href}
+      className={classNames(
+        href === selectedPath
+          ? "border-t-2 border-violet-500 bg-gradient-to-b from-violet-800/50 to-black"
+          : "",
+        "py-3 px-4 pt-3"
+      )}
+    >
+      {user?.image ? (
+        <div className="h-8 w-8 overflow-hidden rounded-full bg-gray-400">
+          <img src={user.image} alt="Avatar" />
+        </div>
+      ) : (
+        <div className="h-8 w-8 rounded-full bg-gray-400"></div>
+      )}
     </Link>
   )
 }
@@ -119,16 +116,16 @@ const TabUser = ({ href, user, selectedPath }: TabUserProps): JSX.Element => {
 const TabAddAction = (): JSX.Element => {
   return (
     <Link href="/app/compose">
-      <motion.a whileTap={{ scale: 0.9 }}>
+      <motion.div whileTap={{ scale: 0.9 }}>
         <PlusIcon className="mx-2 -mt-3 h-14 w-14 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-red-400 p-2 text-white shadow-lg shadow-pink-600/50" />
-      </motion.a>
+      </motion.div>
     </Link>
   )
 }
 
 const AppLayout = ({ children }: AppLayoutProps): JSX.Element => {
   return (
-    <div className="mx-auto flex h-screen w-full flex-col sm:max-w-lg">
+    <div className="mx-auto flex h-full w-full flex-col sm:max-w-lg">
       <main className="grow overflow-y-scroll">{children}</main>
       <TabBarMenu />
     </div>

@@ -30,10 +30,11 @@ const Home: NextPage = () => {
             className="h-48 w-48"
           ></Lottie>
         </div>
-        <Link href="/app/home">
-          <a className="flex items-center gap-4 rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-orange-500 px-4 py-2 text-2xl text-white">
-            Entrar
-          </a>
+        <Link
+          href="/app/home"
+          className="flex items-center gap-4 rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-orange-500 px-4 py-2 text-2xl text-white"
+        >
+          Entrar
         </Link>
       </div>
     </>
