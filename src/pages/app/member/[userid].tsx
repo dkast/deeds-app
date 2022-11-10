@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import AppLayout from "@/components/layout/AppLayout"
 
 import { trpc } from "@/src/utils/trpc"
-import Loader from "@/components/Loader"
+import Loader from "@/src/components/ui/Loader"
 import NavBar from "@/src/components/NavBar"
 import { ProfilePoints } from "@/src/components/ProfilePoints"
 import { ProfileLevel } from "@/src/components/ProfileLevel"

@@ -8,7 +8,7 @@ import AppLayout from "@/components/layout/AppLayout"
 import NavBar from "@/components/NavBar"
 import ActivityButton from "@/components/ActivityButton"
 import AddComments from "@/components/AddComments"
-import Loader from "@/components/Loader"
+import Loader from "@/src/components/ui/Loader"
 
 import { ACTIVITIES, GREETINGS } from "@/src/types/types"
 import type { NextPageWithAuthAndLayout, Activity } from "@/src/types/types"
