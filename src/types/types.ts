@@ -26,7 +26,7 @@ export const ACTIVITIES: Activity[] = [
     id: "activity_bath",
     icon: "rubber-duck.svg",
     description: "Bañarme",
-    points: 30,
+    points: 20,
     requireComments: false
   },
   {
@@ -40,7 +40,7 @@ export const ACTIVITIES: Activity[] = [
     id: "activity_help",
     icon: "volunteer.svg",
     description: "Ayudar en la casa",
-    points: 30,
+    points: 50,
     requireComments: true
   },
   {
@@ -68,7 +68,7 @@ export const ACTIVITIES: Activity[] = [
     id: "activity_diet",
     icon: "diet.svg",
     description: "Comer saludable",
-    points: 50,
+    points: 30,
     requireComments: true
   }
 ]
