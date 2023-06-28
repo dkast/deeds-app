@@ -67,6 +67,7 @@ export const deedRouter = createProtectedRouter()
       color: z.number()
     }),
     async resolve({ ctx, input }) {
+      if (process.env.NODE_ENV !== "production") return
       if (input.description) {
         const msg = new MessageBuilder()
         msg.setText(input.content)
