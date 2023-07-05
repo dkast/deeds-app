@@ -1,16 +1,14 @@
 import React from "react"
-import Head from "next/head"
-import { getProviders, signIn } from "next-auth/react"
-import { unstable_getServerSession } from "next-auth/next"
 import Lottie from "react-lottie-player"
-
 import Button from "@/src/components/ui/Button"
-import { authOptions } from "@/src/utils/auth"
-
+import { authOptions } from "@/src/lib/auth"
 import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType
 } from "next"
+import { unstable_getServerSession } from "next-auth/next"
+import { getProviders, signIn } from "next-auth/react"
+import Head from "next/head"
 
 import lottieJSON from "../../../../public/assets/robot-says-hi.json"
 

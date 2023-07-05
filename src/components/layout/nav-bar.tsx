@@ -1,18 +1,16 @@
-import Head from "next/head"
-import React from "react"
-
 type NavBarProps = {
   title: string
   leftItem?: React.ReactNode
   rightItem?: React.ReactNode
 }
 
-const NavBar = ({ title, leftItem, rightItem }: NavBarProps): JSX.Element => {
+export default function NavBar({
+  title,
+  leftItem,
+  rightItem
+}: NavBarProps): JSX.Element {
   return (
     <>
-      <Head>
-        <title>Deberes - {title}</title>
-      </Head>
       <div className="fixed inset-x-0 z-20 w-full bg-gradient-to-t from-neutral-800/50 to-neutral-800 px-6 py-4 backdrop-blur">
         <div className="grid grid-cols-4">
           <div className="flex items-center justify-start">{leftItem}</div>
@@ -27,5 +25,3 @@ const NavBar = ({ title, leftItem, rightItem }: NavBarProps): JSX.Element => {
     </>
   )
 }
-
-export default NavBar

@@ -1,11 +1,10 @@
 import React from "react"
+import toast from "react-hot-toast"
+import { trpc } from "@/src/lib/trpc"
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid"
+import { TrashIcon } from "@heroicons/react/24/outline"
 import { Award } from "@prisma/client"
 import { motion, PanInfo, useMotionValue, useTransform } from "framer-motion"
-import { TrashIcon } from "@heroicons/react/24/outline"
-import toast from "react-hot-toast"
-
-import { trpc } from "@/src/utils/trpc"
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid"
 
 type AwardProps = {
   item: Award

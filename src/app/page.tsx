@@ -1,9 +1,9 @@
-import LottiePlayer from "@/src/components/shared/lottie-player"
 import Link from "next/link"
 
+import LottiePlayer from "@/components/shared/lottie-player"
 import lottieJSON from "../../public/assets/robot-playing.json"
 
-export default function Page() {
+export default function StartPage() {
   return (
     <div className="flex flex-col h-screen items-center justify-center gap-10 bg-gradient-to-b from-neutral-900 to-violet-900">
       <div className="relative mb-16 gap-2">
@@ -15,7 +15,7 @@ export default function Page() {
         </div>
       </div>
       <div>
-        <LottiePlayer lottieJSON={lottieJSON} />
+        <LottiePlayer lottieJSON={lottieJSON} className="h-48 w-48" />
       </div>
       <Link
         href="/home"

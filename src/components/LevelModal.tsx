@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react"
-import Lottie from "react-lottie-player"
-import { useSession } from "next-auth/react"
-import useWindowSize from "react-use/lib/useWindowSize"
 import Confetti from "react-confetti"
-
-import Modal from "@/ui/Modal"
-import Button from "@/ui/Button"
+import Lottie from "react-lottie-player"
+import useWindowSize from "react-use/lib/useWindowSize"
+import { trpc } from "@/src/lib/trpc"
 import useAchievementStore from "@/src/store/achievement"
-import { trpc } from "@/src/utils/trpc"
+import Button from "@/ui/Button"
+import Modal from "@/ui/Modal"
+import { useSession } from "next-auth/react"
 
 import lottieJSON from "../../public/assets/trophy.json"
 

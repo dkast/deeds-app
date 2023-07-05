@@ -1,21 +1,20 @@
 import React, { useState } from "react"
-import { useSession } from "next-auth/react"
-import { PlusIcon } from "@heroicons/react/24/outline"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-
-import Loader from "@/src/components/ui/Loader"
+import toast from "react-hot-toast"
 import NavBar from "@/src/components/NavBar"
+import BottomSheet from "@/src/components/ui/BottomSheet"
+import Button from "@/src/components/ui/Button"
+import Input from "@/src/components/ui/Input"
+import Loader from "@/src/components/ui/Loader"
+import { trpc } from "@/src/lib/trpc"
+import type { NextPageWithAuthAndLayout } from "@/src/types/types"
+import { PlusIcon } from "@heroicons/react/24/outline"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useSession } from "next-auth/react"
+import { z } from "zod"
+
 import AwardList from "@/components/AwardList"
 import AppLayout from "@/components/layout/AppLayout"
-import BottomSheet from "@/src/components/ui/BottomSheet"
-import Input from "@/src/components/ui/Input"
-import { trpc } from "@/src/utils/trpc"
-
-import type { NextPageWithAuthAndLayout } from "@/src/types/types"
-import Button from "@/src/components/ui/Button"
-import toast from "react-hot-toast"
 
 const Awards: NextPageWithAuthAndLayout = () => {
   const { data: session, status } = useSession()

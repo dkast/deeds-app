@@ -1,18 +1,17 @@
 import React, { useState } from "react"
-import { signOut, useSession } from "next-auth/react"
-import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline"
-import { PencilIcon } from "@heroicons/react/24/solid"
-
-import AppLayout from "@/components/layout/AppLayout"
-import { trpc } from "@/src/utils/trpc"
-import Loader from "@/src/components/ui/Loader"
 import NavBar from "@/src/components/NavBar"
-
-import type { NextPageWithAuthAndLayout } from "@/src/types/types"
+import ProfileEditSheet from "@/src/components/ProfileEditSheet"
 import { ProfileLevel } from "@/src/components/ProfileLevel"
 import { ProfilePoints } from "@/src/components/ProfilePoints"
-import ProfileEditSheet from "@/src/components/ProfileEditSheet"
+import Loader from "@/src/components/ui/Loader"
+import { trpc } from "@/src/lib/trpc"
+import type { NextPageWithAuthAndLayout } from "@/src/types/types"
+import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline"
+import { PencilIcon } from "@heroicons/react/24/solid"
 import { User } from "@prisma/client"
+import { signOut, useSession } from "next-auth/react"
+
+import AppLayout from "@/components/layout/AppLayout"
 
 const Profile: NextPageWithAuthAndLayout = () => {
   const [open, setOpen] = useState<boolean>(false)

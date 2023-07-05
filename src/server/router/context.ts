@@ -1,12 +1,11 @@
 // src/server/router/context.ts
+import { env } from "@/src/env/server.mjs"
+import { authOptions as nextAuthOptions } from "@/src/lib/auth"
+import { prisma } from "@/src/server/db/client"
 import * as trpc from "@trpc/server"
 import * as trpcNext from "@trpc/server/adapters/next"
-import { unstable_getServerSession as getServerSession } from "next-auth"
 import { Webhook } from "discord-webhook-node"
-
-import { authOptions as nextAuthOptions } from "@/src/utils/auth"
-import { prisma } from "@/src/server/db/client"
-import { env } from "@/src/env/server.mjs"
+import { unstable_getServerSession as getServerSession } from "next-auth"
 
 export const createContext = async (
   opts?: trpcNext.CreateNextContextOptions
