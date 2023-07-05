@@ -1,15 +1,13 @@
 import React from "react"
+import NavBar from "@/src/components/NavBar"
+import { ProfileLevel } from "@/src/components/ProfileLevel"
+import { ProfilePoints } from "@/src/components/ProfilePoints"
+import Loader from "@/src/components/ui/Loader"
+import { trpc } from "@/src/lib/trpc"
+import type { NextPageWithAuthAndLayout } from "@/src/types/types"
 import { useRouter } from "next/router"
 
 import AppLayout from "@/components/layout/AppLayout"
-
-import { trpc } from "@/src/utils/trpc"
-import Loader from "@/src/components/ui/Loader"
-import NavBar from "@/src/components/NavBar"
-import { ProfilePoints } from "@/src/components/ProfilePoints"
-import { ProfileLevel } from "@/src/components/ProfileLevel"
-
-import type { NextPageWithAuthAndLayout } from "@/src/types/types"
 
 const User: NextPageWithAuthAndLayout = () => {
   // const { data: session, status } = useSession()

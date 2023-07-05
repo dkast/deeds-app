@@ -1,17 +1,16 @@
 import { useState } from "react"
+import { useForm } from "react-hook-form"
+import toast from "react-hot-toast"
+import Button from "@/src/components/ui/Button"
+import Input from "@/src/components/ui/Input"
+import Loader from "@/src/components/ui/Loader"
+import { trpc } from "@/src/lib/trpc"
+import { zodResolver } from "@hookform/resolvers/zod"
 import type { NextPage } from "next"
 import { useSession } from "next-auth/react"
 import Head from "next/head"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import toast from "react-hot-toast"
-import { trpc } from "@/src/utils/trpc"
 import { useRouter } from "next/router"
-
-import Loader from "@/src/components/ui/Loader"
-import Input from "@/src/components/ui/Input"
-import Button from "@/src/components/ui/Button"
+import { z } from "zod"
 
 interface IFormValues {
   name: string

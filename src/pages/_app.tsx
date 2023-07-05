@@ -1,16 +1,16 @@
 // src/pages/_app.tsx
 import React from "react"
+import { Toaster } from "react-hot-toast"
+import type { AppRouter } from "@/server/router"
+import { withTRPC } from "@trpc/next"
+import { SessionProvider, signIn, useSession } from "next-auth/react"
+import { AppProps } from "next/app"
 import Head from "next/head"
 import superjson from "superjson"
-import { AppProps } from "next/app"
-import { withTRPC } from "@trpc/next"
-import { Toaster } from "react-hot-toast"
-import { SessionProvider, signIn, useSession } from "next-auth/react"
 
-import type { AppRouter } from "@/src/server/router"
-import "@/src/styles/globals.css"
+import "@/styles/globals.css"
 
-import type { NextPageWithAuthAndLayout } from "@/src/types/types"
+import type { NextPageWithAuthAndLayout } from "@/types/types"
 
 type AppPropsWithAuthAndLayout = AppProps & {
   Component: NextPageWithAuthAndLayout

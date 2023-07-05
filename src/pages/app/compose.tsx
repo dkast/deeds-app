@@ -1,19 +1,17 @@
-import toast from "react-hot-toast"
-import { useRouter } from "next/router"
 import React, { useState } from "react"
+import toast from "react-hot-toast"
+import Loader from "@/src/components/ui/Loader"
+import { trpc } from "@/src/lib/trpc"
+import useAchievementStore from "@/src/store/achievement"
+import { ACTIVITIES, GREETINGS } from "@/src/types/types"
+import type { Activity, NextPageWithAuthAndLayout } from "@/src/types/types"
 import { useSession } from "next-auth/react"
+import { useRouter } from "next/router"
 
-import { trpc } from "@/src/utils/trpc"
-import AppLayout from "@/components/layout/AppLayout"
-import NavBar from "@/components/NavBar"
 import ActivityButton from "@/components/ActivityButton"
 import AddComments from "@/components/AddComments"
-import Loader from "@/src/components/ui/Loader"
-
-import { ACTIVITIES, GREETINGS } from "@/src/types/types"
-import type { NextPageWithAuthAndLayout, Activity } from "@/src/types/types"
-
-import useAchievementStore from "@/src/store/achievement"
+import AppLayout from "@/components/layout/AppLayout"
+import NavBar from "@/components/layout/nav-bar"
 
 const Compose: NextPageWithAuthAndLayout = () => {
   const router = useRouter()

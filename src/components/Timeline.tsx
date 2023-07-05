@@ -1,9 +1,9 @@
 import React from "react"
+import { trpc } from "@/src/lib/trpc"
+import Loader from "@/ui/Loader"
 import { AnimatePresence, motion } from "framer-motion"
 
-import { trpc } from "@/src/utils/trpc"
 import DeedView from "@/components/DeedView"
-import Loader from "@/ui/Loader"
 import LevelUpView from "@/components/LevelUpView"
 
 const Timeline = () => {

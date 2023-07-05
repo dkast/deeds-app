@@ -1,11 +1,11 @@
 import React from "react"
+import { trpc } from "@/src/lib/trpc"
+import Loader from "@/ui/Loader"
+import { Role } from "@prisma/client"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSession } from "next-auth/react"
 
-import { trpc } from "@/src/utils/trpc"
-import Loader from "@/ui/Loader"
 import AwardView from "@/components/AwardView"
-import { Role } from "@prisma/client"
 
 const AwardList = () => {
   const { data: session, status } = useSession()
