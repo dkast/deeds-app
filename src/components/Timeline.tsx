@@ -1,16 +1,12 @@
-import React from "react"
-import { trpc } from "@/src/lib/trpc"
-import Loader from "@/ui/Loader"
+"use client"
+
+import { Deed } from "@prisma/client"
 import { AnimatePresence, motion } from "framer-motion"
 
 import DeedView from "@/components/DeedView"
 import LevelUpView from "@/components/LevelUpView"
 
-const Timeline = () => {
-  const { data: deeds, isLoading } = trpc.useQuery(["deed.getAll"])
-
-  if (isLoading) return <Loader />
-
+const Timeline = ({ deeds }: { deeds: Deed[] }) => {
   return (
     <div className="flex flex-col gap-3 px-3">
       <AnimatePresence initial={false} mode="popLayout">
