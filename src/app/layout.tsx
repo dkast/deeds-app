@@ -7,8 +7,8 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>
-        <div className="flex flex-col h-screen bg-neutral-900 text-white">
+      <body className="bg-neutral-900 text-white">
+        <div className="flex flex-col h-screen">
           <main className="flex-1">{children}</main>
         </div>
       </body>

@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useSession } from "next-auth/react"
 import { z } from "zod"
 
-import AwardList from "@/components/AwardList"
+import AwardList from "@/components/award-list"
 import AppLayout from "@/components/layout/AppLayout"
 
 const Awards: NextPageWithAuthAndLayout = () => {

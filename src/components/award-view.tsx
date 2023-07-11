@@ -1,10 +1,11 @@
 import React from "react"
 import toast from "react-hot-toast"
-import { trpc } from "@/src/lib/trpc"
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid"
 import { TrashIcon } from "@heroicons/react/24/outline"
 import { Award } from "@prisma/client"
 import { motion, PanInfo, useMotionValue, useTransform } from "framer-motion"
+
+import { trpc } from "@/lib/trpc"
 
 type AwardProps = {
   item: Award
@@ -19,27 +20,27 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
   const opacity = useTransform(x, xInput, opacityOutput)
   const scale = useTransform(x, xInput, scaleOutput)
 
-  const ctx = trpc.useContext()
-  const deleteAward = trpc.useMutation("award.delete", {
-    onError: () => {
-      toast.error("Error al eliminar")
-    },
-    onMutate: () => {
-      ctx.cancelQuery(["award.getAll"])
+  // const ctx = trpc.useContext()
+  // const deleteAward = trpc.useMutation("award.delete", {
+  //   onError: () => {
+  //     toast.error("Error al eliminar")
+  //   },
+  //   onMutate: () => {
+  //     ctx.cancelQuery(["award.getAll"])
 
-      let optimisticUpdate = ctx.getQueryData(["award.getAll"])
-      if (optimisticUpdate) {
-        ctx.setQueryData(["award.getAll"], optimisticUpdate)
-      }
-    },
-    onSettled: () => {
-      ctx.invalidateQueries(["award.getAll"])
-    }
-  })
+  //     let optimisticUpdate = ctx.getQueryData(["award.getAll"])
+  //     if (optimisticUpdate) {
+  //       ctx.setQueryData(["award.getAll"], optimisticUpdate)
+  //     }
+  //   },
+  //   onSettled: () => {
+  //     ctx.invalidateQueries(["award.getAll"])
+  //   }
+  // })
 
   const deleteItem = (awardId: string) => {
     x.set(0)
-    deleteAward.mutate({ id: awardId })
+    // deleteAward.mutate({ id: awardId })
   }
 
   return (
