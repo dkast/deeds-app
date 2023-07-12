@@ -1,9 +1,8 @@
-import React from "react"
-
-type ProfileLevelProps = {
+export const ProfilePoints = ({
+  totalPoints
+}: {
   totalPoints: number | undefined
-}
-export const ProfilePoints = ({ totalPoints }: ProfileLevelProps) => {
+}) => {
   return (
     <div className="flex flex-col items-start justify-between rounded-xl bg-neutral-800 p-4">
       <span className="text-2xl font-semibold text-white">{totalPoints}</span>

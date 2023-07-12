@@ -97,7 +97,7 @@ function TabUser({ href, user, selectedPath }: TabUserProps) {
 
 function TabAddAction() {
   return (
-    <Link href="/app/compose">
+    <Link href="/new">
       <motion.div whileTap={{ scale: 0.9 }}>
         <PlusIcon className="mx-2 -mt-3 h-14 w-14 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-red-400 p-2 text-white shadow-lg shadow-pink-600/50" />
       </motion.div>

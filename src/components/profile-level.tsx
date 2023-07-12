@@ -1,7 +1,9 @@
-import React from "react"
-import getLevel from "@/src/lib/getLevel"
-import getPct from "@/src/lib/getPct"
+"use client"
+
 import * as Progress from "@radix-ui/react-progress"
+
+import getLevel from "@/lib/getLevel"
+import getPct from "@/lib/getPct"
 
 type ProfileLevelProps = {
   levelPoints: number | undefined
