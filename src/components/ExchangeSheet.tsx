@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import toast from "react-hot-toast"
-import { trpc } from "@/src/lib/trpc"
-import BottomSheet from "@/ui/BottomSheet"
-import Button from "@/ui/Button"
-import Input from "@/ui/Input"
+import { trpc } from "@/lib/trpc"
+import BottomSheet from "@/components/ui/BottomSheet"
+import Button from "@/components/ui/Button"
+import Input from "@/components/ui/Input"
 import { Award } from "@prisma/client"
 
 type ExchangeSheetProps = {
