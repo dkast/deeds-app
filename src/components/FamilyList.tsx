@@ -1,26 +1,17 @@
+"use client"
+
 import React, { useState } from "react"
-import getLevel from "@/src/lib/getLevel"
-import { trpc } from "@/src/lib/trpc"
-import Loader from "@/ui/Loader"
+import getLevel from "@/lib/getLevel"
 import { ChevronUpIcon, StarIcon } from "@heroicons/react/20/solid"
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
-import { useSession } from "next-auth/react"
 import Link from "next/link"
+import { User } from "@prisma/client"
 
 import ExchangeSheet from "@/components/ExchangeSheet"
 
-const FamilyList = () => {
+const FamilyList = ({members, userRole}: {members: User[], userRole: string}) => {
   const [open, setOpen] = useState<boolean>(false)
   const [selectedUserId, setSelectedUserId] = useState<string>("")
-  const { data: session, status } = useSession()
-  const { data: users, isLoading } = trpc.useQuery(
-    ["user.getFamilyMembers", { familyId: session?.user?.familyId }],
-    {
-      enabled: !!session?.user
-    }
-  )
-
-  if (isLoading || status === "loading") return <Loader />
 
   const openModal = (id: string): void => {
     setSelectedUserId(id)
@@ -30,7 +21,7 @@ const FamilyList = () => {
   return (
     <>
       <div className="mt-6 flex flex-col gap-2 px-3">
-        {users?.map(user => {
+        {members?.map(user => {
           return (
             <div key={user.id}>
               <div className="flex flex-row items-center rounded-xl bg-neutral-800 px-4 py-3">
@@ -61,7 +52,7 @@ const FamilyList = () => {
                     </div>
                   </div>
                 </div>
-                {session?.user?.role === "PARENT" && (
+                {userRole === "PARENT" && (
                   <button onClick={() => openModal(user.id)}>
                     <EllipsisVerticalIcon className="h-6 w-6 text-neutral-400" />
                   </button>
@@ -71,7 +62,7 @@ const FamilyList = () => {
           )
         })}
       </div>
-      <ExchangeSheet open={open} setOpen={setOpen} userId={selectedUserId} />
+      {/* <ExchangeSheet open={open} setOpen={setOpen} userId={selectedUserId} /> */}
     </>
   )
 }
