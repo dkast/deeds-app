@@ -8,7 +8,7 @@ import type { Activity, NextPageWithAuthAndLayout } from "@/src/types/types"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/router"
 
-import ActivityButton from "@/components/ActivityButton"
+import ActivityButton from "@/components/activyt-button"
 import AddComments from "@/components/AddComments"
 import AppLayout from "@/components/layout/AppLayout"
 import NavBar from "@/components/layout/nav-bar"
