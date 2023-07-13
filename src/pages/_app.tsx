@@ -10,7 +10,7 @@ import superjson from "superjson"
 
 import "@/styles/globals.css"
 
-import type { NextPageWithAuthAndLayout } from "@/types/types"
+import type { NextPageWithAuthAndLayout } from "@/lib/types"
 
 type AppPropsWithAuthAndLayout = AppProps & {
   Component: NextPageWithAuthAndLayout

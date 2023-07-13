@@ -3,10 +3,11 @@
 import { Deed } from "@prisma/client"
 import { AnimatePresence, motion } from "framer-motion"
 
-import DeedView from "@/components/DeedView"
-import LevelUpView from "@/components/LevelUpView"
+import DeedView from "@/components/deed-view"
+import LevelUpView from "@/components/levelup-view"
+import { UserDeed } from "@/lib/types"
 
-const Timeline = ({ deeds }: { deeds: Deed[] }) => {
+const Timeline = ({ deeds }: { deeds: UserDeed[] }) => {
   return (
     <div className="flex flex-col gap-3 px-3">
       <AnimatePresence initial={false} mode="popLayout">

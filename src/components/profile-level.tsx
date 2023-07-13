@@ -2,8 +2,7 @@
 
 import * as Progress from "@radix-ui/react-progress"
 
-import getLevel from "@/lib/getLevel"
-import getPct from "@/lib/getPct"
+import { getLevel, getPct } from "@/lib/utils"
 
 type ProfileLevelProps = {
   levelPoints: number | undefined
