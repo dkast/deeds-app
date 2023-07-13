@@ -1,14 +1,12 @@
+"use client"
+
 import React, { useEffect, useState } from "react"
-import esLocale from "date-fns/locale/es"
 import { formatDistanceToNowStrict } from "date-fns"
+import esLocale from "date-fns/locale/es"
 
-import { UserDeed } from "@/src/types/types"
+import { UserDeed } from "@/lib/types"
 
-type DeedProps = {
-  item: UserDeed
-}
-
-const DeedView = ({ item }: DeedProps): JSX.Element => {
+const DeedView = ({ item }: { item: UserDeed }): JSX.Element => {
   const [icon, setIcon] = useState<string>("")
   const [message, setMessage] = useState<string>("")
 

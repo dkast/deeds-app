@@ -7,7 +7,7 @@ import { User } from "@prisma/client"
 import Link from "next/link"
 
 import ExchangeSheet from "@/components/ExchangeSheet"
-import getLevel from "@/lib/getLevel"
+import { getLevel } from "@/lib/utils"
 
 const FamilyList = ({
   members,

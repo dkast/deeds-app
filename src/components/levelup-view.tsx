@@ -1,15 +1,11 @@
-import React from "react"
+"use client"
+
 import Lottie from "react-lottie-player"
 
-import { UserDeed } from "@/src/types/types"
-
+import { UserDeed } from "@/lib/types"
 import lottieJSON from "../../public/assets/level-up.json"
 
-type LevelUpProps = {
-  item: UserDeed
-}
-
-const LevelUpView = ({ item }: LevelUpProps) => {
+const LevelUpView = ({ item }: { item: UserDeed }) => {
   return (
     <div className="relative flex flex-col items-center gap-3 rounded-xl bg-gradient-to-r from-violet-800 to-violet-500 px-4 py-3">
       <div className="relative">

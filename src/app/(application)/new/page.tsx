@@ -1,10 +1,10 @@
-import { ACTIVITIES } from "@/types/types"
 import { redirect } from "next/navigation"
 
 import ActivityButton from "@/components/activyt-button"
 import NavBar from "@/components/layout/nav-bar"
 import { authOptions } from "@/lib/auth"
 import { getCurrentUser } from "@/lib/session"
+import { ACTIVITIES } from "@/lib/types"
 
 export default async function NewPage() {
   const user = await getCurrentUser()
