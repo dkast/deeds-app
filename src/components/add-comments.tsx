@@ -1,4 +1,5 @@
-import React from "react"
+"use client"
+
 import * as Dialog from "@radix-ui/react-dialog"
 import { AnimatePresence, motion } from "framer-motion"
 
@@ -81,7 +82,7 @@ const AddComments = ({
                           name="comments"
                           rows={3}
                           placeholder="Dinos un poco más.."
-                          className="mb-4 border-0 focus:ring-0"
+                          className="mb-4 border-0 focus:ring-0 text-slate-900"
                           value={comment}
                           onChange={event => setComment(event.target.value)}
                         ></textarea>
