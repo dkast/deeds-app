@@ -4,9 +4,15 @@ import { useState } from "react"
 
 import ActivityButton from "@/components/activty-button"
 import AddComments from "@/components/add-comments"
-import { ACTIVITIES, Activity } from "@/lib/types"
+import type { createDeed } from "@/lib/actions"
+import { ACTIVITIES, Activity, UserDeed } from "@/lib/types"
 
-export default function CreateDeed() {
+type Props = {
+  createDeed: typeof createDeed
+  userId: string
+}
+
+export default function CreateDeed({ createDeed, userId }: Props) {
   const [open, setOpen] = useState<boolean>(false)
   const [comment, setComment] = useState<string>("")
   const [selectedActivity, setSelectedActivity] = useState<Activity>()
@@ -16,13 +22,23 @@ export default function CreateDeed() {
       setSelectedActivity(actType)
       setOpen(true)
     } else {
-      // saveActivity(actType)
+      saveActivity(actType)
     }
   }
 
   const onCloseComments = () => {
     setOpen(false)
-    // saveActivity(selectedActivity as Activity)
+    saveActivity(selectedActivity as Activity)
+  }
+
+  const saveActivity = async (actType: Activity) => {
+    console.log(actType)
+    await createDeed({
+      userId: userId,
+      activity: actType.id,
+      points: actType.points,
+      comments: comment
+    })
   }
 
   return (
