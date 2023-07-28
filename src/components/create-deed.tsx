@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import toast from "react-hot-toast"
+import { useAction } from "next-safe-action/hook"
 
 import ActivityButton from "@/components/activty-button"
 import AddComments from "@/components/add-comments"
-import type { createDeed } from "@/lib/actions"
-import { ACTIVITIES, Activity, UserDeed } from "@/lib/types"
+import { createDeed } from "@/lib/actions"
+import { ACTIVITIES, Activity, GREETINGS } from "@/lib/types"
 
 type Props = {
   createDeed: typeof createDeed
@@ -16,6 +18,15 @@ export default function CreateDeed({ createDeed, userId }: Props) {
   const [open, setOpen] = useState<boolean>(false)
   const [comment, setComment] = useState<string>("")
   const [selectedActivity, setSelectedActivity] = useState<Activity>()
+  const { execute } = useAction(createDeed, {
+    onSuccess: () => {
+      const greeting = getGreeting()
+      toast(greeting as string, { icon: "🎉" })
+    },
+    onError: () => {
+      toast.error("Algo salió mal 😥")
+    }
+  })
 
   const onActivityTap = (actType: Activity) => {
     if (actType.requireComments) {
@@ -33,12 +44,18 @@ export default function CreateDeed({ createDeed, userId }: Props) {
 
   const saveActivity = async (actType: Activity) => {
     console.log(actType)
-    await createDeed({
+    execute({
       userId: userId,
       activity: actType.id,
       points: actType.points,
       comments: comment
     })
+  }
+
+  const getGreeting = (): string | undefined => {
+    const i = Math.floor(Math.random() * GREETINGS.length)
+    const greeting = GREETINGS[i]
+    return greeting
   }
 
   return (
