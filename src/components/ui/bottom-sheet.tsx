@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useRef } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { AnimatePresence, motion, PanInfo } from "framer-motion"

@@ -1,5 +1,6 @@
 import { Deed, User } from "@prisma/client"
 import type { NextPage } from "next"
+import { z } from "zod"
 
 export type NextPageWithAuthAndLayout = NextPage & {
   auth?: boolean
@@ -84,3 +85,21 @@ export const GREETINGS = [
 export interface UserDeed extends Deed {
   User: User | null
 }
+
+export const deedSchema = z.object({
+  userId: z.string().optional(),
+  activity: z.string(),
+  points: z.number(),
+  comments: z.string().nullish()
+})
+
+export type DeedValues = z.infer<typeof deedSchema>
+
+export const awardSchema = z.object({
+  description: z.string().min(1, { message: "Requerido" }),
+  imageUrl: z.string().url(),
+  refUrl: z.string().optional(),
+  points: z.number().int().positive()
+})
+
+export type AwardValues = z.infer<typeof awardSchema>

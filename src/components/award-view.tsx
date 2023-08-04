@@ -1,11 +1,14 @@
+"use client"
+
 import React from "react"
 import toast from "react-hot-toast"
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid"
 import { TrashIcon } from "@heroicons/react/24/outline"
 import { Award } from "@prisma/client"
-import { motion, PanInfo, useMotionValue, useTransform } from "framer-motion"
+import { motion, useMotionValue, useTransform } from "framer-motion"
+import { useAction } from "next-safe-action/hook"
 
-import { trpc } from "@/lib/trpc"
+import { deleteAward } from "@/lib/actions"
 
 type AwardProps = {
   item: Award
@@ -19,28 +22,15 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
   const scaleOutput = [1, 0.9]
   const opacity = useTransform(x, xInput, opacityOutput)
   const scale = useTransform(x, xInput, scaleOutput)
-
-  // const ctx = trpc.useContext()
-  // const deleteAward = trpc.useMutation("award.delete", {
-  //   onError: () => {
-  //     toast.error("Error al eliminar")
-  //   },
-  //   onMutate: () => {
-  //     ctx.cancelQuery(["award.getAll"])
-
-  //     let optimisticUpdate = ctx.getQueryData(["award.getAll"])
-  //     if (optimisticUpdate) {
-  //       ctx.setQueryData(["award.getAll"], optimisticUpdate)
-  //     }
-  //   },
-  //   onSettled: () => {
-  //     ctx.invalidateQueries(["award.getAll"])
-  //   }
-  // })
+  const { execute } = useAction(deleteAward, {
+    onError: () => {
+      toast.error("Error al eliminar")
+    }
+  })
 
   const deleteItem = (awardId: string) => {
     x.set(0)
-    // deleteAward.mutate({ id: awardId })
+    execute({ id: awardId })
   }
 
   return (
