@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation"
 
 import AwardList from "@/components/award-list"
+import CreateAward from "@/components/create-award"
 import NavBar from "@/components/layout/nav-bar"
-import AddAwardButton from "@/components/ui/add-award-button"
 import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
@@ -18,7 +18,10 @@ export default async function AwardsPage() {
 
   return (
     <>
-      <NavBar title="Premios" rightItem={<AddAwardButton role={user.role} />} />
+      <NavBar
+        title="Premios"
+        rightItem={user.role === "PARENT" ? <CreateAward /> : null}
+      />
       <div className="mt-20 mb-28">
         <AwardList awards={awards} userRole={user.role} />
       </div>

@@ -1,19 +1,14 @@
 "use server"
 
+import { revalidatePath } from "next/cache"
 import { z } from "zod"
 
 import prisma from "@/lib/prisma"
 import { action } from "./safe-action"
-
-const inputDeed = z.object({
-  userId: z.string().optional(),
-  activity: z.string(),
-  points: z.number(),
-  comments: z.string().nullish()
-})
+import { awardSchema, deedSchema } from "./types"
 
 export const createDeed = action(
-  inputDeed,
+  deedSchema,
   async ({ userId, activity, points, comments }) => {
     try {
       await prisma.$transaction([
@@ -39,6 +34,64 @@ export const createDeed = action(
           }
         })
       ])
+
+      revalidatePath("/home")
+
+      return {
+        success: true
+      }
+    } catch (error) {
+      return {
+        failure: {
+          reason: error
+        }
+      }
+    }
+  }
+)
+
+export const createAward = action(
+  awardSchema,
+  async ({ description, imageUrl, refUrl, points }) => {
+    try {
+      await prisma.award.create({
+        data: {
+          description,
+          imageUrl,
+          refUrl,
+          points
+        }
+      })
+
+      revalidatePath("/awards")
+
+      return {
+        success: true
+      }
+    } catch (error) {
+      return {
+        failure: {
+          reason: error
+        }
+      }
+    }
+  }
+)
+
+export const deleteAward = action(
+  z.object({
+    id: z.string()
+  }),
+  async ({ id }) => {
+    try {
+      await prisma.award.delete({
+        where: {
+          id
+        }
+      })
+
+      revalidatePath("/awards")
+
       return {
         success: true
       }

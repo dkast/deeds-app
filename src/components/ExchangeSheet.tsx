@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import toast from "react-hot-toast"
-import { trpc } from "@/lib/trpc"
-import BottomSheet from "@/components/ui/BottomSheet"
+import { Award } from "@prisma/client"
+
+import BottomSheet from "@/components/ui/bottom-sheet"
 import Button from "@/components/ui/Button"
 import Input from "@/components/ui/Input"
-import { Award } from "@prisma/client"
+import { trpc } from "@/lib/trpc"
 
 type ExchangeSheetProps = {
   open: boolean
