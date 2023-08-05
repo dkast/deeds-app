@@ -1,12 +1,8 @@
-"use client"
-
-import React, { useState } from "react"
 import { ChevronUpIcon, StarIcon } from "@heroicons/react/20/solid"
-import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
 import { User } from "@prisma/client"
 import Link from "next/link"
 
-import ExchangeSheet from "@/components/ExchangeSheet"
+import ExchangePoints from "@/components/exchange-points"
 import { getLevel } from "@/lib/utils"
 
 const FamilyList = ({
@@ -16,14 +12,6 @@ const FamilyList = ({
   members: User[]
   userRole: string
 }) => {
-  const [open, setOpen] = useState<boolean>(false)
-  const [selectedUserId, setSelectedUserId] = useState<string>("")
-
-  const openModal = (id: string): void => {
-    setSelectedUserId(id)
-    setOpen(true)
-  }
-
   return (
     <>
       <div className="mt-6 flex flex-col gap-2 px-3">
@@ -61,17 +49,12 @@ const FamilyList = ({
                     </div>
                   </div>
                 </div>
-                {userRole === "PARENT" && (
-                  <button onClick={() => openModal(member.id)}>
-                    <EllipsisVerticalIcon className="h-6 w-6 text-neutral-400" />
-                  </button>
-                )}
+                {userRole === "PARENT" && <ExchangePoints id={member.id} />}
               </div>
             </div>
           )
         })}
       </div>
-      {/* <ExchangeSheet open={open} setOpen={setOpen} userId={selectedUserId} /> */}
     </>
   )
 }
