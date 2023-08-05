@@ -1,11 +1,14 @@
-import React from 'react'
-import { Toaster } from 'react-hot-toast'
+"use client"
 
-function Providers({children}: {children: React.ReactNode}) {
+import React from "react"
+import { Toaster } from "react-hot-toast"
+import { SessionProvider } from "next-auth/react"
+
+function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <>
-    {children}
-    <Toaster
+    <SessionProvider>
+      {children}
+      <Toaster
         position="top-center"
         toastOptions={{
           style: {
@@ -15,7 +18,7 @@ function Providers({children}: {children: React.ReactNode}) {
           }
         }}
       />
-    </>
+    </SessionProvider>
   )
 }
 
