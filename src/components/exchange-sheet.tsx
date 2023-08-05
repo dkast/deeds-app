@@ -1,59 +1,53 @@
 "use client"
 
 import { useState } from "react"
+import { toast } from "react-hot-toast"
+import { Award } from "@prisma/client"
+import { useAction } from "next-safe-action/hook"
 
 import ExchangeList from "@/components/exchange-list"
 import BottomSheet from "@/components/ui/bottom-sheet"
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
+import { addPoints, substractPoints } from "@/lib/actions"
 
 function ExchangeSheet({
   open,
-  setOpen
+  setOpen,
+  userId,
+  awards
 }: {
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  userId: string
+  awards: Award[]
 }) {
   const [points, setPoints] = useState<string>("")
-  // const { data: awards, isLoading } = trpc.useQuery(["award.getAll"])
-  // const ctx = trpc.useContext()
-  // const claimPoints = trpc.useMutation("user.substractPoints", {
-  //   onError: () => {
-  //     toast.error("Algo salió mal 😥")
-  //   },
-  //   onSuccess: () => {
-  //     toast.success("Puntos reclamados")
-  //   },
-  //   onSettled: () => {
-  //     ctx.invalidateQueries(["user.getUser"])
-  //     ctx.invalidateQueries(["user.getFamilyMembers"])
-  //   }
-  // })
+  const { execute: claimPoints } = useAction(substractPoints, {
+    onSuccess: () => {
+      toast.success("Puntos reclamados")
+    },
+    onError: () => {
+      toast.error("Algo salió mal 😥")
+    }
+  })
+
+  const { execute: rewardPoints } = useAction(addPoints, {
+    onSuccess: () => {
+      toast.success("Puntos añadidos")
+    },
+    onError: () => {
+      toast.error("Algo salió mal 😥")
+    }
+  })
+
   const onClaimPoints = () => {
-    // claimPoints.mutate({
-    //   userId: userId,
-    //   points: parseInt(points)
-    // })
+    claimPoints({ userId: userId, points: parseInt(points) })
   }
 
-  // const rewardPoints = trpc.useMutation("user.addPoints", {
-  //   onError: () => {
-  //     toast.error("Algo salió mal 😥")
-  //   },
-  //   onSuccess: () => {
-  //     toast.success("Puntos añadidos")
-  //   },
-  //   onSettled: () => {
-  //     ctx.invalidateQueries(["user.getUser"])
-  //     ctx.invalidateQueries(["user.getFamilyMembers"])
-  //   }
-  // })
   const onRewardPoints = () => {
     console.dir(points)
-    // rewardPoints.mutate({
-    //   userId: userId,
-    //   points: parseInt(points)
-    // })
+    rewardPoints({ userId: userId, points: parseInt(points) })
   }
   return (
     <BottomSheet open={open} setOpen={setOpen}>
@@ -70,7 +64,6 @@ function ExchangeSheet({
           </div>
         </div>
         <div className="flex-1 overflow-y-scroll">
-          {/* <span className="text-white">{userId}</span> */}
           <div className="mt-6 flex flex-col gap-2 p-1">
             <label
               htmlFor="points"
@@ -102,7 +95,7 @@ function ExchangeSheet({
               Premios
             </label>
             <div className="flex flex-col gap-2">
-              <ExchangeList />
+              <ExchangeList userId={userId} awards={awards} />
             </div>
           </div>
         </div>

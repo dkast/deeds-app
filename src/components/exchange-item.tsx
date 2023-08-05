@@ -1,8 +1,11 @@
 "use client"
 
+import toast from "react-hot-toast"
 import { Award } from "@prisma/client"
+import { useAction } from "next-safe-action/hook"
 
 import Button from "@/components/ui/button"
+import { substractPoints } from "@/lib/actions"
 
 export const ExchangeItem = ({
   item,
@@ -11,26 +14,17 @@ export const ExchangeItem = ({
   item: Award
   userId: string
 }) => {
-  // const ctx = trpc.useContext();
-
-  // const claimPoints = trpc.useMutation("user.substractPoints", {
-  //   onError: () => {
-  //     toast.error("Algo salió mal 😥");
-  //   },
-  //   onSuccess: () => {
-  //     toast.success("Puntos reclamados");
-  //   },
-  //   onSettled: () => {
-  //     ctx.invalidateQueries(["user.getUser"]);
-  //     ctx.invalidateQueries(["user.getFamilyMembers"]);
-  //   }
-  // });
+  const { execute: claimPoints } = useAction(substractPoints, {
+    onSuccess: () => {
+      toast.success("Puntos reclamados")
+    },
+    onError: () => {
+      toast.error("Algo salió mal 😥")
+    }
+  })
 
   const onClaimPoints = (points: number) => {
-    // claimPoints.mutate({
-    //   userId: userId,
-    //   points: points
-    // });
+    claimPoints({ userId: userId, points: points })
   }
 
   return (

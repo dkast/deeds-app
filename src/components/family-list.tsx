@@ -1,17 +1,25 @@
 import { ChevronUpIcon, StarIcon } from "@heroicons/react/20/solid"
-import { User } from "@prisma/client"
 import Link from "next/link"
 
 import ExchangePoints from "@/components/exchange-points"
+import prisma from "@/lib/prisma"
 import { getLevel } from "@/lib/utils"
 
-const FamilyList = ({
-  members,
+export default async function FamilyList({
+  familyId,
   userRole
 }: {
-  members: User[]
+  familyId: string
   userRole: string
-}) => {
+}) {
+  const members = await prisma.user.findMany({
+    where: {
+      familyId: familyId
+    }
+  })
+
+  const awards = await prisma.award.findMany()
+
   return (
     <>
       <div className="mt-6 flex flex-col gap-2 px-3">
@@ -49,7 +57,9 @@ const FamilyList = ({
                     </div>
                   </div>
                 </div>
-                {userRole === "PARENT" && <ExchangePoints id={member.id} />}
+                {userRole === "PARENT" && (
+                  <ExchangePoints id={member.id} awards={awards} />
+                )}
               </div>
             </div>
           )
@@ -58,5 +68,3 @@ const FamilyList = ({
     </>
   )
 }
-
-export default FamilyList

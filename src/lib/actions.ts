@@ -104,3 +104,69 @@ export const deleteAward = action(
     }
   }
 )
+
+export const addPoints = action(
+  z.object({
+    userId: z.string(),
+    points: z.number()
+  }),
+  async ({ userId, points }) => {
+    try {
+      await prisma.user.update({
+        where: {
+          id: userId
+        },
+        data: {
+          totalPoints: {
+            increment: points
+          }
+        }
+      })
+
+      revalidatePath("/family")
+
+      return {
+        success: true
+      }
+    } catch (error) {
+      return {
+        failure: {
+          reason: error
+        }
+      }
+    }
+  }
+)
+
+export const substractPoints = action(
+  z.object({
+    userId: z.string(),
+    points: z.number()
+  }),
+  async ({ userId, points }) => {
+    try {
+      await prisma.user.update({
+        where: {
+          id: userId
+        },
+        data: {
+          totalPoints: {
+            decrement: points
+          }
+        }
+      })
+
+      revalidatePath("/family")
+
+      return {
+        success: true
+      }
+    } catch (error) {
+      return {
+        failure: {
+          reason: error
+        }
+      }
+    }
+  }
+)

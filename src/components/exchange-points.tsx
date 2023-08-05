@@ -2,24 +2,30 @@
 
 import { useState } from "react"
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
+import { Award } from "@prisma/client"
 
 import ExchangeSheet from "@/components/exchange-sheet"
 
-export default function ExchangePoints({ id }: { id: string }) {
+export default function ExchangePoints({
+  id,
+  awards
+}: {
+  id: string
+  awards: Award[]
+}) {
   const [open, setOpen] = useState<boolean>(false)
-  const [selectedUserId, setSelectedUserId] = useState<string>("")
-
-  const openModal = (id: string): void => {
-    setSelectedUserId(id)
-    setOpen(true)
-  }
 
   return (
     <>
-      <button onClick={() => openModal(id)}>
+      <button onClick={() => setOpen(true)}>
         <EllipsisVerticalIcon className="h-6 w-6 text-neutral-400" />
       </button>
-      <ExchangeSheet open={open} setOpen={setOpen} />
+      <ExchangeSheet
+        open={open}
+        setOpen={setOpen}
+        userId={id}
+        awards={awards}
+      />
     </>
   )
 }
