@@ -170,3 +170,34 @@ export const substractPoints = action(
     }
   }
 )
+
+export const updateUser = action(
+  z.object({
+    userId: z.string(),
+    name: z.string()
+  }),
+  async ({ userId, name }) => {
+    try {
+      await prisma.user.update({
+        where: {
+          id: userId
+        },
+        data: {
+          name
+        }
+      })
+
+      revalidatePath("/profile")
+
+      return {
+        success: true
+      }
+    } catch (error) {
+      return {
+        failure: {
+          reason: error
+        }
+      }
+    }
+  }
+)

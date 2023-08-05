@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation"
 
 import NavBar from "@/components/layout/nav-bar"
+import ProfileEdit from "@/components/profile-edit"
 import { ProfileLevel } from "@/components/profile-level"
 import { ProfilePoints } from "@/components/profile-points"
 import { authOptions } from "@/lib/auth"
@@ -19,6 +20,10 @@ export default async function ProfilePage() {
       id: user.id
     }
   })
+
+  if (!profile) {
+    return
+  }
 
   return (
     <>
@@ -40,13 +45,7 @@ export default async function ProfilePage() {
             {profile?.name}
           </span>
           <div>
-            {/* <button
-              type="button"
-              className="rounded-full bg-neutral-700/50 p-1"
-              onClick={() => setOpen(true)}
-            >
-              <PencilIcon className="h-4 w-4 text-neutral-400"></PencilIcon>
-            </button> */}
+            <ProfileEdit user={profile} />
           </div>
         </div>
         <div className="mx-3 mt-10 grid grid-cols-2 gap-2">
