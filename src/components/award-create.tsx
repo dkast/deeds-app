@@ -13,7 +13,7 @@ import Input from "@/components/ui/input"
 import { createAward } from "@/lib/actions"
 import { awardSchema, type AwardValues } from "@/lib/types"
 
-export default function CreateAward() {
+export default function AwardCreate() {
   const [open, setOpen] = useState<boolean>(false)
 
   return (

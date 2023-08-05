@@ -9,12 +9,7 @@ import AddComments from "@/components/add-comments"
 import { createDeed } from "@/lib/actions"
 import { ACTIVITIES, Activity, GREETINGS } from "@/lib/types"
 
-type Props = {
-  createDeed: typeof createDeed
-  userId: string
-}
-
-export default function CreateDeed({ createDeed, userId }: Props) {
+export default function DeedCreate({ userId }: { userId: string }) {
   const [open, setOpen] = useState<boolean>(false)
   const [comment, setComment] = useState<string>("")
   const [selectedActivity, setSelectedActivity] = useState<Activity>()

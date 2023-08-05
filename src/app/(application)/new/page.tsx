@@ -1,8 +1,7 @@
 import { redirect } from "next/navigation"
 
-import CreateDeed from "@/components/create-deed"
+import DeedCreate from "@/components/deed-create"
 import NavBar from "@/components/layout/nav-bar"
-import { createDeed } from "@/lib/actions"
 import { authOptions } from "@/lib/auth"
 import { getCurrentUser } from "@/lib/session"
 
@@ -16,7 +15,7 @@ export default async function NewPage() {
   return (
     <>
       <NavBar title="Agregar" />
-      <CreateDeed createDeed={createDeed} userId={user.id} />
+      <DeedCreate userId={user.id} />
     </>
   )
 }
