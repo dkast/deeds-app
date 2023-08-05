@@ -13,17 +13,11 @@ export default async function FamilyPage() {
     redirect(authOptions.pages?.signIn || "/sign-in")
   }
 
-  const familyMembers = await prisma.user.findMany({
-    where: {
-      familyId: user.familyId
-    }
-  })
-
   return (
     <>
       <NavBar title="Familia" />
       <div className="mt-20 mb-28">
-        <FamilyList members={familyMembers} userRole={user.role} />
+        <FamilyList familyId={user.familyId} userRole={user.role} />
       </div>
     </>
   )
