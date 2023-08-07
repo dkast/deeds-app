@@ -2,13 +2,12 @@
 
 import React from "react"
 import toast from "react-hot-toast"
+import { deleteAward } from "@/server/actions"
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid"
 import { TrashIcon } from "@heroicons/react/24/outline"
 import { Award } from "@prisma/client"
 import { motion, useMotionValue, useTransform } from "framer-motion"
 import { useAction } from "next-safe-action/hook"
-
-import { deleteAward } from "@/lib/actions"
 
 type AwardProps = {
   item: Award

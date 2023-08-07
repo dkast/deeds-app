@@ -4,7 +4,7 @@ import { BuiltInProviderType } from "next-auth/providers"
 import { LiteralUnion, signIn, type ClientSafeProvider } from "next-auth/react"
 import { useSearchParams } from "next/navigation"
 
-import Button from "@/components/ui/Button"
+import Button from "@/components/ui/button"
 
 export function AuthOptions({
   providers

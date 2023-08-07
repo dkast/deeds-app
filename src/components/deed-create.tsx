@@ -5,6 +5,8 @@ import Confetti from "react-confetti"
 import toast from "react-hot-toast"
 import Lottie from "react-lottie-player"
 import useWindowSize from "react-use/lib/useWindowSize"
+import { createDeed, sendMessage } from "@/server/actions"
+import { User } from "@prisma/client"
 import { useAction } from "next-safe-action/hook"
 import { useRouter } from "next/navigation"
 
@@ -12,17 +14,10 @@ import ActivityButton from "@/components/activty-button"
 import AddComments from "@/components/add-comments"
 import Button from "@/components/ui/button"
 import Modal from "@/components/ui/modal"
-import { createDeed } from "@/lib/actions"
 import { ACTIVITIES, Activity, GREETINGS } from "@/lib/types"
 import lottieJSON from "../../public/assets/trophy.json"
 
-export default function DeedCreate({
-  userId,
-  levelPoints
-}: {
-  userId: string
-  levelPoints: number
-}) {
+export default function DeedCreate({ user }: { user: User }) {
   const router = useRouter()
   const [open, setOpen] = useState<boolean>(false)
   const [openLevelModal, setOpenLevelModal] = useState(false)
@@ -36,6 +31,10 @@ export default function DeedCreate({
     onError: () => {
       toast.error("Algo salió mal 😥")
     }
+  })
+  const { execute: send } = useAction(sendMessage, {
+    onSuccess: () => {},
+    onError: () => {}
   })
 
   const onActivityTap = (actType: Activity) => {
@@ -55,12 +54,13 @@ export default function DeedCreate({
   const saveActivity = async (actType: Activity) => {
     console.log(actType)
     execute({
-      userId: userId,
+      userId: user.id,
       activity: actType.id,
       points: actType.points,
       comments: comment
     })
-    isAchievementUnlocked(actType.points, levelPoints)
+    message(actType, comment)
+    isAchievementUnlocked(actType.points, user.levelPoints)
   }
 
   const getGreeting = (): string | undefined => {
@@ -76,7 +76,7 @@ export default function DeedCreate({
     const modPoints = levelPoints! % 1000
     if (modPoints + points >= 1000) {
       execute({
-        userId: userId,
+        userId: user.id,
         activity: "activity_levelup",
         points: 30,
         comments: ""
@@ -85,6 +85,49 @@ export default function DeedCreate({
     } else {
       router.push("/home")
     }
+  }
+
+  const message = (actType: Activity, comment: string) => {
+    let message: string = ""
+    const userName = user.name
+    const avatar = user.image
+
+    switch (actType?.id) {
+      case "activity_tbrush":
+        message = "se cepilló los dientes."
+        break
+      case "activity_bath":
+        message = "se dió un baño."
+        break
+      case "activity_homework":
+        message = "hizo la tarea."
+        break
+      case "activity_help":
+        message = "ayudó en la casa."
+        break
+      case "activity_online":
+        message = "tomó clase online."
+        break
+      case "activity_excercise":
+        message = "hizo ejercicio."
+        break
+      case "activity_swim":
+        message = "hizo natación."
+        break
+      case "activity_diet":
+        message = "comió saludable."
+        break
+      default:
+        break
+    }
+
+    send({
+      content: `${userName} ${message}`,
+      author: `${user.name} dijo:`,
+      authorAvatar: avatar!,
+      description: comment,
+      color: 5195493
+    })
   }
 
   return (
@@ -112,20 +155,30 @@ export default function DeedCreate({
         setComment={setComment}
         onClose={onCloseComments}
       />
-      <LevelModal open={openLevelModal} setOpen={setOpenLevelModal} />
+      <LevelModal
+        open={openLevelModal}
+        setOpen={setOpenLevelModal}
+        userName={user.name}
+      />
     </>
   )
 }
 
 function LevelModal({
   open,
-  setOpen
+  setOpen,
+  userName
 }: {
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  userName: string | null
 }) {
   const { width, height } = useWindowSize()
   const router = useRouter()
+  const { execute: send } = useAction(sendMessage, {
+    onSuccess: () => {},
+    onError: () => {}
+  })
 
   // const createMessage = trpc.useMutation("deed.message")
 
@@ -136,6 +189,10 @@ function LevelModal({
   // }
 
   const onCloseModal = () => {
+    send({
+      content: `${userName} subió de nivel 🚀`,
+      color: 0
+    })
     setOpen(false)
     router.push("/home")
   }

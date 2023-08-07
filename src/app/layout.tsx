@@ -1,6 +1,38 @@
 import Providers from "@/app/providers"
+import { Inter } from "next/font/google"
 
 import "../styles/globals.css"
+
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Deberes",
+    default: "Deberes"
+  },
+  icons: {
+    icon: "/favicon-32x32.png",
+    shortcut: "/apple-touch-icon.png",
+    apple: "/apple-touch-icon.png"
+  },
+  themeColor: "#252525",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    viewportFit: "cover",
+    userScalable: false
+  },
+  appleWebApp: {
+    title: "Deberes"
+  }
+}
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter"
+})
 
 export default function RootLayout({
   children
@@ -8,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html>
+    <html className={`${inter.variable}`}>
       <body className="bg-neutral-900 text-white">
         <Providers>
           <div className="flex flex-col h-screen">

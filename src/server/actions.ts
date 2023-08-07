@@ -1,13 +1,15 @@
 "use server"
 
-import { Prisma } from "@prisma/client"
-import { m } from "framer-motion"
+import { env } from "@/env/server.mjs"
+import { MessageBuilder, Webhook } from "discord-webhook-node"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
 
 import prisma from "@/lib/prisma"
+import { awardSchema, deedSchema } from "@/lib/types"
 import { action } from "./safe-action"
-import { awardSchema, deedSchema } from "./types"
+
+const discord = new Webhook(env.DISCORD_WEBHOOK)
 
 export const createDeed = action(
   deedSchema,
@@ -43,9 +45,15 @@ export const createDeed = action(
         success: true
       }
     } catch (error) {
+      let message
+      if (typeof error === "string") {
+        message = error
+      } else if (error instanceof Error) {
+        message = error.message
+      }
       return {
         failure: {
-          reason: error
+          reason: message
         }
       }
     }
@@ -71,9 +79,15 @@ export const createAward = action(
         success: true
       }
     } catch (error) {
+      let message
+      if (typeof error === "string") {
+        message = error
+      } else if (error instanceof Error) {
+        message = error.message
+      }
       return {
         failure: {
-          reason: error
+          reason: message
         }
       }
     }
@@ -98,9 +112,15 @@ export const deleteAward = action(
         success: true
       }
     } catch (error) {
+      let message
+      if (typeof error === "string") {
+        message = error
+      } else if (error instanceof Error) {
+        message = error.message
+      }
       return {
         failure: {
-          reason: error
+          reason: message
         }
       }
     }
@@ -131,9 +151,15 @@ export const addPoints = action(
         success: true
       }
     } catch (error) {
+      let message
+      if (typeof error === "string") {
+        message = error
+      } else if (error instanceof Error) {
+        message = error.message
+      }
       return {
         failure: {
-          reason: error
+          reason: message
         }
       }
     }
@@ -164,9 +190,15 @@ export const substractPoints = action(
         success: true
       }
     } catch (error) {
+      let message
+      if (typeof error === "string") {
+        message = error
+      } else if (error instanceof Error) {
+        message = error.message
+      }
       return {
         failure: {
-          reason: error
+          reason: message
         }
       }
     }
@@ -245,9 +277,60 @@ export const updateUser = action(
         success: true
       }
     } catch (error) {
+      let message
+      if (typeof error === "string") {
+        message = error
+      } else if (error instanceof Error) {
+        message = error.message
+      }
       return {
         failure: {
-          reason: error
+          reason: message
+        }
+      }
+    }
+  }
+)
+
+export const sendMessage = action(
+  z.object({
+    content: z.string(),
+    author: z.string().optional(),
+    authorAvatar: z.string().optional(),
+    description: z.string().optional(),
+    color: z.number()
+  }),
+  async ({ content, author, authorAvatar, description, color }) => {
+    if (env.NODE_ENV === "development") {
+      return {
+        success: true
+      }
+    }
+    try {
+      const msg = new MessageBuilder()
+      if (description) {
+        msg.setText(content)
+        msg.setAuthor(author, authorAvatar)
+        msg.setDescription(description!)
+        msg.setColor(color)
+        discord.send(msg)
+      } else {
+        discord.send(content)
+      }
+
+      return {
+        success: true
+      }
+    } catch (error) {
+      let message
+      if (typeof error === "string") {
+        message = error
+      } else if (error instanceof Error) {
+        message = error.message
+      }
+      return {
+        failure: {
+          reason: message
         }
       }
     }
