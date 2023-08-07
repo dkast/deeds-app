@@ -1,5 +1,4 @@
 import { getProviders } from "next-auth/react"
-import Head from "next/head"
 
 import { AuthOptions } from "@/components/auth-options"
 import LottiePlayer from "@/components/shared/lottie-player"

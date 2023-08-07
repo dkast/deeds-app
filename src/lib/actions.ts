@@ -1,5 +1,7 @@
 "use server"
 
+import { Prisma } from "@prisma/client"
+import { m } from "framer-motion"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
 
@@ -165,6 +167,56 @@ export const substractPoints = action(
       return {
         failure: {
           reason: error
+        }
+      }
+    }
+  }
+)
+
+export const updateNewUser = action(
+  z.object({
+    userId: z.string(),
+    name: z.string(),
+    familySlug: z.string()
+  }),
+  async ({ userId, name, familySlug }) => {
+    try {
+      await prisma.$transaction(async tx => {
+        // Search family by slug
+        const family = await prisma.family.findFirst({
+          where: {
+            slug: familySlug
+          }
+        })
+
+        if (!family) {
+          throw new Error("Familia no encontrada")
+        }
+
+        prisma.user.update({
+          data: {
+            name,
+            familyId: family.id
+          },
+          where: {
+            id: userId
+          }
+        })
+      })
+
+      return {
+        success: true
+      }
+    } catch (error) {
+      let message
+      if (typeof error === "string") {
+        message = error
+      } else if (error instanceof Error) {
+        message = error.message
+      }
+      return {
+        failure: {
+          reason: message
         }
       }
     }
