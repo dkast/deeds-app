@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { toast } from "react-hot-toast"
+import { addPoints, substractPoints } from "@/server/actions"
 import { Award } from "@prisma/client"
 import { useAction } from "next-safe-action/hook"
 
@@ -9,7 +10,6 @@ import ExchangeList from "@/components/exchange-list"
 import BottomSheet from "@/components/ui/bottom-sheet"
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
-import { addPoints, substractPoints } from "@/lib/actions"
 
 function ExchangeSheet({
   open,
@@ -26,6 +26,7 @@ function ExchangeSheet({
   const { execute: claimPoints } = useAction(substractPoints, {
     onSuccess: () => {
       toast.success("Puntos reclamados")
+      setOpen(false)
     },
     onError: () => {
       toast.error("Algo salió mal 😥")
@@ -35,6 +36,7 @@ function ExchangeSheet({
   const { execute: rewardPoints } = useAction(addPoints, {
     onSuccess: () => {
       toast.success("Puntos añadidos")
+      setOpen(false)
     },
     onError: () => {
       toast.error("Algo salió mal 😥")

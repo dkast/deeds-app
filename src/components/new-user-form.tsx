@@ -3,6 +3,7 @@
 import { fail } from "assert"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
+import { updateNewUser } from "@/server/actions"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { el } from "date-fns/locale"
 import { type User } from "next-auth"
@@ -12,7 +13,6 @@ import { z } from "zod"
 
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
-import { updateNewUser } from "@/lib/actions"
 
 const schema = z.object({
   name: z.string().min(1, { message: "No puede ser vacío" }),

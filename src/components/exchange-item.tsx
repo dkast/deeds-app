@@ -1,11 +1,11 @@
 "use client"
 
 import toast from "react-hot-toast"
+import { substractPoints } from "@/server/actions"
 import { Award } from "@prisma/client"
 import { useAction } from "next-safe-action/hook"
 
 import Button from "@/components/ui/button"
-import { substractPoints } from "@/lib/actions"
 
 export const ExchangeItem = ({
   item,

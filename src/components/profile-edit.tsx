@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import toast from "react-hot-toast"
+import { updateUser } from "@/server/actions"
 import { PencilIcon } from "@heroicons/react/20/solid"
 import { User } from "@prisma/client"
 import { useAction } from "next-safe-action/hook"
@@ -9,7 +10,6 @@ import { useAction } from "next-safe-action/hook"
 import BottomSheet from "@/components/ui/bottom-sheet"
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
-import { updateUser } from "@/lib/actions"
 
 export default function ProfileEdit({ user }: { user: User }) {
   const [open, setOpen] = useState<boolean>(false)
