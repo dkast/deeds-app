@@ -1,6 +1,5 @@
 "use client"
 
-import { Deed } from "@prisma/client"
 import { AnimatePresence, motion } from "framer-motion"
 
 import DeedView from "@/components/deed-view"

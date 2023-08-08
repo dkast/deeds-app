@@ -19,18 +19,6 @@ dependencies:
   '@radix-ui/react-progress':
     specifier: ^1.0.3
     version: 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)
-  '@trpc/client':
-    specifier: ^9.27.4
-    version: 9.27.4(@trpc/server@9.27.4)
-  '@trpc/next':
-    specifier: ^9.27.4
-    version: 9.27.4(@trpc/client@9.27.4)(@trpc/react@9.27.4)(@trpc/server@9.27.4)(next@13.4.12)(react-dom@18.2.0)(react-query@3.39.3)(react@18.2.0)
-  '@trpc/react':
-    specifier: ^9.27.4
-    version: 9.27.4(@trpc/client@9.27.4)(@trpc/server@9.27.4)(react-dom@18.2.0)(react-query@3.39.3)(react@18.2.0)
-  '@trpc/server':
-    specifier: ^9.27.4
-    version: 9.27.4
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
@@ -91,9 +79,6 @@ dependencies:
   zod:
     specifier: ^3.21.4
     version: 3.21.4
-  zustand:
-    specifier: ^4.4.0
-    version: 4.4.0(@types/react@18.2.18)(react@18.2.0)
 
 devDependencies:
   '@ianvs/prettier-plugin-sort-imports':
@@ -978,62 +963,6 @@ packages:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.3.3
     dev: true
-
-  /@trpc/client@9.27.4(@trpc/server@9.27.4):
-    resolution: {integrity: sha512-NyS3J333xy8PJWGTSKO0egvj3x/s4SaSPx7XDWHf/i51W/i5Fla+sNxYpv+4z+SwE2xyJKszN2EZbvKIW2X/wA==}
-    deprecated: 'Migrate to v10: https://trpc.io/docs/migrate-from-v9-to-v10'
-    peerDependencies:
-      '@trpc/server': 9.27.4
-    dependencies:
-      '@babel/runtime': 7.22.5
-      '@trpc/server': 9.27.4
-    dev: false
-
-  /@trpc/next@9.27.4(@trpc/client@9.27.4)(@trpc/react@9.27.4)(@trpc/server@9.27.4)(next@13.4.12)(react-dom@18.2.0)(react-query@3.39.3)(react@18.2.0):
-    resolution: {integrity: sha512-QY7eT37hIjHmtqOSEfx4IvZXOGHozIQ6B0MQ3+olmpMpTrygcYi4mFiurPV8Txh1iLa5mgBoJ1ZepLaSc0qzkg==}
-    deprecated: 'Migrate to v10: https://trpc.io/docs/migrate-from-v9-to-v10'
-    peerDependencies:
-      '@trpc/client': 9.27.4
-      '@trpc/react': 9.27.4
-      '@trpc/server': 9.27.4
-      next: '*'
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      react-query: ^3.37.0
-    dependencies:
-      '@babel/runtime': 7.22.5
-      '@trpc/client': 9.27.4(@trpc/server@9.27.4)
-      '@trpc/react': 9.27.4(@trpc/client@9.27.4)(@trpc/server@9.27.4)(react-dom@18.2.0)(react-query@3.39.3)(react@18.2.0)
-      '@trpc/server': 9.27.4
-      next: 13.4.12(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-query: 3.39.3(react-dom@18.2.0)(react@18.2.0)
-      react-ssr-prepass: 1.5.0(react@18.2.0)
-    dev: false
-
-  /@trpc/react@9.27.4(@trpc/client@9.27.4)(@trpc/server@9.27.4)(react-dom@18.2.0)(react-query@3.39.3)(react@18.2.0):
-    resolution: {integrity: sha512-bP74Tf6vWcMoWYiTAvbWrieV9cFQiKUDKRoRj0+VeGJbxdbhdJyUzv4zos0T4SiSKuhgoEm9bP4jWU2NhNhpIA==}
-    deprecated: 'Migrate to v10: https://trpc.io/docs/migrate-from-v9-to-v10. Also, this package has changed name to `@trpc/react-query`.'
-    peerDependencies:
-      '@trpc/client': 9.27.4
-      '@trpc/server': 9.27.4
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      react-query: ^3.37.0
-    dependencies:
-      '@babel/runtime': 7.22.5
-      '@trpc/client': 9.27.4(@trpc/server@9.27.4)
-      '@trpc/server': 9.27.4
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-query: 3.39.3(react-dom@18.2.0)(react@18.2.0)
-    dev: false
-
-  /@trpc/server@9.27.4:
-    resolution: {integrity: sha512-yw0omUrxGp8+gEAuieZFeXB4bCqFvmyCDL3GOBv+Q6+cK0m5824ViHZKPgK5DYG1ijN/lbi1hP3UVKywPN7rbQ==}
-    deprecated: 'Migrate to v10: https://trpc.io/docs/migrate-from-v9-to-v10'
-    dev: false
 
   /@types/js-cookie@2.2.7:
     resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==}
@@ -3539,14 +3468,6 @@ packages:
       styled-components: 4.4.1(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
-  /react-ssr-prepass@1.5.0(react@18.2.0):
-    resolution: {integrity: sha512-yFNHrlVEReVYKsLI5lF05tZoHveA5pGzjFbFJY/3pOqqjGOmMmqx83N4hIjN2n6E1AOa+eQEUxs3CgRnPmT0RQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: false
-
   /react-style-singleton@2.2.1(@types/react@18.2.18)(react@18.2.0):
     resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}
     engines: {node: '>=10'}
@@ -4228,14 +4149,6 @@ packages:
       tslib: 2.6.0
     dev: false
 
-  /use-sync-external-store@1.2.0(react@18.2.0):
-    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: false
-
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
@@ -4315,24 +4228,4 @@ packages:
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
-    dev: false
-
-  /zustand@4.4.0(@types/react@18.2.18)(react@18.2.0):
-    resolution: {integrity: sha512-2dq6wq4dSxbiPTamGar0NlIG/av0wpyWZJGeQYtUOLegIUvhM2Bf86ekPlmgpUtS5uR7HyetSiktYrGsdsyZgQ==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      '@types/react': '>=16.8'
-      immer: '>=9.0'
-      react: '>=16.8'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      '@types/react': 18.2.18
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
