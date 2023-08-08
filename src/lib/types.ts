@@ -1,11 +1,5 @@
 import { Deed, User } from "@prisma/client"
-import type { NextPage } from "next"
 import { z } from "zod"
-
-export type NextPageWithAuthAndLayout = NextPage & {
-  auth?: boolean
-  getLayout?: (page: React.ReactElement) => React.ReactNode
-}
 
 export type Activity = {
   id: string

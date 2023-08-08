@@ -1,11 +1,9 @@
 "use client"
 
-import { fail } from "assert"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { updateNewUser } from "@/server/actions"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { el } from "date-fns/locale"
 import { type User } from "next-auth"
 import { useAction } from "next-safe-action/hook"
 import { useRouter } from "next/navigation"
