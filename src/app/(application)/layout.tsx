@@ -1,5 +1,4 @@
 import { type User } from "@prisma/client"
-import { Metadata } from "next"
 
 import TabBar from "@/components/layout/tab-bar"
 import { getCurrentUser } from "@/lib/session"

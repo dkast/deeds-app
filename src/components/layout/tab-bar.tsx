@@ -61,6 +61,7 @@ function TabLink({ href, name, icon, selectedPath }: TabLinkProps) {
           : "text-gray-500 hover:text-violet-500",
         "py-3 px-4"
       )}
+      aria-description={name}
     >
       <div className="h-8 w-8">{icon}</div>
     </Link>

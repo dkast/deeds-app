@@ -11,7 +11,7 @@ const LevelUpView = ({ item }: { item: UserDeed }) => {
       <div className="relative">
         {item?.User?.image && (
           <div className="h-16 w-16 overflow-hidden rounded-full bg-gray-400">
-            <img src={item?.User?.image!} alt="Avatar" />
+            <img src={item?.User?.image} alt="Avatar" />
           </div>
         )}
         <div className="absolute -top-10 -left-8">
