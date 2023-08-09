@@ -29,7 +29,7 @@ export const ProfileLevel = ({ levelPoints }: ProfileLevelProps) => {
   )
 }
 
-function getPointsNextLevel(levelPoints: number | undefined): number {
-  const remaining = !levelPoints ? 1000 : levelPoints % 1000
-  return remaining
-}
+// function getPointsNextLevel(levelPoints: number | undefined): number {
+//   const remaining = !levelPoints ? 1000 : levelPoints % 1000
+//   return remaining
+// }

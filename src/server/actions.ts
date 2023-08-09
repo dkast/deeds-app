@@ -213,7 +213,7 @@ export const updateNewUser = action(
   }),
   async ({ userId, name, familySlug }) => {
     try {
-      await prisma.$transaction(async tx => {
+      await prisma.$transaction(async _tx => {
         // Search family by slug
         const family = await prisma.family.findFirst({
           where: {

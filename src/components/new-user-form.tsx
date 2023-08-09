@@ -23,8 +23,7 @@ export default function NewUserForm({ user }: { user: User }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
-    reset
+    formState: { errors, isSubmitting, isDirty }
   } = useForm<IFormValues>({
     resolver: zodResolver(schema)
   })
@@ -39,7 +38,7 @@ export default function NewUserForm({ user }: { user: User }) {
         toast.error(data.failure.reason!)
       }
     },
-    onError: error => {
+    onError: () => {
       toast.error("Algo salio mal")
     }
   })
@@ -47,7 +46,7 @@ export default function NewUserForm({ user }: { user: User }) {
   const onSubmit = (data: IFormValues) => {
     console.log(data)
     execute({
-      userId: user?.id!,
+      userId: user.id,
       name: data.name,
       familySlug: data.familySlug
     })

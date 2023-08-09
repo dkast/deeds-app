@@ -43,7 +43,7 @@ const ProfileEditSheet = ({
       toast.success("Perfil actualizado")
       setOpen(false)
     },
-    onError: error => {
+    onError: () => {
       toast.error("No se pudo actualizar el perfil")
     }
   })

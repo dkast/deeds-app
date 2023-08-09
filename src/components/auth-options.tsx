@@ -1,8 +1,11 @@
 "use client"
 
 import { type BuiltInProviderType } from "next-auth/providers"
-import { type LiteralUnion, signIn, type ClientSafeProvider } from "next-auth/react"
-import { useSearchParams } from "next/navigation"
+import {
+  signIn,
+  type ClientSafeProvider,
+  type LiteralUnion
+} from "next-auth/react"
 
 import Button from "@/components/ui/button"
 
@@ -14,8 +17,6 @@ export function AuthOptions({
     ClientSafeProvider
   > | null
 }) {
-  const searchParams = useSearchParams()
-
   return (
     <>
       {Object.values(providers!).map(provider => (

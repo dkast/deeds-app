@@ -1,6 +1,6 @@
 "use client"
 
-import { startTransition, useState } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import { createAward } from "@/server/actions"
@@ -42,13 +42,13 @@ function CreateAwardSheet({
     resolver: zodResolver(awardSchema)
   })
 
-  const { execute, isExecuting } = useAction(createAward, {
+  const { execute } = useAction(createAward, {
     onSuccess: () => {
       toast.success("Premio agregado")
       setOpen(false)
       reset()
     },
-    onError: error => {
+    onError: () => {
       toast.error("No se pudo agregar el premio")
     }
   })

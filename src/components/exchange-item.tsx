@@ -33,6 +33,7 @@ export const ExchangeItem = ({
         draggable="false"
         src={item.imageUrl}
         className="h-24 w-24 rounded-lg object-cover"
+        alt="icon"
       />
       <div className="flex w-full flex-col items-start justify-between pl-4">
         <div>
