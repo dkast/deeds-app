@@ -3,7 +3,7 @@ import { Inter } from "next/font/google"
 
 import "../styles/globals.css"
 
-import { Metadata } from "next"
+import { type Metadata } from "next"
 
 export const metadata: Metadata = {
   title: {

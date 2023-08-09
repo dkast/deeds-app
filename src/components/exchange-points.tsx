@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
-import { Award } from "@prisma/client"
+import { type Award } from "@prisma/client"
 
 import ExchangeSheet from "@/components/exchange-sheet"
 

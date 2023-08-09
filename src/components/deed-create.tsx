@@ -6,7 +6,7 @@ import toast from "react-hot-toast"
 import Lottie from "react-lottie-player"
 import useWindowSize from "react-use/lib/useWindowSize"
 import { createDeed, sendMessage } from "@/server/actions"
-import { User } from "@prisma/client"
+import { type User } from "@prisma/client"
 import { useAction } from "next-safe-action/hook"
 import { useRouter } from "next/navigation"
 
@@ -14,7 +14,7 @@ import ActivityButton from "@/components/activty-button"
 import AddComments from "@/components/add-comments"
 import Button from "@/components/ui/button"
 import Modal from "@/components/ui/modal"
-import { ACTIVITIES, Activity, GREETINGS } from "@/lib/types"
+import { ACTIVITIES, type Activity, GREETINGS } from "@/lib/types"
 import lottieJSON from "../../public/assets/trophy.json"
 
 export default function DeedCreate({ user }: { user: User }) {

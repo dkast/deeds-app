@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { toast } from "react-hot-toast"
 import { addPoints, substractPoints } from "@/server/actions"
-import { Award } from "@prisma/client"
+import { type Award } from "@prisma/client"
 import { useAction } from "next-safe-action/hook"
 
 import ExchangeList from "@/components/exchange-list"

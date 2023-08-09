@@ -2,7 +2,7 @@
 
 import toast from "react-hot-toast"
 import { substractPoints } from "@/server/actions"
-import { Award } from "@prisma/client"
+import { type Award } from "@prisma/client"
 import { useAction } from "next-safe-action/hook"
 
 import Button from "@/components/ui/button"

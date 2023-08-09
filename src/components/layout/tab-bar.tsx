@@ -6,7 +6,7 @@ import {
   PlusIcon,
   UserGroupIcon
 } from "@heroicons/react/24/outline"
-import { User } from "@prisma/client"
+import { type User } from "@prisma/client"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useSelectedLayoutSegment } from "next/navigation"

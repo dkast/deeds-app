@@ -1,4 +1,4 @@
-import { Deed, User } from "@prisma/client"
+import { type Deed, type User } from "@prisma/client"
 import { z } from "zod"
 
 export type Activity = {

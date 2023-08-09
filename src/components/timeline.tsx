@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 
 import DeedView from "@/components/deed-view"
 import LevelUpView from "@/components/levelup-view"
-import { UserDeed } from "@/lib/types"
+import { type UserDeed } from "@/lib/types"
 
 const Timeline = ({ deeds }: { deeds: UserDeed[] }) => {
   return (

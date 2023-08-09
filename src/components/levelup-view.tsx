@@ -2,7 +2,7 @@
 
 import Lottie from "react-lottie-player"
 
-import { UserDeed } from "@/lib/types"
+import { type UserDeed } from "@/lib/types"
 import lottieJSON from "../../public/assets/level-up.json"
 
 const LevelUpView = ({ item }: { item: UserDeed }) => {
