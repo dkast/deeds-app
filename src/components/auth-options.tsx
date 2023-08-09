@@ -1,7 +1,7 @@
 "use client"
 
-import { BuiltInProviderType } from "next-auth/providers"
-import { LiteralUnion, signIn, type ClientSafeProvider } from "next-auth/react"
+import { type BuiltInProviderType } from "next-auth/providers"
+import { type LiteralUnion, signIn, type ClientSafeProvider } from "next-auth/react"
 import { useSearchParams } from "next/navigation"
 
 import Button from "@/components/ui/button"

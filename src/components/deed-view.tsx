@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import { formatDistanceToNowStrict } from "date-fns"
 import esLocale from "date-fns/locale/es"
 
-import { UserDeed } from "@/lib/types"
+import { type UserDeed } from "@/lib/types"
 
 const DeedView = ({ item }: { item: UserDeed }): JSX.Element => {
   const [icon, setIcon] = useState<string>("")

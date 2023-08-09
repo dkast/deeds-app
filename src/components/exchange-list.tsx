@@ -1,4 +1,4 @@
-import { Award } from "@prisma/client"
+import { type Award } from "@prisma/client"
 
 import { ExchangeItem } from "@/components/exchange-item"
 

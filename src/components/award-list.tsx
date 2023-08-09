@@ -1,6 +1,6 @@
 "use client"
 
-import { Award, Role } from "@prisma/client"
+import { type Award, Role } from "@prisma/client"
 import { AnimatePresence, motion } from "framer-motion"
 
 import AwardView from "@/components/award-view"

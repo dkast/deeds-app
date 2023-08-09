@@ -1,4 +1,4 @@
-import { DefaultSession, Session } from "next-auth"
+import { type DefaultSession, type Session } from "next-auth"
 import type { NextComponentType, NextPageContext } from "next"
 import type { Router } from "next/router"
 
