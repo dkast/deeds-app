@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react"
 import { formatDistanceToNowStrict } from "date-fns"
-import esLocale from "date-fns/locale/es"
 
 import { type UserDeed } from "@/lib/types"
+import { formatDistance } from "@/lib/utils"
 
 const DeedView = ({ item }: { item: UserDeed }): JSX.Element => {
   const [icon, setIcon] = useState<string>("")
@@ -16,36 +16,36 @@ const DeedView = ({ item }: { item: UserDeed }): JSX.Element => {
 
     switch (item?.activity) {
       case "activity_tbrush":
-        message = "se cepilló los dientes."
-        icon = "dental-care.svg"
+        message = "se cepilló los dientes"
+        icon = "🪥"
         break
       case "activity_bath":
-        message = "se dió un baño."
-        icon = "rubber-duck.svg"
+        message = "se dió un baño"
+        icon = "🛀"
         break
       case "activity_homework":
-        message = "hizo la tarea."
-        icon = "backpack.svg"
+        message = "hizo la tarea"
+        icon = "📔"
         break
       case "activity_help":
-        message = "ayudó en la casa."
-        icon = "volunteer.svg"
+        message = "ayudó en la casa"
+        icon = "🖐"
         break
       case "activity_online":
-        message = "tomó clase online."
-        icon = "laptop.svg"
+        message = "tomó clase online"
+        icon = "💻"
         break
       case "activity_excercise":
-        message = "hizo ejercicio."
-        icon = "triangle.svg"
+        message = "hizo ejercicio"
+        icon = "🏃"
         break
       case "activity_swim":
-        message = "hizo natación."
-        icon = "swimmer.svg"
+        message = "hizo natación"
+        icon = "🏊"
         break
       case "activity_diet":
-        message = "comió saludable."
-        icon = "diet.svg"
+        message = "comió saludable"
+        icon = "🍎"
         break
       default:
         break
@@ -55,48 +55,52 @@ const DeedView = ({ item }: { item: UserDeed }): JSX.Element => {
   }, [item])
 
   return (
-    <div className="rounded-xl bg-neutral-800 px-4 py-3">
-      <div className="grid grid-cols-5 py-2">
-        <div>
-          <div className="relative h-12 w-12 rounded-full bg-gradient-to-br from-cyan-300 to-pink-400">
-            <img src={`/images/${icon}`} className="h-12 w-12" alt="icon" />
+    <div className="rounded-xl bg-zinc-900 px-4 py-3">
+      <div className="flex items-center">
+        <div className="relative">
+          {item.User?.image && (
+            <img
+              src={item.User?.image}
+              className="h-12 w-12 rounded-full"
+              alt="avatar"
+            />
+          )}
+          <div className="bg-zinc-700 ring-2 ring-zinc-900 absolute bottom-0 right-0 rounded-full h-5 w-5 flex justify-center items-center">
+            <span className="text-sm">{icon}</span>
           </div>
         </div>
-        <div className="col-span-3 flex flex-grow flex-col">
-          <div className="flex items-baseline justify-between">
-            <div>
-              <span className="font-semibold text-violet-400">
-                {item?.User?.name}
-              </span>
-              <span className="ml-1 text-gray-300">{message}</span>
+        <div className="grow flex flex-col pl-4">
+          <div className="flex justify-between items-center">
+            <span>{item.User?.name}</span>
+            <span className="text-zinc-500 text-xs">
+              {formatDistanceToNowStrict(item?.createdAt, {
+                locale: { formatDistance }
+              })}
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col grow gap-2 text-zinc-400">
+              <span>{message}</span>
+              {item?.comments && (
+                <div>
+                  <span className="rounded-lg px-2 py-1 text-sm rounded-ss-none text-zinc-200 bg-zinc-700">
+                    {item?.comments}
+                  </span>
+                </div>
+              )}
             </div>
-          </div>
-          <span className="text-sm text-gray-400">
-            Hace{" "}
-            {formatDistanceToNowStrict(item?.createdAt, {
-              locale: esLocale
-            })}
-          </span>
-        </div>
-        <div className="flex justify-end">
-          <div>
-            <div className="flex items-center justify-center rounded-full bg-orange-800 bg-opacity-20 px-2 py-0.5">
+            <div className="flex items-center justify-center">
               <img
                 src="/images/gem.svg"
                 className="inline h-4 w-4"
                 alt="coin"
               />
-              <span className="ml-2 font-bold tracking-tight text-orange-600">
-                {item?.points}
+              <span className="ml-1 font-semibold tracking-tight text-orange-400 text-sm">
+                {item.points}
               </span>
             </div>
           </div>
         </div>
-        {item?.comments && (
-          <span className="col-span-4 col-start-2 mt-2 text-white">
-            {item?.comments}
-          </span>
-        )}
       </div>
     </div>
   )
