@@ -20,7 +20,14 @@ export function AuthOptions({
   return (
     <>
       {Object.values(providers!).map(provider => (
-        <div key={provider.name} onClick={() => signIn(provider.id)}>
+        <div
+          key={provider.name}
+          onClick={() =>
+            signIn(provider.id, {
+              callbackUrl: "/home"
+            })
+          }
+        >
           <Button
             variant="primary"
             mode="full"
