@@ -26,7 +26,7 @@ export default async function FamilyList({
         {members?.map(member => {
           return (
             <div key={member.id}>
-              <div className="flex flex-row items-center rounded-xl bg-neutral-800 px-4 py-3">
+              <div className="flex flex-row items-center rounded-2xl bg-zinc-900 p-4">
                 <div className="h-16 w-16 overflow-hidden rounded-full bg-gray-400">
                   <Link href={`/family/${member?.id}`}>
                     <img

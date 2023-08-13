@@ -39,14 +39,14 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
         dragConstraints={{ left: -110, right: 0 }}
         dragDirectionLock
         onDrag={(_, info) => x.set(info.offset.x)}
-        className="relative z-10 overflow-hidden rounded-lg shadow-lg"
+        className="relative z-10 overflow-hidden rounded-2xl shadow-lg"
       >
         <img
           draggable="false"
           src={item.imageUrl}
           className="h-48 w-full rounded-lg object-cover"
         />
-        <div className="absolute bottom-0 left-0 flex h-12 w-full items-center justify-between rounded-b-lg bg-black/50 p-4 text-gray-200 backdrop-blur">
+        <div className="absolute bottom-0 left-0 m-2 w-[96%] flex h-14 items-center justify-between rounded-xl bg-black/50 p-4 text-gray-200 backdrop-blur">
           {item.refUrl ? (
             <a
               href={item.refUrl!}
@@ -54,15 +54,17 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
               rel="noreferrer"
               className="flex items-center gap-2"
             >
-              <span className="font-bold">{item.description}</span>
+              <span className="font-normal">{item.description}</span>
               <ArrowTopRightOnSquareIcon className="h-5 w-5 text-current" />
             </a>
           ) : (
-            <span className="font-bold">{item.description}</span>
+            <span className="font-normal">{item.description}</span>
           )}
-          <div className="flex items-center rounded-full bg-orange-500 px-2 py-1 text-white">
+          <div className="flex items-center rounded-full bg-gradient-to-r from-orange-400 via-violet-300 to-cyan-300 px-2 py-1 text-zinc-950">
             <img src="/images/gem.svg" className="mr-1 h-4 w-4" alt="coin" />
-            <span className="text-sm font-bold">{item.points}</span>
+            <span className="text-sm font-semibold tabular-nums">
+              {item.points}
+            </span>
           </div>
         </div>
       </motion.div>

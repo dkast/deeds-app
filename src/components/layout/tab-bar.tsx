@@ -17,7 +17,7 @@ export default function TabBar({ user }: { user: User | undefined }) {
   const segment = useSelectedLayoutSegment()
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-20 sm:mx-auto sm:max-w-lg pb-5">
+    <div className="fixed inset-x-0 bottom-0 z-20 sm:mx-auto sm:max-w-lg pb-5 bg-gradient-to-b from-transparent to-zinc-950">
       <nav className="flex items-center justify-between bg-zinc-900 ring-2 ring-zinc-800 shadow-lg p-2 m-2 rounded-full">
         <TabLink
           name="Inicio"
@@ -97,7 +97,7 @@ function TabAddAction() {
   return (
     <Link href="/new">
       <motion.div whileTap={{ scale: 0.9 }}>
-        <PlusIcon className="mx-2 -mt-5 h-16 w-16 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-red-400 p-2 text-white shadow-lg shadow-pink-600/50" />
+        <PlusIcon className="mx-2 -mt-5 h-16 w-16 rounded-full bg-gradient-to-br from-cyan-400 via-violet-500 to-orange-400 p-2 text-white shadow-lg shadow-pink-400/50" />
       </motion.div>
     </Link>
   )
