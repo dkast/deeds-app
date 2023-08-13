@@ -79,10 +79,10 @@ const BottomSheet = ({ children, open, setOpen }: BottomSheetProps) => {
                       dragElastic={{ top: 0, bottom: 1 }}
                       dragConstraints={{ top: 0, bottom: 0 }}
                       onDragEnd={handleDrag}
-                      className="relative inline-block h-full w-full overflow-hidden rounded-2xl bg-neutral-800 px-4 pt-2 pb-4 text-left align-top shadow-xl outline-none sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
+                      className="relative inline-block h-full w-full overflow-hidden rounded-2xl bg-zinc-900 px-4 pt-2 pb-4 text-left align-top shadow-xl outline-none sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
                     >
                       <div className="mb-3 flex justify-center">
-                        <div className="h-1 w-8 rounded-full bg-neutral-700"></div>
+                        <div className="h-1 w-8 rounded-full bg-zinc-800"></div>
                       </div>
                       {children}
                     </motion.div>
