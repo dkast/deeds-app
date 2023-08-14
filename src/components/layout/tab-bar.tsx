@@ -57,8 +57,8 @@ function TabLink({ href, name, icon, selectedPath }: TabLinkProps) {
       href={href}
       className={cn(
         href.includes(selectedPath!)
-          ? "bg-violet-500/20 rounded-full text-violet-400"
-          : "text-gray-500 hover:text-violet-500",
+          ? "bg-zinc-500/20 rounded-full text-zinc-100"
+          : "text-zinc-500 hover:text-white",
         "py-3 px-4"
       )}
       aria-description={name}
@@ -80,7 +80,7 @@ function TabUser({ href, user, selectedPath }: TabUserProps) {
       {user?.image ? (
         <div
           className={cn(
-            href.includes(selectedPath!) ? "ring-4 ring-violet-400" : "",
+            href.includes(selectedPath!) ? "ring-2 ring-white" : "",
             "h-8 w-8 overflow-hidden rounded-full bg-gray-400"
           )}
         >
