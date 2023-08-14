@@ -12,13 +12,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const DEFAULT =
-  "w-full select-none sm:w-auto inline-flex items-center justify-center rounded-full py-3 transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2"
+  "w-full select-none sm:w-auto inline-flex items-center justify-center rounded-full transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2"
 
 const VARIANT = {
   primary:
     "text-white bg-violet-600 hover:bg-violet-700 focus:ring-violet-700 active:bg-violet-800",
   secondary:
-    "text-white bg-zinc-600 hover:bg-neutral-500 focus:ring-neutral-700 active:text-neutral-800 active:bg-neutral-200",
+    "text-white bg-zinc-700 hover:bg-zinc-600 focus:ring-zinc-800 active:text-zinc-800 active:bg-zinc-200",
   warn: "text-red-700 bg-red-100 hover:bg-red-200 focus:ring-red-500 active:bg-red-300",
   danger:
     "text-white bg-red-600 hover:bg-red-700 focus:ring-red-500 active:bg-red-800",
@@ -33,7 +33,7 @@ const MODE = {
 const SIZE = {
   xs: "px-2.5 py-1.5 text-xs",
   sm: "px-4 py-2 text-sm",
-  md: "px-4 py-2 text-base",
+  md: "px-4 py-3 text-base",
   lg: "px-6 py-3 text-base"
 }
 

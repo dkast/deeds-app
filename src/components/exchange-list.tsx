@@ -10,7 +10,7 @@ export default function ExchangeList({
   awards: Award[]
 }) {
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       {awards?.map(award => {
         return (
           <div key={award.id} className="select-none">
