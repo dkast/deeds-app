@@ -18,7 +18,7 @@ export default function TabBar({ user }: { user: User | undefined }) {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-20 sm:mx-auto sm:max-w-lg pb-5 bg-gradient-to-b from-transparent to-zinc-950">
-      <nav className="flex items-center justify-between bg-zinc-900 ring-2 ring-zinc-800 shadow-lg p-2 m-2 rounded-full">
+      <nav className="flex items-center justify-between bg-zinc-900/70 ring-2 ring-zinc-800 shadow-lg p-2 m-2 rounded-full backdrop-blur">
         <TabLink
           name="Inicio"
           href="/home"

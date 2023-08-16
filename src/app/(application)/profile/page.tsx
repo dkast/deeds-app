@@ -8,6 +8,7 @@ import { ProfilePoints } from "@/components/profile-points"
 import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
+import { getLevel } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: "Mi Perfil"
@@ -33,8 +34,8 @@ export default async function ProfilePage() {
   return (
     <>
       <NavBar title="Perfil" />
-      <div className="mb-28 flex flex-col">
-        <div className="relative h-40 bg-violet-500">
+      <div className="mt-20 mb-28 flex flex-col">
+        {/* <div className="relative h-40 bg-violet-500">
           <div className="absolute -bottom-12 ml-4">
             {profile?.image ? (
               <div className="h-24 w-24 overflow-hidden rounded-full border-4 border-neutral-900 bg-gray-400">
@@ -55,6 +56,29 @@ export default async function ProfilePage() {
         </div>
         <div className="mx-3 mt-10 grid grid-cols-2 gap-2">
           <ProfilePoints totalPoints={profile?.totalPoints} />
+          <ProfileLevel levelPoints={profile?.levelPoints} />
+        </div> */}
+        <div className="flex flex-row px-4 items-center justify-between">
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-row gap-4">
+              <span className="text-2xl font-semibold text-white">
+                {profile.name}
+              </span>
+              <ProfileEdit user={profile} />
+            </div>
+            <ProfilePoints totalPoints={profile?.totalPoints} />
+          </div>
+          <div>
+            {profile.image ? (
+              <div className="h-24 w-24 overflow-hidden rounded-full border-4 border-neutral-900 bg-gray-400">
+                <img src={profile.image} alt="Avatar" />
+              </div>
+            ) : (
+              <div className="h-8 w-8 rounded-full bg-gray-400"></div>
+            )}
+          </div>
+        </div>
+        <div className="mt-4 px-4">
           <ProfileLevel levelPoints={profile?.levelPoints} />
         </div>
       </div>
