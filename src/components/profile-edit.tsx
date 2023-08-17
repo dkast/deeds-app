@@ -16,11 +16,7 @@ export default function ProfileEdit({ user }: { user: User }) {
 
   return (
     <>
-      <button
-        type="button"
-        className="rounded-full bg-neutral-700/50 p-1"
-        onClick={() => setOpen(true)}
-      >
+      <button type="button" className="p-1" onClick={() => setOpen(true)}>
         <PencilIcon className="h-4 w-4 text-neutral-400"></PencilIcon>
       </button>
       <ProfileEditSheet open={open} setOpen={setOpen} user={user} />
