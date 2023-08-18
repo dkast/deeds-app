@@ -21,7 +21,7 @@ const DeedView = ({ item }: { item: UserDeed }): JSX.Element => {
         break
       case "activity_bath":
         message = "se dió un baño"
-        icon = "🛀"
+        icon = "🚿"
         break
       case "activity_homework":
         message = "hizo la tarea"
@@ -37,7 +37,7 @@ const DeedView = ({ item }: { item: UserDeed }): JSX.Element => {
         break
       case "activity_excercise":
         message = "hizo ejercicio"
-        icon = "🏃"
+        icon = "👟"
         break
       case "activity_swim":
         message = "hizo natación"
