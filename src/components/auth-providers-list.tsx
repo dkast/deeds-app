@@ -9,7 +9,7 @@ import {
 
 import Button from "@/components/ui/button"
 
-export function AuthOptions({
+export function AuthProvidersList({
   providers
 }: {
   providers: Record<

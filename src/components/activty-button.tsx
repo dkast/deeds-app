@@ -21,17 +21,19 @@ const ActivityButton = ({
         scale: 0.9
       }}
       type="button"
-      className="relative flex w-full select-none flex-col items-center gap-3 rounded-2xl bg-violet-500 px-2 py-3"
+      className="relative flex w-full select-none flex-col items-center gap-3 rounded-3xl bg-zinc-900 px-3 py-6 ring-2 ring-zinc-800"
       onClick={onClick}
     >
-      <div className="mt-6 rounded-full border-4 border-cyan-300/70 bg-cyan-500">
-        <img src={`/images/${iconName}`} className="h-14 w-14" />
+      <div className="mt-6">
+        <span className="text-5xl">{iconName}</span>
       </div>
-      <span className="text-sm font-semibold text-white">{text}</span>
-      <div className="absolute top-1 right-1">
-        <div className="flex items-center gap-1 rounded-full bg-violet-600 px-2 py-1">
-          <span className="text-xs font-bold text-white">{points}</span>
+      <span className="text-sm font-semibold text-zinc-300">{text}</span>
+      <div className="absolute top-2 right-2">
+        <div className="flex items-center gap-1 px-2 py-1">
           <img src="/images/gem.svg" className="h-4 w-4" alt="coin" />
+          <span className="text-sm font-semibold text-orange-400">
+            {points}
+          </span>
         </div>
       </div>
     </motion.button>
