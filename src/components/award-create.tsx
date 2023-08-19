@@ -4,8 +4,8 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import { createAward } from "@/server/actions"
-import { PlusIcon } from "@heroicons/react/24/outline"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Plus } from "lucide-react"
 import { useAction } from "next-safe-action/hook"
 
 import BottomSheet from "@/components/ui/bottom-sheet"
@@ -19,7 +19,7 @@ export default function AwardCreate() {
   return (
     <>
       <button onClick={() => setOpen(true)}>
-        <PlusIcon className="h-6 w-6 text-white" />
+        <Plus className="text-white" size={24} />
       </button>
       <CreateAwardSheet open={open} setOpen={setOpen} />
     </>

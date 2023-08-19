@@ -18,18 +18,18 @@ export const authOptions: NextAuthOptions = {
           familyId: user.familyId
         }
       }
+    },
+    async signIn({ user, profile }) {
+      if ("image_url" in profile!) {
+        await prisma.user.update({
+          where: { id: user.id },
+          data: {
+            image: profile.image_url as string
+          }
+        })
+      }
+      return true
     }
-    // async signIn({ user, profile }) {
-    //   if ("image_url" in profile!) {
-    //     await prisma.user.update({
-    //       where: { id: user.id },
-    //       data: {
-    //         image: profile.image_url as string
-    //       }
-    //     })
-    //   }
-    //   return true
-    // }
   },
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),

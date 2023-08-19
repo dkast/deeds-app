@@ -1,13 +1,8 @@
 "use client"
 
-import {
-  GiftIcon,
-  HomeIcon,
-  PlusIcon,
-  UserGroupIcon
-} from "@heroicons/react/24/outline"
 import { type User } from "@prisma/client"
 import { motion } from "framer-motion"
+import { Gift, Home, Plus, Users2 } from "lucide-react"
 import Link from "next/link"
 import { useSelectedLayoutSegment } from "next/navigation"
 
@@ -22,20 +17,20 @@ export default function TabBar({ user }: { user: User | undefined }) {
         <TabLink
           name="Inicio"
           href="/home"
-          icon={<HomeIcon className="text-current" />}
+          icon={<Home className="text-current" size={30} />}
           selectedPath={segment}
         />
         <TabLink
           name="Premios"
           href="/awards"
-          icon={<GiftIcon className="text-current" />}
+          icon={<Gift className="text-current" size={30} />}
           selectedPath={segment}
         />
         <TabAddAction />
         <TabLink
           name="Familia"
           href="/family"
-          icon={<UserGroupIcon className="text-current" />}
+          icon={<Users2 className="text-current" size={30} />}
           selectedPath={segment}
         />
         <TabUser href="/profile" user={user} selectedPath={segment} />
@@ -97,7 +92,7 @@ function TabAddAction() {
   return (
     <Link href="/new">
       <motion.div whileTap={{ scale: 0.9 }}>
-        <PlusIcon className="mx-2 -mt-5 h-16 w-16 rounded-full bg-gradient-to-br from-cyan-400 via-violet-500 to-orange-400 p-2 text-white shadow-lg shadow-pink-400/50" />
+        <Plus className="mx-2 -mt-5 h-16 w-16 rounded-full bg-gradient-to-br from-cyan-400 via-violet-500 to-orange-400 p-2 text-white shadow-lg shadow-pink-400/50" />
       </motion.div>
     </Link>
   )

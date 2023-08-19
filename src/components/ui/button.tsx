@@ -1,5 +1,5 @@
 import React from "react"
-import { RotateSpinner } from "react-spinners-kit"
+import { Loader2 } from "lucide-react"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: "primary" | "secondary" | "danger" | "warn" | "flat"
@@ -77,7 +77,7 @@ const Button: React.FC<ButtonProps> = ({
     <Element className={cssClasses} {...props}>
       {isLoading ? (
         <span className="mr-2">
-          <RotateSpinner size={16} color={"#FFF"}></RotateSpinner>
+          <Loader2 className="text-white animate-spin" size={16} />
         </span>
       ) : null}
       {leftIcon ? <i className={SIZE_ICON_LEFT[size]}>{leftIcon}</i> : null}

@@ -3,10 +3,9 @@
 import React from "react"
 import toast from "react-hot-toast"
 import { deleteAward } from "@/server/actions"
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid"
-import { TrashIcon } from "@heroicons/react/24/outline"
 import { type Award } from "@prisma/client"
 import { motion, useMotionValue, useTransform } from "framer-motion"
+import { ExternalLink, Trash2 } from "lucide-react"
 import { useAction } from "next-safe-action/hook"
 
 type AwardProps = {
@@ -55,7 +54,7 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
               className="flex items-center gap-2"
             >
               <span className="font-normal">{item.description}</span>
-              <ArrowTopRightOnSquareIcon className="h-5 w-5 text-current" />
+              <ExternalLink className="text-current" size={20} />
             </a>
           ) : (
             <span className="font-normal">{item.description}</span>
@@ -74,7 +73,7 @@ const AwardView = ({ item, allowDelete }: AwardProps): JSX.Element => {
         onClick={() => deleteItem(item.id)}
         className="absolute inset-y-0 right-0 flex w-[100px] items-center justify-center rounded-xl bg-red-500 text-white"
       >
-        <TrashIcon className="h-8 w-8 text-current" />
+        <Trash2 className="text-current" size={32} />
       </motion.button>
     </div>
   )
