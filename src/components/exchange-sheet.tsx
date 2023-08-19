@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { toast } from "react-hot-toast"
 import { addPoints, substractPoints } from "@/server/actions"
-import { Award } from "@prisma/client"
+import { type Award } from "@prisma/client"
 import { useAction } from "next-safe-action/hook"
 
 import ExchangeList from "@/components/exchange-list"
@@ -96,9 +96,7 @@ function ExchangeSheet({
             <label className="my-2 block font-medium text-neutral-400">
               Premios
             </label>
-            <div className="flex flex-col gap-2">
-              <ExchangeList userId={userId} awards={awards} />
-            </div>
+            <ExchangeList userId={userId} awards={awards} />
           </div>
         </div>
       </div>

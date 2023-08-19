@@ -1,4 +1,4 @@
-import { Deed, User } from "@prisma/client"
+import { type Deed, type User } from "@prisma/client"
 import { z } from "zod"
 
 export type Activity = {
@@ -12,56 +12,56 @@ export type Activity = {
 export const ACTIVITIES: Activity[] = [
   {
     id: "activity_tbrush",
-    icon: "dental-care.svg",
+    icon: "🪥",
     description: "Cepillarme los dientes",
     points: 10,
     requireComments: false
   },
   {
     id: "activity_bath",
-    icon: "rubber-duck.svg",
+    icon: "🚿",
     description: "Bañarme",
     points: 20,
     requireComments: false
   },
   {
     id: "activity_homework",
-    icon: "backpack.svg",
+    icon: "📔",
     description: "Hacer la tarea",
     points: 50,
     requireComments: false
   },
   {
     id: "activity_help",
-    icon: "volunteer.svg",
+    icon: "🖐",
     description: "Ayudar en la casa",
     points: 50,
     requireComments: true
   },
   {
     id: "activity_online",
-    icon: "laptop.svg",
+    icon: "💻",
     description: "Tomar clase online",
     points: 30,
     requireComments: false
   },
   {
     id: "activity_excercise",
-    icon: "triangle.svg",
+    icon: "👟",
     description: "Ejercicio +30 min",
     points: 30,
     requireComments: true
   },
   {
     id: "activity_swim",
-    icon: "swimmer.svg",
+    icon: "🏊",
     description: "Nadar +30 min",
     points: 30,
     requireComments: false
   },
   {
     id: "activity_diet",
-    icon: "diet.svg",
+    icon: "🍎",
     description: "Comer saludable",
     points: 30,
     requireComments: true

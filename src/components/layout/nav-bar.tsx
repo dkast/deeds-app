@@ -11,7 +11,7 @@ export default function NavBar({
 }: NavBarProps): JSX.Element {
   return (
     <>
-      <div className="fixed inset-x-0 z-20 w-full bg-gradient-to-t from-neutral-800/50 to-neutral-800 px-6 py-4 backdrop-blur">
+      <div className="fixed inset-x-0 z-20 w-full bg-gradient-to-t from-zinc-950/50 to-zinc-950 px-6 py-4 backdrop-blur">
         <div className="grid grid-cols-4">
           <div className="flex items-center justify-start">{leftItem}</div>
           <div className="col-span-2">

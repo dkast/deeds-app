@@ -2,7 +2,7 @@
 
 import toast from "react-hot-toast"
 import { substractPoints } from "@/server/actions"
-import { Award } from "@prisma/client"
+import { type Award } from "@prisma/client"
 import { useAction } from "next-safe-action/hook"
 
 import Button from "@/components/ui/button"
@@ -28,15 +28,16 @@ export const ExchangeItem = ({
   }
 
   return (
-    <div className="z-10 flex overflow-hidden rounded-xl border border-neutral-700 p-3 shadow-lg">
+    <div className="z-10 flex overflow-hidden rounded-2xl border border-2 border-zinc-800 p-4 shadow-lg select-none">
       <img
         draggable="false"
         src={item.imageUrl}
-        className="h-24 w-24 rounded-lg object-cover"
+        className="h-24 w-24 rounded-lg object-cover aspect-square"
+        alt="icon"
       />
-      <div className="flex w-full flex-col items-start justify-between pl-4">
-        <div>
-          <span className="mb-2 font-bold text-zinc-200">
+      <div className="flex w-full flex-col gap-3 items-start justify-between pl-4">
+        <div className="flex flex-col gap-1">
+          <span className="font-semibold text-zinc-200">
             {item.description}
           </span>
           <div className="flex items-center text-zinc-400">

@@ -15,3 +15,35 @@ export function getPct(levelPoints: number | undefined): number {
   const pct = Math.round((points / 1000) * 100)
   return pct
 }
+
+const formatDistanceLocale = {
+  lessThanXSeconds: "{{count}}s",
+  xSeconds: "{{count}}s",
+  halfAMinute: "30s",
+  lessThanXMinutes: "{{count}}m",
+  xMinutes: "{{count}}m",
+  aboutXHours: "{{count}}h",
+  xHours: "{{count}}h",
+  xDays: "{{count}}d",
+  aboutXWeeks: "{{count}}sem",
+  xWeeks: "{{count}}sem",
+  aboutXMonths: "{{count}}mes",
+  xMonths: "{{count}}mes",
+  aboutXYears: "{{count}}a",
+  xYears: "{{count}}a",
+  overXYears: "{{count}}a",
+  almostXYears: "{{count}}a"
+}
+
+export const formatDistance = (
+  token: keyof typeof formatDistanceLocale,
+  count: string
+) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const result = (formatDistanceLocale[token] as any).replace(
+    "{{count}}",
+    count
+  )
+
+  return result
+}

@@ -1,6 +1,6 @@
 import { getProviders } from "next-auth/react"
 
-import { AuthOptions } from "@/components/auth-options"
+import { AuthProvidersList } from "@/components/auth-providers-list"
 import LottiePlayer from "@/components/shared/lottie-player"
 import lottieJSON from "../../../../public/assets/robot-says-hi.json"
 
@@ -22,7 +22,7 @@ export default async function SignInPage() {
       </span>
 
       <div className="mt-6">
-        <AuthOptions providers={providers} />
+        <AuthProvidersList providers={providers} />
       </div>
     </div>
   )

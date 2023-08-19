@@ -1,10 +1,9 @@
-import { Metadata } from "next"
+import { type Metadata } from "next"
 import { redirect } from "next/navigation"
 
 import FamilyList from "@/components/family-list"
 import NavBar from "@/components/layout/nav-bar"
 import { authOptions } from "@/lib/auth"
-import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 
 export const metadata: Metadata = {

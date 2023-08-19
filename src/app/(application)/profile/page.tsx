@@ -1,7 +1,8 @@
-import { Metadata } from "next"
+import { type Metadata } from "next"
 import { redirect } from "next/navigation"
 
 import NavBar from "@/components/layout/nav-bar"
+import LogoutButton from "@/components/logout-button"
 import ProfileEdit from "@/components/profile-edit"
 import { ProfileLevel } from "@/components/profile-level"
 import { ProfilePoints } from "@/components/profile-points"
@@ -32,11 +33,20 @@ export default async function ProfilePage() {
 
   return (
     <>
-      <NavBar title="Perfil" />
-      <div className="mb-28 flex flex-col">
-        <div className="relative h-40 bg-violet-500">
-          <div className="absolute -bottom-12 ml-4">
-            {profile?.image ? (
+      <NavBar title="Perfil" rightItem={<LogoutButton />} />
+      <div className="mt-20 mb-28 flex flex-col">
+        <div className="flex flex-row px-4 items-center justify-between">
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-row gap-4">
+              <span className="text-2xl font-semibold text-white">
+                {profile.name}
+              </span>
+              <ProfileEdit user={profile} />
+            </div>
+            <ProfilePoints totalPoints={profile?.totalPoints} />
+          </div>
+          <div>
+            {profile.image ? (
               <div className="h-24 w-24 overflow-hidden rounded-full border-4 border-neutral-900 bg-gray-400">
                 <img src={profile.image} alt="Avatar" />
               </div>
@@ -45,16 +55,7 @@ export default async function ProfilePage() {
             )}
           </div>
         </div>
-        <div className="ml-32 mt-2 flex items-center gap-2">
-          <span className="text-xl font-semibold text-white">
-            {profile?.name}
-          </span>
-          <div>
-            <ProfileEdit user={profile} />
-          </div>
-        </div>
-        <div className="mx-3 mt-10 grid grid-cols-2 gap-2">
-          <ProfilePoints totalPoints={profile?.totalPoints} />
+        <div className="mt-4 px-4">
           <ProfileLevel levelPoints={profile?.levelPoints} />
         </div>
       </div>

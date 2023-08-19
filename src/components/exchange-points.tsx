@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
-import { Award } from "@prisma/client"
+import { type Award } from "@prisma/client"
+import { MoreVertical } from "lucide-react"
 
 import ExchangeSheet from "@/components/exchange-sheet"
 
@@ -18,7 +18,7 @@ export default function ExchangePoints({
   return (
     <>
       <button onClick={() => setOpen(true)}>
-        <EllipsisVerticalIcon className="h-6 w-6 text-neutral-400" />
+        <MoreVertical size={24} className="text-zinc-300" />
       </button>
       <ExchangeSheet
         open={open}
