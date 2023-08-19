@@ -3,8 +3,8 @@
 import { useState } from "react"
 import toast from "react-hot-toast"
 import { updateUser } from "@/server/actions"
-import { PencilIcon } from "@heroicons/react/20/solid"
 import { type User } from "@prisma/client"
+import { Pen } from "lucide-react"
 import { useAction } from "next-safe-action/hook"
 
 import BottomSheet from "@/components/ui/bottom-sheet"
@@ -17,7 +17,7 @@ export default function ProfileEdit({ user }: { user: User }) {
   return (
     <>
       <button type="button" className="p-1" onClick={() => setOpen(true)}>
-        <PencilIcon className="h-4 w-4 text-neutral-400"></PencilIcon>
+        <Pen className="text-zinc-400" size={16} />
       </button>
       <ProfileEditSheet open={open} setOpen={setOpen} user={user} />
     </>
