@@ -1,5 +1,5 @@
 import React from "react"
-import { ExclamationCircleIcon } from "@heroicons/react/20/solid"
+import { AlertCircle } from "lucide-react"
 
 const DEFAULT =
   "block w-full rounded-lg transition duration-150 ease-in-out shadow-sm bg-zinc-950 text-white"
@@ -49,8 +49,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         />
         {hasError ? (
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-            <ExclamationCircleIcon
-              className="h-5 w-5 text-red-500"
+            <AlertCircle
+              className="text-red-500"
+              width={20}
               aria-hidden="true"
             />
           </div>
