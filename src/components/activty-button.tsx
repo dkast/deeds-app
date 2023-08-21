@@ -21,10 +21,10 @@ const ActivityButton = ({
         scale: 0.9
       }}
       type="button"
-      className="relative flex w-full select-none flex-col items-center gap-3 rounded-3xl bg-zinc-900 px-3 py-6 ring-2 ring-zinc-800"
+      className="relative flex w-full select-none flex-col items-center gap-4 rounded-3xl bg-zinc-900 px-2 py-4 ring-2 ring-zinc-800"
       onClick={onClick}
     >
-      <div className="mt-6">
+      <div className="mt-8">
         <span className="text-5xl">{iconName}</span>
       </div>
       <span className="text-sm font-semibold text-zinc-300">{text}</span>

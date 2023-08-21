@@ -55,7 +55,7 @@ const DeedView = ({ item }: { item: UserDeed }): JSX.Element => {
   }, [item])
 
   return (
-    <div className="rounded-2xl bg-zinc-900 px-4 py-3">
+    <div className="rounded-2xl bg-zinc-900 p-4">
       <div className="flex items-center">
         <div className="relative">
           {item.User?.image && (
@@ -65,7 +65,7 @@ const DeedView = ({ item }: { item: UserDeed }): JSX.Element => {
               alt="avatar"
             />
           )}
-          <div className="bg-zinc-800 ring-1 ring-zinc-800 shadow absolute bottom-0 right-0 rounded-full h-6 w-6 flex justify-center items-center">
+          <div className="bg-white ring-2 ring-zinc-900 shadow absolute bottom-0 right-0 rounded-full h-6 w-6 flex justify-center items-center">
             <span className="">{icon}</span>
           </div>
         </div>

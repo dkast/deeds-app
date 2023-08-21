@@ -52,7 +52,7 @@ function TabLink({ href, name, icon, selectedPath }: TabLinkProps) {
       href={href}
       className={cn(
         href.includes(selectedPath!)
-          ? "bg-zinc-500/20 rounded-full text-zinc-100"
+          ? "text-zinc-100"
           : "text-zinc-500 hover:text-white",
         "py-3 px-4"
       )}
